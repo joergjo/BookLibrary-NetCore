@@ -1,0 +1,23 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/css/screen.min.css",
+    "inputFiles": [
+      "wwwroot/css/screen.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/app.min.js",
+    "inputFiles": [
+      "wwwroot/js/models/book.js",
+      "wwwroot/js/collections/library.js",
+      "wwwroot/js/views/book.js",
+      "wwwroot/js/views/library.js",
+      "wwwroot/js/app.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": true
+  }
+]
