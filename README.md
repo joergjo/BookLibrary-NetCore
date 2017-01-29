@@ -5,7 +5,9 @@ rewritten in ASP.NET Core MVC, including unit tests using [xUnit.net](https://gi
 
 >##### Note
 >This sample requires Visual Studio 2017. You can download the latest release candidate from [https://www.visualstudio.com/vs/visual-studio-2017-rc](https://www.visualstudio.com/vs/visual-studio-2017-rc).
+
 ****
+
 Like the original, this version uses MongoDB as database. Make sure to configure your connection string in `appsettings.config` 
 or in your [user secrets](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets):
 - `MongoDB:DefaultConnection:Host`: Your MongoDB host name or IP address.
@@ -15,5 +17,5 @@ or in your [user secrets](https://docs.microsoft.com/en-us/aspnet/core/security/
 - `MongoDB:DefaultConnection:UseTransportSecurity`: This setting is optional. If set to `true`, the MongoDB connection will be secured using [TLS](https://docs.mongodb.com/manual/tutorial/configure-ssl/). If not set or set to `false` the connection is **not** encrypted.
 
 >##### Note
->Why not simply use a MongoDB URI as connection string? Because I've run into numerous problems with applications and drivers that can't deal with passwords
+>Why not simply use a [MongoDB URI](https://docs.mongodb.com/manual/reference/connection-string/) as connection string? Because I've run into numerous problems with applications and drivers that can't deal with passwords
 >containing punctuation characters or symbols like `@` in MongoDB URIs. 
