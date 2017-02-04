@@ -1,5 +1,4 @@
 ﻿{
-  "projects": [ "BookLibrary", "BookLibrary.Test" ],
   "sdk": {
     "version": "1.0.0-rc3-004530"
   }
