@@ -6,10 +6,10 @@
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0-preview-20170210-02" />
-    <PackageReference Include="Moq" Version="4.6.38-alpha" />
-    <PackageReference Include="xunit" Version="2.2.0-rc1-build3507" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0-rc1-build1247" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+    <PackageReference Include="Moq" Version="4.7.0" />
+    <PackageReference Include="xunit" Version="2.2.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookLibrary\BookLibrary.csproj" />
