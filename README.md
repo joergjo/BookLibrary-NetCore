@@ -4,11 +4,11 @@ for [Backbone.js](https://github.com/jashkenas/backbone). The Backbone.js SPA in
 rewritten in ASP.NET Core MVC, including unit tests using [xUnit.net](https://github.com/xunit/xunit) and [Moq](https://github.com/moq/moq4).
 
 >##### Note
->This sample requires Visual Studio 2017. You can download the latest release candidate from [https://www.visualstudio.com/vs/visual-studio-2017-rc](https://www.visualstudio.com/vs/visual-studio-2017-rc).
+>This sample requires [Visual Studio 2017](https://www.visualstudio.com/download) or the [.NET Core SDK](https://www.microsoft.com/net/download/core) to build. 
 
 ****
 
-Like the original, this version uses MongoDB as database. Make sure to configure your connection string in `appsettings.config` 
+Like the original, this version uses [MongoDB](https://www.mongodb.com/) as database. Make sure to configure your connection string in `appsettings.config` 
 or in your [user secrets](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets):
 - `MongoDB:DefaultConnection:Host`: Your MongoDB host name or IP address.
 - `MongoDB:DefaultConnection:Database`: The MongoDB database to use (default is `library_database`).
