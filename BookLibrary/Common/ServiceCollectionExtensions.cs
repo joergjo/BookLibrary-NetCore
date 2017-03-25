@@ -1,48 +1,31 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
-using System.Security.Authentication;
 
 namespace BookLibrary.Api.Common
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddMongoClient(this IServiceCollection services)
+        public static IServiceCollection AddMongoClient(this IServiceCollection services, string connectionString)
         {
             if (services == null)
             {
                 throw new ArgumentNullException(nameof(services));
             }
 
-            services.AddSingleton<MongoClient>(factory =>
+            if (connectionString == null)
             {
-                var optionsAccessor = factory.GetRequiredService<IOptions<MongoClientOptions>>();
-                var options = optionsAccessor.Value;
+                throw new ArgumentNullException(nameof(connectionString));
+            }
 
-                var credentials = new List<MongoCredential>();
-                if (!string.IsNullOrEmpty(options.Username))
-                {
-                    var identity = new MongoInternalIdentity(options.Database, options.Username);
-                    var evidence = new PasswordEvidence(options.Password);
-                    credentials.Add(new MongoCredential("SCRAM-SHA-1", identity, evidence));
-                }
+            if (connectionString == string.Empty)
+            {
+                throw new ArgumentException("The MongoDB connection string must not be an empty string.", nameof(connectionString));
+            }
 
-                var settings = new MongoClientSettings
-                {
-                    Credentials = credentials,
-                    Server = new MongoServerAddress(options.Host, options.Port ?? 27017),
-                    UseSsl = options.UseTransportSecurity ?? false,
-                    SslSettings = new SslSettings
-                    {
-                        EnabledSslProtocols = SslProtocols.Tls12
-                    }
-                };
-
-                var client = new MongoClient(settings);
-                return client;
-            });
+            var mongoUrl = MongoUrl.Create(connectionString);
+            services.AddSingleton<MongoUrl>(mongoUrl);
+            services.AddSingleton<MongoClient>(new MongoClient(mongoUrl));
 
             return services;
         }
@@ -53,20 +36,25 @@ namespace BookLibrary.Api.Common
             {
                 throw new ArgumentNullException(nameof(services));
             }
-            if (string.Empty == collectionName)
+
+            if (collectionName == null)
+            {
+                throw new ArgumentNullException(nameof(collectionName));
+            }
+
+            if (collectionName == string.Empty)
             {
                 throw new ArgumentException("The collection name must not be an empty string.", nameof(collectionName));
             }
 
             services.AddSingleton<IMongoCollection<TDocument>>(factory =>
             {
-                var optionsAccessor = factory.GetRequiredService<IOptions<MongoClientOptions>>();
-                var options = optionsAccessor.Value;
-                string documentName = typeof(TDocument).Name;
+                var mongoUrl = factory.GetRequiredService<MongoUrl>();
+                string databaseName = mongoUrl.DatabaseName;
 
                 var client = factory.GetRequiredService<MongoClient>();
-                var database = client.GetDatabase(options.Database);
-                var collection = database.GetCollection<TDocument>(collectionName ?? documentName.ToLowerInvariant());
+                var database = client.GetDatabase(databaseName);
+                var collection = database.GetCollection<TDocument>(collectionName ?? typeof(TDocument).Name.ToLowerInvariant());
                 return collection;
             });
 

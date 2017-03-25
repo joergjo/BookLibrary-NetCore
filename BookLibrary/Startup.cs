@@ -36,9 +36,6 @@ namespace BookLibrary
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add options as injectable component.
-            services.AddOptions();
-
             // Add framework services.
             services.AddMvc(options =>
             {
@@ -52,8 +49,7 @@ namespace BookLibrary
 
             // Add application specific services
             services
-                .Configure<MongoClientOptions>(Configuration.GetSection("MongoDB:DefaultConnection"))
-                .AddMongoClient()
+                .AddMongoClient(Configuration.GetConnectionString("DefaultConnection"))
                 .AddMongoCollection<Book>("books")
                 .AddScoped<IBookRepository, BookRepository>();
         }
