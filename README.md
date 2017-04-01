@@ -12,4 +12,4 @@ Like the original, this version uses [MongoDB](https://www.mongodb.com/) as data
 Please make sure to configure your connection string in `appsettings.json` or in your [user secrets](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets).
 
 >##### Note
->This sample requires [Visual Studio 2017](https://www.visualstudio.com/download) or the [.NET Core SDK](https://www.microsoft.com/net/download/core) to build. I recommend using MongoDB MongoDB Atlas version 3.4 or higher.
+>This sample requires [Visual Studio 2017](https://www.visualstudio.com/download) or the [.NET Core SDK](https://www.microsoft.com/net/download/core) to build. I recommend using either MongoDB or MongoDB Atlas version 3.4 or higher.
