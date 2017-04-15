@@ -1,0 +1,8 @@
+version: '2'
+services:
+  booklibrary-netcore-build:
+    image: microsoft/aspnetcore-build:1.1
+    volumes:
+      - .:/sln
+    working_dir: /sln
+    entrypoint: ["sh", "./build.sh"]

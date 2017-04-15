@@ -7,6 +7,9 @@
     <UserSecretsId>f2dfb25c-de48-491d-bc85-ebc972fa71db</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Dockerfile" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Xml" Version="1.1.2" />
