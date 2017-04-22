@@ -1,0 +1,19 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: booklibrary-deployment
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: booklibrary
+    spec:
+      containers:
+      - name: booklibrary
+        image: booklibrary:v3
+        ports:
+        - containerPort: 80
+        env:
+        - name: ConnectionStrings__DefaultConnection
+          value: "mongodb://library_user:Ph*ntomL0rd@joergjo-mongodb-01.northeurope.cloudapp.azure.com/library_database"

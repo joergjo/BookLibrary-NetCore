@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: booklibrary
+  labels:
+    environment: dev
+    app: booklibrary
+
+spec:
+  containers:
+  - name: booklibrary
+    image: booklibrary:v3
+    env:
+    - name: ConnectionStrings__DefaultConnection
+      value: "mongodb://library_user:Ph*ntomL0rd@joergjo-mongodb-01.northeurope.cloudapp.azure.com/library_database"
