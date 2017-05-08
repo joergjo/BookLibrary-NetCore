@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.3
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookLibrary", "BookLibrary\BookLibrary.csproj", "{B349EC31-3E4F-42BF-AF1C-F37AA79767F8}"
 EndProject
@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "BookLibrary.Application", "BookLibrary.Application\BookLibrary.Application.sfproj", "{B9B3C04A-B564-427C-B17C-85BBB5E554FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,16 @@ Global
 		{90B552B9-E4EA-4813-AB48-7F4CD72294C9}.Release|x64.Build.0 = Release|Any CPU
 		{90B552B9-E4EA-4813-AB48-7F4CD72294C9}.Release|x86.ActiveCfg = Release|Any CPU
 		{90B552B9-E4EA-4813-AB48-7F4CD72294C9}.Release|x86.Build.0 = Release|Any CPU
+		{B9B3C04A-B564-427C-B17C-85BBB5E554FD}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{B9B3C04A-B564-427C-B17C-85BBB5E554FD}.Debug|x64.ActiveCfg = Debug|x64
+		{B9B3C04A-B564-427C-B17C-85BBB5E554FD}.Debug|x64.Build.0 = Debug|x64
+		{B9B3C04A-B564-427C-B17C-85BBB5E554FD}.Debug|x64.Deploy.0 = Debug|x64
+		{B9B3C04A-B564-427C-B17C-85BBB5E554FD}.Debug|x86.ActiveCfg = Debug|x64
+		{B9B3C04A-B564-427C-B17C-85BBB5E554FD}.Release|Any CPU.ActiveCfg = Release|x64
+		{B9B3C04A-B564-427C-B17C-85BBB5E554FD}.Release|x64.ActiveCfg = Release|x64
+		{B9B3C04A-B564-427C-B17C-85BBB5E554FD}.Release|x64.Build.0 = Release|x64
+		{B9B3C04A-B564-427C-B17C-85BBB5E554FD}.Release|x64.Deploy.0 = Release|x64
+		{B9B3C04A-B564-427C-B17C-85BBB5E554FD}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

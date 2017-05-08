@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Name="fabric:/BookLibrary.Application" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Parameters>
+    <Parameter Name="BookLibrary_InstanceCount" Value="-1" />
+    <Parameter Name="BookLibrary_MongoUrl" Value="mongodb://library_user:Ph*ntomL0rd@joergjo-mongodb-01.northeurope.cloudapp.azure.com/library_database" />
+  </Parameters>
+</Application>
