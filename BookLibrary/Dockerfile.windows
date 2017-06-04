@@ -1,4 +1,4 @@
-﻿FROM microsoft/aspnetcore:1.1.1-nanoserver
+﻿FROM microsoft/aspnetcore:1.1.2-nanoserver
 WORKDIR /app
 COPY . .
 EXPOSE 80
