@@ -11,6 +11,16 @@
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "xunit",
+            "args": ["-verbose"],
+            "isBuildCommand": false,
+            "isTestCommand": true,
+            "problemMatcher":"$msCompile",
+            "options": {
+                "cwd": "${workspaceRoot}/BookLibrary.Test"
+            }
         }
     ]
 }
