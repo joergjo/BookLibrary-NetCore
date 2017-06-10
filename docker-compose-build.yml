@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 services:
   booklibrary-netcore-build:
     image: microsoft/aspnetcore-build:1.1
