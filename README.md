@@ -8,8 +8,12 @@ for [Backbone.js](https://github.com/jashkenas/backbone):
 
 ****
 
-Like the original, this version uses [MongoDB](https://www.mongodb.com/) as database. The implementation supports both MongoDB and MongoDB Atlas, so use whatever flavor of MongoDB works best for you.  
+Like the original, this version uses [MongoDB](https://www.mongodb.com/) as database. The implementation supports both MongoDB and MongoDB Atlas. Use whatever flavor of MongoDB works best for you. I recommend using either MongoDB or MongoDB Atlas version 3.4 or higher.  
+
 Please make sure to configure your connection string in `appsettings.json` or in your [user secrets](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets).
 
->##### Note
->This sample requires [Visual Studio 2017](https://www.visualstudio.com/download) or the [.NET Core SDK](https://www.microsoft.com/net/download/core) to build. I recommend using either MongoDB or MongoDB Atlas version 3.4 or higher.
+>##### Building the app
+>This app requires [Visual Studio 2017](https://www.visualstudio.com/download) or the [.NET Core SDK](https://www.microsoft.com/net/download/core) to build. 
+>You can also use the included Docker Compose file to build the solution in a Docker container:
+>
+>`$ docker-compose -f docker-compose-build.yml up`
