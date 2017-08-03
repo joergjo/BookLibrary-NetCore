@@ -11,7 +11,7 @@ namespace BookLibrary.Api.Models
             var conventions = new ConventionPack();
             conventions.Add(new CamelCaseElementNameConvention());
             ConventionRegistry.Register(
-                "BookLibrary",
+                nameof(BookLibrary),
                 conventions,
                 t => t.FullName.StartsWith(typeof(Book).Namespace));
 

@@ -5,4 +5,4 @@ services:
     volumes:
       - .:/sln
     working_dir: /sln
-    entrypoint: ["sh", "./build.sh"]
+    entrypoint: ["bash", "./build.sh", "BookLibrary/BookLibrary.csproj"]
