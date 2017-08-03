@@ -1,0 +1,10 @@
+version: '3'
+services:
+  booklibrary:
+    build: ./publish
+    image: booklibrary-netcore
+    container_name: booklibrary
+    environment:
+      ConnectionStrings__DefaultConnection: "mongodb://library_user:Ph*ntomL0rd@joergjo-mongodb-01.northeurope.cloudapp.azure.com/library_database"
+    ports:
+      - "8080:80"
