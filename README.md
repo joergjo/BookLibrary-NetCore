@@ -5,6 +5,7 @@ for [Backbone.js](https://github.com/jashkenas/backbone):
 - The API has been implemented with ASP.NET Core MVC running on .NET Core. 
 - The API's data access layer has been built to be fully compatible with the Node.js version, hence you can use the same database for this version and the original.
 - Unit tests for the API using [xUnit.net](https://github.com/xunit/xunit) and [Moq](https://github.com/moq/moq4) have been added.
+- Docker Compose and Kubernetes YAML files have been added to run in the app in a Docker Container or as a service in Kubernetes on Linux. 
 
 ****
 
@@ -17,3 +18,4 @@ Please make sure to configure your connection string in `appsettings.json` or in
 >You can also use the included Docker Compose file to build the solution in a Docker container:
 >
 >`$ docker-compose -f docker-compose-build.yml up`
+
