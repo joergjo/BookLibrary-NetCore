@@ -8,8 +8,11 @@ namespace BookLibrary.Api.Models
     {
         public static void Configure()
         {
-            var conventions = new ConventionPack();
-            conventions.Add(new CamelCaseElementNameConvention());
+            var conventions = new ConventionPack
+            {
+                new CamelCaseElementNameConvention()
+            };
+
             ConventionRegistry.Register(
                 nameof(BookLibrary),
                 conventions,

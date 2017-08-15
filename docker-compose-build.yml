@@ -1,8 +1,10 @@
-version: '2.1'
+version: "3.0"
 services:
   booklibrary-netcore-build:
-    image: microsoft/aspnetcore-build:1.1
+    image: microsoft/aspnetcore-build:2.0
     volumes:
       - .:/sln
+      - /sln/BookLibrary/bin
+      - /sln/BookLibrary/obj
     working_dir: /sln
     entrypoint: ["bash", "./build.sh", "BookLibrary/BookLibrary.csproj"]

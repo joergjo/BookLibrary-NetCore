@@ -1,10 +1,32 @@
-version: '3'
+version: "3"
+
+volumes:
+  mongodata:
+
+networks:
+  frontend:
+  backend:
+
 services:
-  booklibrary:
-    build: ./publish
+  mongodb:
+    image: mongo:3.4
+    volumes:
+      - mongodata:/data/db
+    networks:
+      - backend
+
+  webapi:
+    build: 
+      context: ./publish
+      dockerfile: Dockerfile
     image: booklibrary-netcore
-    container_name: booklibrary
-    environment:
-      ConnectionStrings__DefaultConnection: "mongodb://<MONGOHOST>/library_database"
     ports:
-      - "8080:80"
+      - 5000:80
+    networks:
+      - backend
+      - frontend
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=mongodb://mongodb/library_database
+    depends_on:
+      - mongodb

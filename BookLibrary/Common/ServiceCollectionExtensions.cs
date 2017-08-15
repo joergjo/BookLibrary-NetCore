@@ -24,8 +24,8 @@ namespace BookLibrary.Api.Common
             }
 
             var mongoUrl = MongoUrl.Create(connectionString);
-            services.AddSingleton<MongoUrl>(mongoUrl);
-            services.AddSingleton<MongoClient>(new MongoClient(mongoUrl));
+            services.AddSingleton(mongoUrl);
+            services.AddSingleton(new MongoClient(mongoUrl));
 
             return services;
         }
@@ -47,7 +47,7 @@ namespace BookLibrary.Api.Common
                 throw new ArgumentException("The collection name must not be an empty string.", nameof(collectionName));
             }
 
-            services.AddSingleton<IMongoCollection<TDocument>>(factory =>
+            services.AddSingleton(factory =>
             {
                 var mongoUrl = factory.GetRequiredService<MongoUrl>();
                 string databaseName = mongoUrl.DatabaseName;

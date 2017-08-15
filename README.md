@@ -2,7 +2,7 @@
 This is an ASP.NET Core MVC port of [Addy Osmani's Book Library sample](https://github.com/addyosmani/backbone-fundamentals/tree/gh-pages/practicals/exercise-2)
 for [Backbone.js](http://backbonejs.org/) with the following modifications and enhancements:
 - The Backbone SPA is now bundled and minified using [gulp](http://gulpjs.com/). Otherwise, it's identical to the original version.
-- The API has been implemented with ASP.NET Core MVC running on .NET Core. 
+- The API has been implemented with ASP.NET Core MVC 2.0 running on .NET Core 2.0. 
 - The API's data access layer in .NET Core has been built to be fully compatible with the Node.js version, hence you can use the same database for this version and the original Node.js backend.
 - Unit tests for the API using [xUnit.net](https://github.com/xunit/xunit) and [Moq](https://github.com/moq/moq4) have been added.
 - Docker Compose (`docker-compose.yml`) and Kubernetes (`booklibrary.yaml`) YAML files have been added to run the app in a Docker Container or as a service in Kubernetes on Linux. 
@@ -12,10 +12,8 @@ This version, like the original, uses [MongoDB](https://www.mongodb.com/) as dat
 ****
 ## Configuring the app
 Please make sure to configure your connection string in `appsettings.json` or in your [user secrets](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets).
-
-If you want to run the app in a Docker host, open `docker-compose.yml` and replace `<MONGOHOST>` with the FQDN or IP address of your MongoDB host or service.
-
-If you want to run the app in a Kubernetes cluster including minikube, open 'booklibrary.yaml` and replace `<MONGOHOST>` with the FQDN or IP address of your MongoDB host or service. 
+If you want to run the app in a Kubernetes cluster including minikube, open `booklibrary.yaml` and replace `<MONGOHOST>` with the FQDN or IP address of your MongoDB host or service
+(this assumes MongoDB runs *outside of Kubernetes*). 
 
 ## Building and running the app
 ### [Visual Studio 2017](https://www.visualstudio.com/download)
@@ -42,7 +40,8 @@ $ dotnet run
 </code>
 
 ### [Docker](https://www.docker.com/community-edition)
-If you have a Docker host running or Docker locally installed on your machine, you don't even need the .NET Core runtime, SDK or Visual Studio. Open a command line or shell window (i.e. PowerShell, Console, Bash etc.) and run the following commands:
+If you have a Docker host running or Docker locally installed on your machine, you don't even need the .NET Core runtime, SDK or Visual Studio, nor an existing MongoDB host. 
+Open a command line or shell window (i.e. PowerShell, Console, Bash etc.) and run the following commands:
 
 <code>
 $ cd /path/to/BookLibrary-NetCore<br />
