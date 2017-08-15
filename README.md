@@ -16,7 +16,7 @@ If you want to run the app in a Kubernetes cluster including minikube, open `boo
 (this assumes MongoDB runs *outside of Kubernetes*). 
 
 ## Building and running the app
-### [Visual Studio 2017](https://www.visualstudio.com/download)
+### [Visual Studio 2017 (version 15.3 or higher required)](https://www.visualstudio.com/download)
 Open `BookLibrary-NetCore.sln` and debug or run the solution.
 
 ### [Visual Studio Code](https://code.visualstudio.com/)
