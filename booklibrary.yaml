@@ -1,7 +1,7 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: booklibrary-deployment
+  name: booklibrary
 spec:
   replicas: 2
   template:
@@ -21,7 +21,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: booklibrary-service
+  name: booklibrary
 spec:
   type: LoadBalancer
   ports:
