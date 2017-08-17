@@ -57,6 +57,8 @@ $ docker-compose -f docker-compose-build.yml up<br />
 $ docker-compose -f docker-compose.yml up
 </code>
 
+Launch your browser and load `http://localhost:5000`.
+
 ### [Kubernetes](https://kubernetes.io/)
 You will need to have [kubectl](https://github.com/kubernetes/kubernetes/releases) installed locally in order to deploy this app. Open a command line or shell window (i.e. PowerShell, Console, Bash etc.) and run the following commands:
 
