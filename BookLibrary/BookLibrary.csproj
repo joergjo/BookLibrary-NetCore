@@ -10,7 +10,6 @@
   
   <ItemGroup>
     <Content Include="Dockerfile" CopyToPublishDirectory="PreserveNewest" />
-    <Content Include="Dockerfile.windows" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
   
   <ItemGroup>

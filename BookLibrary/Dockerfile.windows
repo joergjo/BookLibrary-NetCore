@@ -1,5 +1,0 @@
-﻿FROM microsoft/aspnetcore:2.0.0-nanoserver
-WORKDIR /app
-COPY . .
-EXPOSE 80
-ENTRYPOINT ["dotnet", "BookLibrary.dll"]
