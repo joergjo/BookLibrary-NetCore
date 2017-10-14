@@ -9,7 +9,16 @@ namespace BookLibrary.Api.Models
 {
     public class BookRepository : IBookRepository
     {
-        private IMongoCollection<Book> _books;
+        private readonly IMongoCollection<Book> _books;
+
+        public BookRepository(IMongoDatabase database)
+        {
+            if (database == null)
+            {
+                throw new ArgumentNullException(nameof(database));
+            }
+            _books = database.GetCollection<Book>("books");
+        }
 
         public BookRepository(IMongoCollection<Book> books)
         {
@@ -23,7 +32,7 @@ namespace BookLibrary.Api.Models
             return books;
         }
 
-        public async Task<Book> GetBookAsync(string id)
+        public async Task<Book> FindBookAsync(string id)
         {
             var cursor = await _books.FindAsync(x => x.Id == id);
             var books = await cursor.ToListAsync();

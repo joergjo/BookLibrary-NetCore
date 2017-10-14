@@ -48,7 +48,7 @@ namespace BookLibrary.Api.Test
             var stubLogger = new Mock<ILogger<BooksController>>();
 
             stubRepository
-                .Setup(x => x.GetBookAsync("1"))
+                .Setup(x => x.FindBookAsync("1"))
                 .ReturnsAsync(new Book { Id = "1" });
 
             var controller = new BooksController(stubRepository.Object, stubLogger.Object);
@@ -69,7 +69,7 @@ namespace BookLibrary.Api.Test
             var stubLogger = new Mock<ILogger<BooksController>>();
 
             stubRepository
-                .Setup(x => x.GetBookAsync(It.IsAny<string>()))
+                .Setup(x => x.FindBookAsync(It.IsAny<string>()))
                 .ReturnsAsync((Book) null);
 
             var controller = new BooksController(stubRepository.Object, stubLogger.Object);

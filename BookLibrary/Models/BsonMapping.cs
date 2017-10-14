@@ -1,6 +1,8 @@
-﻿using MongoDB.Bson.Serialization;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Bson.Serialization.IdGenerators;
+using MongoDB.Bson.Serialization.Serializers;
 
 namespace BookLibrary.Api.Models
 {
@@ -14,20 +16,24 @@ namespace BookLibrary.Api.Models
             };
 
             ConventionRegistry.Register(
-                nameof(BookLibrary),
+                $"{nameof(BookLibrary)}Convention",
                 conventions,
                 t => t.FullName.StartsWith(typeof(Book).Namespace));
 
             BsonClassMap.RegisterClassMap<Book>(cm =>
             {
                 cm.AutoMap();
-                cm.MapIdMember(m => m.Id).SetIdGenerator(StringObjectIdGenerator.Instance);
+                cm.IdMemberMap
+                    .SetIdGenerator(new StringObjectIdGenerator())
+                    .SetSerializer(new StringSerializer(BsonType.ObjectId));
+                cm.SetIgnoreExtraElements(true);
             });
 
             BsonClassMap.RegisterClassMap<Keyword>(cm =>
             {
                 cm.AutoMap();
                 cm.GetMemberMap(x => x.Name).SetElementName("keyword");
+                cm.SetIgnoreExtraElements(true);
             });
         }
     }

@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using BookLibrary.Common;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -15,7 +17,8 @@ namespace BookLibrary.Api.Models
         [Required]
         public string Author { get; set; }
         
-        public long? ReleaseDate { get; set; }
+        [JsonConverter(typeof(EpochDateTimeConverter))]
+        public DateTime? ReleaseDate { get; set; }
         
         public List<Keyword> Keywords { get; set; } = new List<Keyword>();
     }

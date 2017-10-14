@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if [ -z $1 ] ; then
+if [[ -z $1 ]] ; then
     echo "Usage: ./build.sh path-to-csproj"
     exit 1
 fi

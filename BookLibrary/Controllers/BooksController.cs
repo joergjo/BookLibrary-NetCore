@@ -28,7 +28,10 @@ namespace BookLibrary.Api.Controllers
         public async Task<IEnumerable<Book>> Get()
         {
             var books = await _repository.GetAllBooksAsync();
-            _logger.LogInformation(ApplicationEvents.LibraryQueried, "Retrieved {0} books.", books.Count());
+            _logger.LogInformation(
+                ApplicationEvents.LibraryQueried, 
+                "Retrieved {0} books.", 
+                books.Count());
             return books;
         }
 
@@ -36,13 +39,20 @@ namespace BookLibrary.Api.Controllers
         [HttpGet("{id}", Name = "GetById")]
         public async Task<IActionResult> Get(string id)
         {
-            var book = await _repository.GetBookAsync(id);
+            var book = await _repository.FindBookAsync(id);
             if (book != null)
             {
-                _logger.LogInformation(ApplicationEvents.BookQueried, "Retrieved book '{0}'.", book.Id);
+                _logger.LogInformation(
+                    ApplicationEvents.BookQueried, 
+                    "Retrieved book '{0}'.", 
+                    book.Id);
                 return new ObjectResult(book);
             }
-            _logger.LogInformation(ApplicationEvents.BookNotFound, "Failed to retrieve book '{0}'.", id);
+
+            _logger.LogInformation(
+                ApplicationEvents.BookNotFound, 
+                "Failed to retrieve book '{0}'.", 
+                id);
             return NotFound();
         }
 
@@ -53,10 +63,17 @@ namespace BookLibrary.Api.Controllers
             if (ModelState.IsValid)
             {
                 var newBook = await _repository.AddBookAsync(book);
-                _logger.LogInformation(ApplicationEvents.BookCreated, "Added book with id '{0}'.", newBook.Id);
+                _logger.LogInformation(
+                    ApplicationEvents.BookCreated, 
+                    "Added book with id '{0}'.", 
+                    newBook.Id);
                 return CreatedAtRoute("GetById", new { id = newBook.Id }, newBook);
             }
-            _logger.LogInformation(ApplicationEvents.BookValidationFailed, "Failed to validate new book. Found {0} error(s).", ModelState.ErrorCount);
+
+            _logger.LogInformation(
+                ApplicationEvents.BookValidationFailed, 
+                "Failed to validate new book. Found {0} error(s).", 
+                ModelState.ErrorCount);
             return BadRequest(ModelState);
         }
 
@@ -69,12 +86,17 @@ namespace BookLibrary.Api.Controllers
                 bool isUpdated = await _repository.UpdateBookAsync(id, input);
                 if (isUpdated)
                 {
-                    _logger.LogInformation(ApplicationEvents.BookUpdated, "Updated book with id '{0}'.", id);
-                    return new ObjectResult(input);
+                    _logger.LogInformation(
+                        ApplicationEvents.BookUpdated, 
+                        "Updated book with id '{0}'.", 
+                        id);
+                    return Ok(input);
                 }
+
                 _logger.LogInformation(ApplicationEvents.BookNotFound, "Failed to update book '{0}'.", id);
                 return NotFound();
             }
+
             _logger.LogInformation(ApplicationEvents.BookValidationFailed, "Failed to validate book '{0}'. Found {1} error(s).", id, ModelState.ErrorCount);
             return BadRequest(ModelState);
         }
@@ -86,10 +108,17 @@ namespace BookLibrary.Api.Controllers
             bool isDeleted = await _repository.RemoveBookAsync(id);
             if (isDeleted)
             {
-                _logger.LogInformation(ApplicationEvents.BookDeleted, "Removed book with id '{0}'.", id);
+                _logger.LogInformation(
+                    ApplicationEvents.BookDeleted, 
+                    "Removed book with id '{0}'.", 
+                    id);
                 return StatusCode(StatusCodes.Status204NoContent);
             }
-            _logger.LogInformation(ApplicationEvents.BookNotFound, "Failed to delete book '{0}'.", id);
+
+            _logger.LogInformation(
+                ApplicationEvents.BookNotFound, 
+                "Failed to delete book '{0}'.", 
+                id);
             return NotFound();
         }
     }

@@ -9,7 +9,7 @@ namespace BookLibrary.Api.Models
 
         Task<IEnumerable<Book>> GetAllBooksAsync();
 
-        Task<Book> GetBookAsync(string id);
+        Task<Book> FindBookAsync(string id);
 
         Task<bool> RemoveBookAsync(string id);
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BookLibrary.Api.Models;
+using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using System;
 
@@ -6,57 +7,29 @@ namespace BookLibrary.Api.Common
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddMongoClient(this IServiceCollection services, string connectionString)
+        public static IServiceCollection AddMongoDatabase(
+            this IServiceCollection services,
+            Func<string> connectionStringFactory,
+            Action bsonMappingInitializer = null)
         {
             if (services == null)
             {
                 throw new ArgumentNullException(nameof(services));
             }
-
-            if (connectionString == null)
+            if (connectionStringFactory == null)
             {
-                throw new ArgumentNullException(nameof(connectionString));
+                throw new ArgumentNullException(nameof(connectionStringFactory));
             }
 
-            if (connectionString == string.Empty)
+            services.AddSingleton(serviceProvider =>
             {
-                throw new ArgumentException("The MongoDB connection string must not be an empty string.", nameof(connectionString));
-            }
-
-            var mongoUrl = MongoUrl.Create(connectionString);
-            services.AddSingleton(mongoUrl);
-            services.AddSingleton(new MongoClient(mongoUrl));
-
-            return services;
-        }
-
-        public static IServiceCollection AddMongoCollection<TDocument>(this IServiceCollection services, string collectionName)
-        {
-            if (services == null)
-            {
-                throw new ArgumentNullException(nameof(services));
-            }
-
-            if (collectionName == null)
-            {
-                throw new ArgumentNullException(nameof(collectionName));
-            }
-
-            if (collectionName == string.Empty)
-            {
-                throw new ArgumentException("The collection name must not be an empty string.", nameof(collectionName));
-            }
-
-            services.AddSingleton(factory =>
-            {
-                var mongoUrl = factory.GetRequiredService<MongoUrl>();
-                string databaseName = mongoUrl.DatabaseName;
-
-                var client = factory.GetRequiredService<MongoClient>();
-                var database = client.GetDatabase(databaseName);
-                var collection = database.GetCollection<TDocument>(collectionName ?? typeof(TDocument).Name.ToLowerInvariant());
-                return collection;
+                string connectionString = connectionStringFactory();
+                var mongoUrl = new MongoUrl(connectionString);
+                var client = new MongoClient(mongoUrl);
+                var database = client.GetDatabase(mongoUrl.DatabaseName);
+                return database;
             });
+            bsonMappingInitializer?.Invoke();
 
             return services;
         }
