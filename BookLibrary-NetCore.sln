@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookLibrary", "BookLibrary\BookLibrary.csproj", "{E0A3D081-ACE4-44DC-9288-F90ABE1D28E1}"
 EndProject
@@ -8,9 +8,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookLibrary.Test", "BookLib
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{60019088-8481-4DD9-A8E1-8093A2B6E1A3}"
 	ProjectSection(SolutionItems) = preProject
-		build.sh = build.sh
-		docker-compose-build.yml = docker-compose-build.yml
-		docker-compose-mongo.yml = docker-compose-mongo.yml
+		docker-compose.ci.build.yml = docker-compose.ci.build.yml
+		docker-compose.mongo.windows.yml = docker-compose.mongo.windows.yml
+		docker-compose.mongo.yml = docker-compose.mongo.yml
+		docker-compose.override.windows.yml = docker-compose.override.windows.yml
+		docker-compose.override.yml = docker-compose.override.yml
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject

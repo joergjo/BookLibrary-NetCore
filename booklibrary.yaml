@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: booklibrary
-        image: joergjo/booklibrary-netcore
+        image: joergjo/booklibrary-netcore:2.0
         ports:
         - containerPort: 80
         env:
