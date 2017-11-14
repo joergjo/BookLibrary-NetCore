@@ -24,11 +24,11 @@ Open the folder `BookLibrary-NetCore` and run the Build task, then debug the app
 Open a command line or shell window (i.e. PowerShell, Console, Bash etc.) and run the following commands:
 
 <code>
-$ cd /path/to/BookLibrary-NetCore<br />
+$ cd /path/to/BookLibrary-NetCore/BookLibrary<br />
 </code> (Linux, macOS)
 or<br />
 <code>   
-$ cd \path\to\BookLibrary-NetCore<br />
+$ cd \path\to\BookLibrary-NetCore\BookLibrary<br />
 </code> (Windows)<br />
 <br />
 
@@ -37,8 +37,12 @@ $ dotnet restore
 </code>
 <br />
 <code>
-$ dotnet run
+$ dotnet run --no-launch-profile
 </code>
+
+Launch your web browser and load `http://localhost:5000`. I recommend to use the `--no-launch-profile` option as shown above so `dotnet` properly honors 
+any environment variable set in your shell. Otherwise, the app will launch just as if you had run it from
+within Visual Studio 2017 and its debug settings.
 
 ### Building as [Docker](https://www.docker.com/community-edition) container
 To build a Docker container directly from the sample's source code, you can use the included `Dockerfile`. If you run the sample in a Docker container (see below), the Compose file will build the container on the fly. 
@@ -70,7 +74,7 @@ or <br />
 $ docker-compose -f docker-compose.yml -f docker-compose.override.windows.yml up
 </code> (on Windows)
 
-Launch your browser and load `http://localhost:5000` if you are running a Linux container. If you are running a Windows container, you will need to use your machine's IP address on the `DockerNAT` virtual Ethernet adapter instead of `localhost`. You can get this by running `ipconfig` (it's usually `10.0.75.1`).  
+Launch your web browser and load `http://localhost:5000` if you are running a Linux container. If you are running a Windows container, you will need to use your machine's IP address on the `DockerNAT` virtual Ethernet adapter instead of `localhost`. You can get this by running `ipconfig` (it's usually `10.0.75.1`).  
 
 ### [Kubernetes](https://kubernetes.io/)
 You will need to have [kubectl](https://github.com/kubernetes/kubernetes/releases) installed locally in order to deploy this app. Open a command line or shell window (i.e. PowerShell, Console, Bash etc.) and run the following commands:
