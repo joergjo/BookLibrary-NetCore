@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace BookLibrary.Api.Models
+namespace BookLibrary.Models
 {
     public class Book
     {

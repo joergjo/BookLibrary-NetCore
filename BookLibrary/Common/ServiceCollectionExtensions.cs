@@ -1,9 +1,9 @@
-﻿using BookLibrary.Api.Models;
+﻿using BookLibrary.Models;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using System;
 
-namespace BookLibrary.Api.Common
+namespace BookLibrary.Common
 {
     public static class ServiceCollectionExtensions
     {

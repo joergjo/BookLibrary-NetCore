@@ -1,5 +1,5 @@
-﻿using BookLibrary.Api.Controllers;
-using BookLibrary.Api.Models;
+﻿using BookLibrary.Controllers;
+using BookLibrary.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace BookLibrary.Api.Test
+namespace BookLibrary.Test
 {
     public class BooksControllerTest
     {

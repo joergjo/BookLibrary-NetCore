@@ -1,5 +1,5 @@
-﻿using BookLibrary.Api.Common;
-using BookLibrary.Api.Models;
+﻿using BookLibrary.Common;
+using BookLibrary.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;

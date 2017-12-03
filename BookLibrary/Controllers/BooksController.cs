@@ -1,5 +1,5 @@
-﻿using BookLibrary.Api.Common;
-using BookLibrary.Api.Models;
+﻿using BookLibrary.Common;
+using BookLibrary.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookLibrary.Api.Controllers
+namespace BookLibrary.Controllers
 {
     [Route("api/[controller]")]
     [FormatFilter]

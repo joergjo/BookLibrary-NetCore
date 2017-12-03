@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BookLibrary.Api.Models
+namespace BookLibrary.Models
 {
     public interface IBookRepository
     {

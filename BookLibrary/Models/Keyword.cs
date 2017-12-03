@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace BookLibrary.Api.Models
+namespace BookLibrary.Models
 {
     public class Keyword
     {

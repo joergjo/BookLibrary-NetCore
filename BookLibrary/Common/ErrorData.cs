@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BookLibrary.Api.Common
+namespace BookLibrary.Common
 {
     public class ErrorData
     {

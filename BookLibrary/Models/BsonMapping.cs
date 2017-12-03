@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Bson.Serialization.Serializers;
 
-namespace BookLibrary.Api.Models
+namespace BookLibrary.Models
 {
     public static class BsonMapping
     {

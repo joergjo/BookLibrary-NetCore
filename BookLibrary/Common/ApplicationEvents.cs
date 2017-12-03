@@ -1,4 +1,4 @@
-﻿namespace BookLibrary.Api.Common
+﻿namespace BookLibrary.Common
 {
     public static class ApplicationEvents
     {
