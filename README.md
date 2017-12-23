@@ -40,9 +40,7 @@ $ dotnet restore
 $ dotnet run --no-launch-profile
 </code>
 
-Launch your web browser and load `http://localhost:5000`. I recommend to use the `--no-launch-profile` option as shown above so `dotnet` properly honors 
-any environment variable set in your shell. Otherwise, the app will launch just as if you had run it from
-within Visual Studio 2017 and its debug settings.
+Launch your web browser and load `http://localhost:5000`. I recommend to use the `--no-launch-profile` option as shown above so `dotnet` properly honors any environment variable set in your shell. Otherwise, the app will launch just as if you had run it from within Visual Studio 2017 and its debug settings.
 
 ### Building as [Docker](https://www.docker.com/community-edition) container
 To build a Docker container directly from the sample's source code, you can use the included `Dockerfile`. If you run the sample in a Docker container (see below), the Compose file will build the container on the fly. 

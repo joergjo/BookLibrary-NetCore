@@ -5,8 +5,6 @@ volumes:
 
 services:
   mongodb:
-    image: mongo:3.4
-    volumes:
-      - mongodata:/data/db
+    image: mongo:3.6
     ports:
       - 27017:27017
