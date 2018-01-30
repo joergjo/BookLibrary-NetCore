@@ -31,6 +31,19 @@
                 "kind": "test",
                 "isDefault": true
             }
+        },
+        {
+            "label": "minify",
+            "command": "node_modules/.bin/gulp",
+            "type": "shell",
+            "args": [
+                "min"
+            ],
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceRoot}/BookLibrary"
+            },
+            "group": "build"
         }
     ]
 }

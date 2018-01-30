@@ -6,7 +6,7 @@ for [Backbone.js](http://backbonejs.org/) with the following modifications and e
 - Unit tests for the API using [xUnit.net](https://github.com/xunit/xunit) and [Moq](https://github.com/moq/moq4) have been added.
 - Docker Compose (`docker-compose.yml`) and Kubernetes (`booklibrary.yaml`) YAML files have been added to run the app in a Docker Container or as a service in Kubernetes on Linux. 
 
-This version, like the original, uses [MongoDB](https://www.mongodb.com/) as database. Use whatever flavor of MongoDB works best for you. I recommend using either MongoDB version 3.4+ or MongoDB Atlas.
+This version, like the original, uses [MongoDB](https://www.mongodb.com/) as database. Use whatever flavor of MongoDB works best for you. I recommend using either MongoDB Atlas, or MongoDB 3.4 or newer.
 
 ****
 ## Configuring the app
@@ -18,7 +18,7 @@ If you want to run the app in a Kubernetes cluster including minikube, open `boo
 Open `BookLibrary-NetCore.sln` and debug or run the solution.
 
 ### [Visual Studio Code](https://code.visualstudio.com/)
-Open the folder `BookLibrary-NetCore` and run the Build task, then debug the app or run it from Code's integrated terminal.
+Open the folder `BookLibrary-NetCore` and run the  `build` and `min` tasks, then debug the app or run it from Code's integrated terminal.
 
 ### [.NET Core SDK 2.0](https://www.microsoft.com/net/download/core)
 Open a command line or shell window (i.e. PowerShell, Console, Bash etc.) and run the following commands:
@@ -33,9 +33,10 @@ $ cd \path\to\BookLibrary-NetCore\BookLibrary<br />
 <br />
 
 <code>
-$ dotnet restore
-</code>
-<br />
+$ npm install <br />
+$ dotnet restore <br />
+$ node_modules/.bin/gulp min</code> (Linux, macOS) or <br />
+<code>$ node_modules\.bin\gulp min</code> (Windows) <br />
 <code>
 $ dotnet run --no-launch-profile
 </code>
@@ -43,7 +44,7 @@ $ dotnet run --no-launch-profile
 Launch your web browser and load `http://localhost:5000`. I recommend to use the `--no-launch-profile` option as shown above so `dotnet` properly honors any environment variable set in your shell. Otherwise, the app will launch just as if you had run it from within Visual Studio 2017 and its debug settings.
 
 ### Building as [Docker](https://www.docker.com/community-edition) container
-To build a Docker container directly from the sample's source code, you can use the included `Dockerfile`. If you run the sample in a Docker container (see below), the Compose file will build the container on the fly. 
+To build a Docker container directly from the sample's source code, you can use the included `Dockerfile`. This Dockerfile uses a [multi-stage build](https://docs.docker.com/engine/userguide/eng-image/multistage-build/). If you run the sample in a Docker container (see below), the included Compose file will build the container on the fly. A prebuilt Docker image for Linux is available at [Docker Hub]( https://hub.docker.com/r/joergjo/booklibrary-netcore/). 
 
 ### Running in [Docker](https://www.docker.com/community-edition) container
 If you have a Docker host running or Docker locally installed on your machine, you don't even need the .NET Core runtime, SDK or Visual Studio, nor an existing MongoDB host. 
@@ -51,19 +52,13 @@ Open a command line or shell window (i.e. PowerShell, Console, Bash etc.) and ru
 
 <code>
 $ cd /path/to/BookLibrary-NetCore<br />
-</code> (Linux)
+</code> (Linux, macOS)
 or<br />
 <code>   
 $ cd \path\to\BookLibrary-NetCore<br />
 </code> (Windows)<br />
 <br />
 
-<code>
-$ docker-compose -f docker-compose.ci.build.yml up
-</code>
-<br />
-Next, run
-<br />
 <code>
 $ docker-compose up
 </code> (on Linux)
