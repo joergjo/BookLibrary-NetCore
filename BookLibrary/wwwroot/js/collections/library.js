@@ -10,6 +10,10 @@ if (appPath.endsWith('.html')) {
     appPath = appPath.substr(0, index + 1);
 }
 
+if (!appPath.endsWith('/')) {
+    appPath += '/';
+}
+    
 baseUrl += appPath; 
 
 app.Library = Backbone.Collection.extend({
