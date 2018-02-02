@@ -5,7 +5,7 @@ var baseUrl = document.location.origin;
 var appPath = document.location.pathname;
 var index = -1;
 
-if (!appPath.endsWith('/')) {
+if (appPath.endsWith('.html')) {
     index = appPath.lastIndexOf('/');
     appPath = appPath.substr(0, index + 1);
 }
