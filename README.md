@@ -22,23 +22,23 @@ Open the folder `BookLibrary-NetCore` and run the  `build` and `min` tasks, then
 ### [.NET Core SDK 2.0](https://www.microsoft.com/net/download/core)
 Open a command line or shell window (i.e. PowerShell, Console, Bash etc.) and run the following commands:
 
-<code>
-$ cd /path/to/BookLibrary-NetCore/BookLibrary<br />
-</code> (Linux, macOS)
-or<br />
-<code>   
-$ cd \path\to\BookLibrary-NetCore\BookLibrary<br />
-</code> (Windows)<br />
-<br />
-
-<code>
-$ npm install <br />
-$ dotnet restore <br />
-$ node_modules/.bin/gulp min</code> (Linux, macOS) or <br />
-<code>$ node_modules\.bin\gulp min</code> (Windows) <br />
-<code>
+### Windows 10
+```
+$ cd \path\to\BookLibrary-NetCore\BookLibrary
+$ npm install
+$ dotnet restore
+$ node_modules\.bin\gulp min
 $ dotnet run --no-launch-profile
-</code>
+```
+
+### Linux, macOS
+```
+$ cd /path/to/BookLibrary-NetCore/BookLibrary
+$ npm install
+$ dotnet restore
+$ node_modules/.bin/gulp min
+$ dotnet run --no-launch-profile
+```
 
 Launch your web browser and load `http://localhost:5000`. I recommend to use the `--no-launch-profile` option as shown above so `dotnet` properly honors any environment variable set in your shell. Otherwise, the app will launch with the same settings as though you had run it from Visual Studio 2017.
 
