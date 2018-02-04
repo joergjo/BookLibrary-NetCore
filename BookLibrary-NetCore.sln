@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookLibrary", "BookLibrary\BookLibrary.csproj", "{E0A3D081-ACE4-44DC-9288-F90ABE1D28E1}"
 EndProject
@@ -22,9 +22,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{D0449CE6-4
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8S", "K8S", "{A2E0E023-10B6-44BD-94B7-D8EDBAC54268}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{A2E0E023-10B6-44BD-94B7-D8EDBAC54268}"
 	ProjectSection(SolutionItems) = preProject
-		booklibrary.yaml = booklibrary.yaml
+		booklibrary-configmap.yaml = booklibrary-configmap.yaml
+		booklibrary-ingress.yaml = booklibrary-ingress.yaml
+		booklibrary-loadbalancer-svc.yaml = booklibrary-loadbalancer-svc.yaml
+		booklibrary-nodeport-svc.yaml = booklibrary-nodeport-svc.yaml
 	EndProjectSection
 EndProject
 Global
