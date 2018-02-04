@@ -6,7 +6,8 @@ Open a command line or shell window (i.e. PowerShell, Console, Bash etc.) and ru
 ### Windows 10
 <code>   
 $ cd \path\to\BookLibrary-NetCore<br />
-$ docker-compose -f docker-compose.yml -f docker-compose.override.windows.yml up
+
+$ docker-compose -f docker-compose.yml -f docker-compose.override.windows.yml up<br />
 </code>
 
 On Windows, you will need to use your machine's IP address on the `DockerNAT` virtual Ethernet adapter instead of `localhost`. You can get this by running `ipconfig` (it's usually `10.0.75.1`). Then open `http://DockerNAT-IP:5000`.
@@ -14,7 +15,8 @@ On Windows, you will need to use your machine's IP address on the `DockerNAT` vi
 ### Linux, macOS
 <code>
 $ cd /path/to/BookLibrary-NetCore<br />
-$ docker-compose up
+
+$ docker-compose up<br />
 </code>
 
 Launch your web browser and open `http://localhost:5000`.

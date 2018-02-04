@@ -22,6 +22,7 @@ $ cd \path\to\BookLibrary-NetCore<br />
 #### LoadBalancer
 <code>
 $ kubectl apply -f booklibrary-configmap.yaml<br/>
+
 $ kubectl apply -f booklibrary-loadbalancer-svc.yaml<br/>
 </code> 
 
@@ -30,9 +31,11 @@ You can access the app at `http://<LoadBalancer-IP>/`.
 
 #### Ingress
 <code>
-$ kubectl apply -f booklibrary-configmap.yaml <br>
-$ kubectl apply -f booklibrary-nodeport-svc.yaml <br> 
-$ kubectl apply -f booklibrary-ingress.yaml <br> 
+$ kubectl apply -f booklibrary-configmap.yaml<br />
+
+$ kubectl apply -f booklibrary-nodeport-svc.yaml<br /> 
+
+$ kubectl apply -f booklibrary-ingress.yaml<br /> 
 </code>
 
 to deploy the `Ingress` version. <br>
