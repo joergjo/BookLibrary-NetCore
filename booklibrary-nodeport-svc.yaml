@@ -1,0 +1,32 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: booklibrary
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: booklibrary
+    spec:
+      containers:
+      - name: booklibrary
+        image: joergjo/booklibrary-netcore:latest
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: booklibrary-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: booklibrary-nodeport
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30000
+  selector:
+    app: booklibrary

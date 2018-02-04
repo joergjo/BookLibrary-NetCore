@@ -11,12 +11,12 @@ spec:
     spec:
       containers:
       - name: booklibrary
-        image: joergjo/booklibrary-netcore:2.0
+        image: joergjo/booklibrary-netcore:latest
         ports:
         - containerPort: 80
-        env:
-        - name: ConnectionStrings__DefaultConnection
-          value: "mongodb://<MONGOHOST>/library_database"
+        envFrom:
+        - configMapRef:
+            name: booklibrary-config
 ---
 apiVersion: v1
 kind: Service
