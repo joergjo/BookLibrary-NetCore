@@ -30,7 +30,7 @@ namespace BookLibrary.Controllers
             var books = await _repository.GetAllBooksAsync();
             _logger.LogInformation(
                 ApplicationEvents.LibraryQueried, 
-                "Retrieved {0} books.", 
+                "Retrieved {Count} books.", 
                 books.Count());
 
             return books;
@@ -45,7 +45,7 @@ namespace BookLibrary.Controllers
             {
                 _logger.LogInformation(
                     ApplicationEvents.BookQueried, 
-                    "Retrieved book '{0}'.", 
+                    "Retrieved book '{Id}'.", 
                     book.Id);
 
                 return Ok(book);
@@ -53,7 +53,7 @@ namespace BookLibrary.Controllers
 
             _logger.LogInformation(
                 ApplicationEvents.BookNotFound, 
-                "Failed to retrieve book '{0}'.", 
+                "Failed to retrieve book '{Id}'.", 
                 id);
 
             return NotFound();
@@ -68,7 +68,7 @@ namespace BookLibrary.Controllers
                 var newBook = await _repository.AddBookAsync(book);
                 _logger.LogInformation(
                     ApplicationEvents.BookCreated, 
-                    "Added book with id '{0}'.", 
+                    "Added book with id '{Id}'.", 
                     newBook.Id);
 
                 return CreatedAtRoute("GetById", new { id = newBook.Id }, newBook);
@@ -76,7 +76,7 @@ namespace BookLibrary.Controllers
 
             _logger.LogInformation(
                 ApplicationEvents.BookValidationFailed, 
-                "Failed to validate new book. Found {0} error(s).", 
+                "Failed to validate new book. Found {ErrorCount} error(s).", 
                 ModelState.ErrorCount);
 
             return BadRequest(ModelState);
@@ -93,14 +93,14 @@ namespace BookLibrary.Controllers
                 {
                     _logger.LogInformation(
                         ApplicationEvents.BookUpdated, 
-                        "Updated book with id '{0}'.", 
+                        "Updated book with id '{Id}'.", 
                         id);
                     return Ok(input);
                 }
 
                 _logger.LogInformation(
                     ApplicationEvents.BookNotFound, 
-                    "Failed to update book '{0}'.", 
+                    "Failed to update book '{Id}'.", 
                     id);
 
                 return NotFound();
@@ -108,7 +108,7 @@ namespace BookLibrary.Controllers
 
             _logger.LogInformation(
                 ApplicationEvents.BookValidationFailed, 
-                "Failed to validate book '{0}'. Found {1} error(s).", 
+                "Failed to validate book '{Id}'. Found {ErrorCount} error(s).", 
                 id, 
                 ModelState.ErrorCount);
 
@@ -124,7 +124,7 @@ namespace BookLibrary.Controllers
             {
                 _logger.LogInformation(
                     ApplicationEvents.BookDeleted, 
-                    "Removed book with id '{0}'.", 
+                    "Removed book with id '{Id}'.", 
                     id);
 
                 return StatusCode(StatusCodes.Status204NoContent);
@@ -132,7 +132,7 @@ namespace BookLibrary.Controllers
 
             _logger.LogInformation(
                 ApplicationEvents.BookNotFound, 
-                "Failed to delete book '{0}'.", 
+                "Failed to delete book '{Id}'.", 
                 id);
 
             return NotFound();

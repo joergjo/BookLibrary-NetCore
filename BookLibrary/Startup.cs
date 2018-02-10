@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MongoDB.Driver;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 
@@ -46,8 +46,10 @@ namespace BookLibrary
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory factory)
         {
+            factory.AddApplicationInsights(app.ApplicationServices, LogLevel.Information);
+
             app.UseExceptionHandler(
                 handler => handler.Run(
                     async context =>
@@ -55,16 +57,24 @@ namespace BookLibrary
                         string requestUri = $"{context.Request.Host}{context.Request.Path}{context.Request.QueryString}";
                         var errorData = new ErrorData
                         {
-                            Message = "Unhandled exception. Use the error ID to debug the problem.",
+                            Message = "Unhandled exception. Use the error ID to track the problem.",
                             DateTime = DateTimeOffset.Now,
                             RequestUri = new Uri(requestUri),
                             ErrorId = Guid.NewGuid()
                         };
 
-                        if (env.IsDevelopment())
+                        var errorFeature = context.Features.Get<IExceptionHandlerFeature>();
+                        if (errorFeature?.Error != null)
                         {
-                            var errorFeature = context.Features.Get<IExceptionHandlerFeature>();
-                            if (errorFeature?.Error != null)
+                            var logger = handler.ApplicationServices.GetRequiredService<ILogger<Startup>>();
+                            logger.LogError(
+                                ApplicationEvents.UnhandledException, 
+                                errorFeature.Error, 
+                                "Caught unhandled exception of type '{0}' with ID '{1}.", 
+                                errorFeature.Error.GetType(),
+                                errorData.ErrorId);
+
+                            if (env.IsDevelopment())
                             {
                                 errorData.Exception = errorFeature.Error;
                             }

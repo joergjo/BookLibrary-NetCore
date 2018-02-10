@@ -10,5 +10,7 @@
 
         public const int BookNotFound = 2000;
         public const int BookValidationFailed = 2001;
+
+        public const int UnhandledException = 9999;
     }
 }
