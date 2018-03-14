@@ -4,10 +4,9 @@ EXPOSE 80
 
 FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /src
-COPY *.sln ./
 COPY BookLibrary/BookLibrary.csproj BookLibrary/
-RUN dotnet restore
-COPY . .
+RUN dotnet restore BookLibrary/
+COPY BookLibrary/ BookLibrary/
 WORKDIR /src/BookLibrary
 RUN dotnet build -c Release -o /app
 
