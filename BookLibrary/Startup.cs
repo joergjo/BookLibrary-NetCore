@@ -8,7 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
+using System.Diagnostics;
 
 namespace BookLibrary
 {
@@ -46,43 +48,42 @@ namespace BookLibrary
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory factory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            factory.AddApplicationInsights(app.ApplicationServices, LogLevel.Information);
-
             app.UseExceptionHandler(
-                handler => handler.Run(
-                    async context =>
+                new ExceptionHandlerOptions
+                {
+                    ExceptionHandler = async context =>
                     {
-                        string requestUri = $"{context.Request.Host}{context.Request.Path}{context.Request.QueryString}";
-                        var errorData = new ErrorData
+                        string requestId = Activity.Current?.Id ?? context.TraceIdentifier;
+                        var errorData = new ErrorInformation
                         {
-                            Message = "Unhandled exception. Use the error ID to track the problem.",
-                            DateTime = DateTimeOffset.Now,
-                            RequestUri = new Uri(requestUri),
-                            ErrorId = Guid.NewGuid()
+                            RequestId = requestId,
+                            Message = $"Caught unhandled exception. Use request ID '{requestId}' to track the problem.",
+                            DateTime = DateTimeOffset.UtcNow
                         };
 
                         var errorFeature = context.Features.Get<IExceptionHandlerFeature>();
                         if (errorFeature?.Error != null)
                         {
-                            var logger = handler.ApplicationServices.GetRequiredService<ILogger<Startup>>();
+                            var logger = context.RequestServices.GetRequiredService<ILogger<Startup>>();
                             logger.LogError(
-                                ApplicationEvents.UnhandledException, 
-                                errorFeature.Error, 
-                                "Caught unhandled exception of type '{0}' with ID '{1}.", 
-                                errorFeature.Error.GetType(),
-                                errorData.ErrorId);
-
-                            if (env.IsDevelopment())
-                            {
-                                errorData.Exception = errorFeature.Error;
-                            }
+                                ApplicationEvents.UnhandledException,
+                                errorFeature.Error,
+                                "Caught unhandled exception for request ID '{RequestId}'.",
+                                requestId);
                         }
 
+                        var settings = new JsonSerializerSettings
+                        {
+                            ContractResolver = new CamelCasePropertyNamesContractResolver()
+                        };
+                        string json = JsonConvert.SerializeObject(errorData, settings);
+
                         context.Response.ContentType = "application/json";
-                        await context.Response.WriteAsync(JsonConvert.SerializeObject(errorData));
-                    }));
+                        await context.Response.WriteAsync(json);
+                    }
+                });
 
             app.UseDefaultFiles();
             app.UseStaticFiles();

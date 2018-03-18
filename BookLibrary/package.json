@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "node": "^8.9.0"
-  }, 
+  },
   "devDependencies": {
     "del": "^3.0.0",
     "gulp": "^3.9.1",
@@ -12,7 +12,7 @@
     "gulp-cssmin": "^0.2.0",
     "gulp-htmlmin": "^4.0.0",
     "gulp-plumber": "^1.2.0",
-    "gulp-sourcemaps": "^2.6.3",
+    "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
     "merge-stream": "^1.0.1"
   }
