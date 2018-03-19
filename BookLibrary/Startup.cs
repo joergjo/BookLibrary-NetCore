@@ -56,7 +56,7 @@ namespace BookLibrary
                     ExceptionHandler = async context =>
                     {
                         string requestId = Activity.Current?.Id ?? context.TraceIdentifier;
-                        var errorData = new ErrorInformation
+                        var errorInfo = new ErrorInformation
                         {
                             RequestId = requestId,
                             Message = $"Caught unhandled exception. Use request ID '{requestId}' to track the problem.",
@@ -78,7 +78,7 @@ namespace BookLibrary
                         {
                             ContractResolver = new CamelCasePropertyNamesContractResolver()
                         };
-                        string json = JsonConvert.SerializeObject(errorData, settings);
+                        string json = JsonConvert.SerializeObject(errorInfo, settings);
 
                         context.Response.ContentType = "application/json";
                         await context.Response.WriteAsync(json);
