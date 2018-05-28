@@ -1,18 +1,20 @@
-FROM microsoft/aspnetcore:2.0 AS base
+FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM microsoft/aspnetcore-build:2.0 AS build
+FROM microsoft/dotnet:2.1-sdk AS build
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get install -y nodejs
 WORKDIR /src
-COPY *.sln ./
 COPY BookLibrary/BookLibrary.csproj BookLibrary/
-RUN dotnet restore -p:RestoreUseSkipNonexistentTargets=false -nowarn:msb3202,nu1503
+RUN dotnet restore BookLibrary/BookLibrary.csproj
+
 COPY . .
-WORKDIR /src/BookLibrary 
-RUN dotnet build -c Release -o /app
+WORKDIR /src/BookLibrary
+RUN dotnet build BookLibrary.csproj -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish -c Release -o /app
+RUN dotnet publish BookLibrary.csproj -c Release -o /app
 
 FROM base AS final
 WORKDIR /app

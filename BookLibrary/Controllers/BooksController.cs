@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace BookLibrary.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     [FormatFilter]
     public class BooksController : Controller
     {
@@ -38,7 +39,7 @@ namespace BookLibrary.Controllers
 
         // GET api/books/5
         [HttpGet("{id}", Name = "GetById")]
-        public async Task<IActionResult> Get(string id)
+        public async Task<ActionResult<Book>> Get(string id)
         {
             var book = await _repository.FindBookAsync(id);
             if (book != null)
@@ -61,63 +62,42 @@ namespace BookLibrary.Controllers
 
         // POST api/books
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]Book book)
+        public async Task<ActionResult<Book>> Post(Book book)
         {
-            if (ModelState.IsValid)
-            {
-                var newBook = await _repository.AddBookAsync(book);
-                _logger.LogInformation(
-                    ApplicationEvents.BookCreated, 
-                    "Added book with id '{Id}'.", 
-                    newBook.Id);
-
-                return CreatedAtRoute("GetById", new { id = newBook.Id }, newBook);
-            }
-
+            var newBook = await _repository.AddBookAsync(book);
             _logger.LogInformation(
-                ApplicationEvents.BookValidationFailed, 
-                "Failed to validate new book. Found {ErrorCount} error(s).", 
-                ModelState.ErrorCount);
+                ApplicationEvents.BookCreated,
+                "Added book with id '{Id}'.",
+                newBook.Id);
 
-            return BadRequest(ModelState);
+            return CreatedAtRoute("GetById", new { id = newBook.Id }, newBook);
         }
 
         // PUT api/books/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(string id, [FromBody]Book input)
+        public async Task<ActionResult<Book>> Put(string id, [FromBody]Book input)
         {
-            if (ModelState.IsValid)
+            bool isUpdated = await _repository.UpdateBookAsync(id, input);
+            if (isUpdated)
             {
-                bool isUpdated = await _repository.UpdateBookAsync(id, input);
-                if (isUpdated)
-                {
-                    _logger.LogInformation(
-                        ApplicationEvents.BookUpdated, 
-                        "Updated book with id '{Id}'.", 
-                        id);
-                    return Ok(input);
-                }
-
                 _logger.LogInformation(
-                    ApplicationEvents.BookNotFound, 
-                    "Failed to update book '{Id}'.", 
+                    ApplicationEvents.BookUpdated,
+                    "Updated book with id '{Id}'.",
                     id);
-
-                return NotFound();
+                return Ok(input);
             }
 
             _logger.LogInformation(
-                ApplicationEvents.BookValidationFailed, 
-                "Failed to validate book '{Id}'. Found {ErrorCount} error(s).", 
-                id, 
-                ModelState.ErrorCount);
+                ApplicationEvents.BookNotFound,
+                "Failed to update book '{Id}'.",
+                id);
 
-            return BadRequest(ModelState);
+            return NotFound();
         }
 
         // DELETE api/books/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(string id)
         {
             bool isDeleted = await _repository.RemoveBookAsync(id);
             if (isDeleted)

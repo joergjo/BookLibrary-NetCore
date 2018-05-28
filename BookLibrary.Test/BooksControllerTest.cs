@@ -54,7 +54,8 @@ namespace BookLibrary.Test
             var controller = new BooksController(stubRepository.Object, stubLogger.Object);
 
             // Act
-            var result = await controller.Get("1") as ObjectResult;
+            var actionResult = await controller.Get("1");
+            var result = actionResult.Result as ObjectResult;
             var book = result?.Value as Book;
 
             // Assert
@@ -75,7 +76,8 @@ namespace BookLibrary.Test
             var controller = new BooksController(stubRepository.Object, stubLogger.Object);
 
             // Act
-            var result = await controller.Get("42") as NotFoundResult;
+            var actionResult = await controller.Get("42");
+            var result = actionResult.Result as NotFoundResult;
 
             // Assert
             Assert.Equal(StatusCodes.Status404NotFound, result?.StatusCode);
@@ -99,7 +101,8 @@ namespace BookLibrary.Test
             var controller = new BooksController(stubRepository.Object, stubLogger.Object);
 
             // Act
-            var result = await controller.Post(new Book()) as CreatedAtRouteResult;
+            var actionResult = await controller.Post(new Book());
+            var result = actionResult.Result as CreatedAtRouteResult;
 
             // Assert
             Assert.Contains(new KeyValuePair<string, object>("id", "42"), result?.RouteValues);
@@ -123,7 +126,8 @@ namespace BookLibrary.Test
             var controller = new BooksController(stubRepository.Object, stubLogger.Object);
 
             // Act
-            var result = await controller.Post(new Book()) as CreatedAtRouteResult;
+            var actionResult = await controller.Post(new Book());
+            var result = actionResult.Result as CreatedAtRouteResult;
             var book = result?.Value as Book;
 
             // Assert
@@ -170,7 +174,8 @@ namespace BookLibrary.Test
             var controller = new BooksController(stubRepository.Object, stubLogger.Object);
 
             // Act
-            var result = await controller.Put("1", book) as ObjectResult;
+            var actionResult = await controller.Put("1", book);
+            var result = actionResult.Result as ObjectResult;
             var actualBook = result?.Value as Book;
 
             // Assert
@@ -212,12 +217,12 @@ namespace BookLibrary.Test
             var controller = new BooksController(stubRepository.Object, stubLogger.Object);
 
             // Act
-            var result = await controller.Put("42", new Book()) as NotFoundResult;
+            var actionResult = await controller.Put("42", new Book());
+            var result = actionResult.Result as NotFoundResult;
 
             // Assert
             Assert.Equal(StatusCodes.Status404NotFound, result?.StatusCode);
         }
-
 
         [Fact(DisplayName = "BooksControllerTest.Delete_With_Valid_Id_Returns_HttpNoContent")]
         public async Task Delete_With_Valid_Id_Returns_HttpNoContent()
@@ -239,24 +244,24 @@ namespace BookLibrary.Test
             Assert.Equal(StatusCodes.Status204NoContent, result?.StatusCode);
         }
 
-        [Fact(DisplayName = "BooksControllerTest.Delete_With_Invalid_Id_Returns_HttpNotFound")]
-        public async Task Delete_With_Invalid_Id_Returns_NotFound()
-        {
-            // Arrange
-            var stubRepository = new Mock<IBookRepository>();
-            var stubLogger = new Mock<ILogger<BooksController>>();
+      [Fact(DisplayName = "BooksControllerTest.Delete_With_Invalid_Id_Returns_HttpNotFound")]
+      public async Task Delete_With_Invalid_Id_Returns_NotFound()
+      {
+          // Arrange
+          var stubRepository = new Mock<IBookRepository>();
+          var stubLogger = new Mock<ILogger<BooksController>>();
 
-            stubRepository
-                 .Setup(x => x.RemoveBookAsync(It.IsAny<string>()))
-                 .ReturnsAsync(false);
+          stubRepository
+               .Setup(x => x.RemoveBookAsync(It.IsAny<string>()))
+               .ReturnsAsync(false);
 
-            var controller = new BooksController(stubRepository.Object, stubLogger.Object);
+          var controller = new BooksController(stubRepository.Object, stubLogger.Object);
 
-            // Act 
-            var result = await controller.Delete("42") as NotFoundResult; ;
+          // Act 
+          var result = await controller.Delete("42") as NotFoundResult; ;
 
-            // Assert
-            Assert.Equal(StatusCodes.Status404NotFound, result?.StatusCode);
-        }
+          // Assert
+          Assert.Equal(StatusCodes.Status404NotFound, result?.StatusCode);
+      }
     }
 }

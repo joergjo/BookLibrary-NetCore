@@ -1,5 +1,4 @@
-﻿using BookLibrary.Models;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using System;
 
@@ -10,6 +9,7 @@ namespace BookLibrary.Common
         public static IServiceCollection AddMongoDatabase(
             this IServiceCollection services,
             Func<string> connectionStringFactory,
+            string databaseName = null,
             Action bsonMappingInitializer = null)
         {
             if (services == null)
@@ -26,7 +26,7 @@ namespace BookLibrary.Common
                 string connectionString = connectionStringFactory();
                 var mongoUrl = new MongoUrl(connectionString);
                 var client = new MongoClient(mongoUrl);
-                var database = client.GetDatabase(mongoUrl.DatabaseName);
+                var database = client.GetDatabase(databaseName ?? mongoUrl.DatabaseName);
                 return database;
             });
             bsonMappingInitializer?.Invoke();
