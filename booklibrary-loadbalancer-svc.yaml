@@ -21,7 +21,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: booklibrary
+  name: booklibrary-lb-svc
 spec:
   type: LoadBalancer
   ports:

@@ -13,5 +13,5 @@ spec:
       paths:
       - path: /booklibrary
         backend:
-          serviceName: booklibrary-nodeport
+          serviceName: booklibrary-svc
           servicePort: 80          

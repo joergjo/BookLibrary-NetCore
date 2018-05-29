@@ -17,16 +17,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{600190
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{D0449CE6-4212-4304-B33F-30BC523DB468}"
 	ProjectSection(SolutionItems) = preProject
+		DOCKER-COMPOSE.md = DOCKER-COMPOSE.md
+		KUBERNETES.md = KUBERNETES.md
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{A2E0E023-10B6-44BD-94B7-D8EDBAC54268}"
 	ProjectSection(SolutionItems) = preProject
+		booklibrary-clusterip-svc.yaml = booklibrary-clusterip-svc.yaml
 		booklibrary-configmap.yaml = booklibrary-configmap.yaml
 		booklibrary-ingress.yaml = booklibrary-ingress.yaml
 		booklibrary-loadbalancer-svc.yaml = booklibrary-loadbalancer-svc.yaml
-		booklibrary-nodeport-svc.yaml = booklibrary-nodeport-svc.yaml
 	EndProjectSection
 EndProject
 Global

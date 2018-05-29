@@ -34,7 +34,7 @@ You can access the app at `http://<LoadBalancer-IP>/`.
 Alternatively, run
 ```
 $ kubectl apply -f booklibrary-configmap.yaml
-$ kubectl apply -f booklibrary-nodeport-svc.yaml 
+$ kubectl apply -f booklibrary-clusterip-svc.yaml 
 $ kubectl apply -f booklibrary-ingress.yaml 
 ```
 

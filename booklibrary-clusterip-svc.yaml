@@ -21,12 +21,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: booklibrary-nodeport
+  name: booklibrary-svc
 spec:
-  type: NodePort
   ports:
   - port: 80
-    targetPort: 80
-    nodePort: 30000
   selector:
     app: booklibrary
