@@ -20,8 +20,7 @@
             "command": "dotnet",
             "type": "process",
             "args": [
-                "xunit",
-                "-verbose"
+                "test"
             ],
             "problemMatcher": "$msCompile",
             "options": {
