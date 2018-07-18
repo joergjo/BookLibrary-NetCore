@@ -1,8 +1,0 @@
-version: "3.0"
-services:
-  booklibrary-netcore-build:
-    image: microsoft/aspnetcore-build:2.0
-    volumes:
-      - .:/sln
-    working_dir: /sln
-    command: ["/bin/bash", "-c", "dotnet restore ./BookLibrary-NetCore.sln && dotnet publish ./BookLibrary/BookLibrary.csproj -c Release -o ./obj/Docker/publish"]
