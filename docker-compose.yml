@@ -5,7 +5,7 @@ volumes:
 
 services:
   mongodb:
-    image: mongo:3.6
+    image: mongo:4.0
 
   webapi:
     build: 
