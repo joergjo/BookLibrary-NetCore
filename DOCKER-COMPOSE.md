@@ -1,4 +1,4 @@
-## Running on a Docker Host with Docker Compose
+## Deploying on a Docker Host with Docker Compose
 If you have a Docker host running or Docker locally installed on your machine, you don't even need the .NET Core runtime, SDK or Visual Studio 2017, nor an existing MongoDB host. Note that the included Compose files are meant for a single Docker host, not a Swarm cluster.
 
 Open a command line or shell window (i.e. PowerShell, Console, Bash etc.) and run the following commands:

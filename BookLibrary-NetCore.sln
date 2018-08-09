@@ -17,10 +17,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{600190
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{D0449CE6-4212-4304-B33F-30BC523DB468}"
 	ProjectSection(SolutionItems) = preProject
+		AKS.md = AKS.md
 		DOCKER-COMPOSE.md = DOCKER-COMPOSE.md
-		KUBERNETES.md = KUBERNETES.md
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
+		SFMESH.MD = SFMESH.MD
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{A2E0E023-10B6-44BD-94B7-D8EDBAC54268}"
@@ -29,6 +30,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", 
 		booklibrary-configmap.yaml = booklibrary-configmap.yaml
 		booklibrary-ingress.yaml = booklibrary-ingress.yaml
 		booklibrary-loadbalancer-svc.yaml = booklibrary-loadbalancer-svc.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mesh", "Mesh", "{084C1637-B3CC-4D84-9D98-99304393FF21}"
+	ProjectSection(SolutionItems) = preProject
+		mesh_rp.linux.json = mesh_rp.linux.json
 	EndProjectSection
 EndProject
 Global

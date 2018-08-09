@@ -1,5 +1,5 @@
-## Running in Kubernetes
-I've tested the included YAML files for Kubernetes with Azure Container Service (AKS). They should work with little or no modification in other Kubernetes environments like minikube or GKE. 
+## Deploying on AKS (Kubernetes)
+I've tested the included YAML files for Azure Kubernetes Service (AKS). They should work with little or no modification in other Kubernetes environments like minikube or GKE. 
 
 I've included two options to deploy the application in Kubernetes:
 - As a `LoadBalancer` service: This will expose a dedicated IP address for the service on AKS's Azure Load Balancer. 
