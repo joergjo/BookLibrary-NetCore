@@ -40,12 +40,15 @@ $ node_modules/.bin/gulp min
 $ dotnet run --no-launch-profile
 ```
 
-Launch your web browser and load `http://localhost:5000`. I recommend to use the `--no-launch-profile` option as shown above so `dotnet` properly honors any environment variable set in your shell. Otherwise, the app will launch with the same settings as though you had run it from Visual Studio 2017.
+Launch your web browser and load `http://localhost:5000`. 
 
-### Building as [Docker](https://www.docker.com/community-edition) container
+>I recommend using the `--no-launch-profile` option as shown above so `dotnet` properly honors any environment variable set in your shell. 
+>Otherwise, the app will launch with the same settings as though you had run it from Visual Studio 2017, using the settings defined in `launchSettings.json`.
+
+### Building a [Docker](https://www.docker.com/community-edition) container
 To build a Docker container directly from the sample's source code, you can use the included `Dockerfile`. This Dockerfile uses a [multi-stage build](https://docs.docker.com/engine/userguide/eng-image/multistage-build/). If you run the sample in a Docker container (see below), the included Compose file will build the container on the fly. A prebuilt Docker image for Linux is available at [Docker Hub](https://hub.docker.com/r/joergjo/booklibrary-netcore/). 
 
-### Deploying as [Docker](https://www.docker.com/community-edition) container
+### Deploying on a [Docker](https://www.docker.com/community-edition) host
 Please see [DOCKE-COMPOSE.md](DOCKER-COMPOSE.md) for details how to run the app with Docker Compose.
 
 ### Deploying on [Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/)

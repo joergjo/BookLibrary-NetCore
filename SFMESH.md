@@ -22,3 +22,4 @@ az group create -g <ResourceGroup> -l <Region>
 az mesh deployment create -g <ResourceGroup> --template-file .\mesh_rp.linux.json --parameters "{\"mongoUrl\": {\"value\": \"mongodb://<User>:<Password>@<MongoHostFqdn>/library_database\"}}"
 ``` 
 
+The last command will display the public IP address of the application endpoint. Access the app at `http://<PublicIp>/`.
