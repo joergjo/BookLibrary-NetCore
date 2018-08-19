@@ -9,14 +9,14 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.3.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="1.0.113" />
     <PackageReference Include="MongoDB.Driver" Version="2.7.0" />
   </ItemGroup>
     
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
     <Exec Command="npm install" />
-    <Exec Command="node_modules/.bin/bower install --allow-root" />
     <Exec Command="node_modules/.bin/gulp clean" />
     <Exec Command="node_modules/.bin/gulp min" />
   </Target>
