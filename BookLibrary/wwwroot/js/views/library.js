@@ -38,7 +38,7 @@ app.LibraryView = Backbone.View.extend({
         var formData = {};
 
         $('#addBook div').children('input').each(function (i, el) {
-            if ($(el).val() != '') {
+            if ($(el).val() !== '') {
                 if (el.id === 'keywords') {
                     formData[el.id] = [];
                     _.each($(el).val().split(' '), function (keyword) {
@@ -54,5 +54,5 @@ app.LibraryView = Backbone.View.extend({
         });
 
         this.collection.create(formData);
-    },
+    }
 });
