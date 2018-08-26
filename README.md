@@ -22,7 +22,7 @@ Please make sure to configure your MongoDB connection string in `appsettings.jso
 
 Open `BookLibrary-NetCore.sln` and either debug or run the solution.
 
-### [Visual Studio Code](https://code.visualstudio.com/)
+### Visual Studio Code
 >Requires [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/core), [Visual Studio Code 1.26 or later](https://www.visualstudio.com/download), [Node.js 8 LTS](https://nodejs.org/en/download/), [Yarn 1.94](https://yarnpkg.com/en/).
  
 Open the folder `BookLibrary-NetCore` and run the `yarn install`,  `build` and `min` tasks, then debug the app or run it from Code's integrated terminal.
