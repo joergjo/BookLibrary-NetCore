@@ -4,6 +4,9 @@ for [Backbone.js](http://backbonejs.org/) with the following modifications and e
 - The Backbone SPA is now bundled and minified using [gulp](http://gulpjs.com/). Otherwise, it's identical to the original version.
 - The API has been implemented with ASP.NET Core MVC 2.1 running on .NET Core 2.1. 
 - Unit tests for the API using [xUnit.net](https://github.com/xunit/xunit) and [Moq](https://github.com/moq/moq4) have been added.
+- Client-side dependencies (i.e. JavaScript and CSS libraries) are managed with [LibMan](https://github.com/aspnet/LibraryManager/).
+- Built-time JavaScript dependencies are managed with [Yarn]((https://yarnpkg.com/en/)). 
+    >Unfortunately, LibMan is no option for build-time tools, [BundlerMinifier.Core](https://github.com/madskristensen/BundlerMinifier) doesn't create useful source maps, and [NPM](https://www.npmjs.com/) has interesting issues when using Docker builds.   
 - Docker Compose and Kubernetes YAML files have been added to run the app in a Docker Container or as a service in Azure Kubernetes Service (AKS). 
 - An ARM template has been added that allows to deploy the app in Service Fabric Mesh.
 Like the original, this version uses [MongoDB](https://www.mongodb.com/) as database. Use whatever flavor of MongoDB works best for you. I recommend using either MongoDB Atlas, or MongoDB 3.4 or newer.
@@ -13,19 +16,26 @@ Like the original, this version uses [MongoDB](https://www.mongodb.com/) as data
 Please make sure to configure your MongoDB connection string in `appsettings.json`, as environment variable  `ConnectionStrings__DefaultConnection`, or in your [user secrets](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets).
 
 ## Building and running the app
-### [Visual Studio 2017 (version 15.7 or higher recommended)](https://www.visualstudio.com/download)
-Open `BookLibrary-NetCore.sln` and debug or run the solution.
+
+### Visual Studio 2017
+>Requires [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/core), [Visual Studio 2017 15.8 or later](https://www.visualstudio.com/download), [Node.js 8 LTS](https://nodejs.org/en/download/), [Yarn 1.94](https://yarnpkg.com/en/).
+
+Open `BookLibrary-NetCore.sln` and either debug or run the solution.
 
 ### [Visual Studio Code](https://code.visualstudio.com/)
-Open the folder `BookLibrary-NetCore` and run the  `build` and `min` tasks, then debug the app or run it from Code's integrated terminal.
+>Requires [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/core), [Visual Studio Code 1.26 or later](https://www.visualstudio.com/download), [Node.js 8 LTS](https://nodejs.org/en/download/), [Yarn 1.94](https://yarnpkg.com/en/).
+ 
+Open the folder `BookLibrary-NetCore` and run the `yarn install`,  `build` and `min` tasks, then debug the app or run it from Code's integrated terminal.
 
-### [.NET Core SDK 2.1](https://www.microsoft.com/net/download/core)
+### .NET Core SDK 2.1 only
+>Requires [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/core), [Node.js 8 LTS](https://nodejs.org/en/download/), [Yarn 1.94](https://yarnpkg.com/en/).
+
 Open a command line or shell window (i.e. PowerShell, Console, Bash etc.) and run the following commands:
 
 ### Windows 10
 ```
 $ cd \path\to\BookLibrary-NetCore\BookLibrary
-$ npm install
+$ yarn install
 $ dotnet restore
 $ node_modules\.bin\gulp min
 $ dotnet run --no-launch-profile
@@ -34,7 +44,7 @@ $ dotnet run --no-launch-profile
 ### Linux, macOS
 ```
 $ cd /path/to/BookLibrary-NetCore/BookLibrary
-$ npm install
+$ yarn install
 $ dotnet restore
 $ node_modules/.bin/gulp min
 $ dotnet run --no-launch-profile
@@ -43,10 +53,13 @@ $ dotnet run --no-launch-profile
 Launch your web browser and load `http://localhost:5000`. 
 
 >I recommend using the `--no-launch-profile` option as shown above so `dotnet` properly honors any environment variable set in your shell. 
->Otherwise, the app will launch with the same settings as though you had run it from Visual Studio 2017, using the settings defined in `launchSettings.json`.
+>Otherwise, the app will launch with the included Visual Studio 2017 launch profile based on `launchSettings.json`.
 
 ### Building a [Docker](https://www.docker.com/community-edition) container
-To build a Docker container directly from the sample's source code, you can use the included `Dockerfile`. This Dockerfile uses a [multi-stage build](https://docs.docker.com/engine/userguide/eng-image/multistage-build/). If you run the sample in a Docker container (see below), the included Compose file will build the container on the fly. A prebuilt Docker image for Linux is available at [Docker Hub](https://hub.docker.com/r/joergjo/booklibrary-netcore/). 
+>Requires [Docker Community Edition](https://store.docker.com/search?type=edition&offering=community)
+
+To build a Docker container directly from the sample's source code, you can use the included `Dockerfile`. This Dockerfile uses a [multi-stage build](https://docs.docker.com/engine/userguide/eng-image/multistage-build/). Using the included Compose file, the 
+app container will be built on the fly. A prebuilt Docker image for Linux is available at [Docker Hub](https://hub.docker.com/r/joergjo/booklibrary-netcore/). 
 
 ### Deploying on a [Docker](https://www.docker.com/community-edition) host
 Please see [DOCKE-COMPOSE.md](DOCKER-COMPOSE.md) for details how to run the app with Docker Compose.

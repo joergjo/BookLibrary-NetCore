@@ -43,6 +43,19 @@
                 "cwd": "${workspaceRoot}/BookLibrary"
             },
             "group": "build"
+        },
+        {
+            "label": "yarn install",
+            "command": "yarn",
+            "type": "shell",
+            "args": [
+                "install"
+            ],
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceRoot}/BookLibrary"
+            },
+            "group": "build"
         }
     ]
 }
