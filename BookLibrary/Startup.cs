@@ -51,8 +51,21 @@ namespace BookLibrary
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddApplicationInsights(app.ApplicationServices, (s, l) =>
+            {
+                if (s.StartsWith("BookLibrary") && l >= LogLevel.Information)
+                {
+                    return true;
+                }
+                else if (l >= LogLevel.Warning)
+                {
+                    return true;
+                }
+                return false;
+            });
+            
             app.UseExceptionHandler(
                 new ExceptionHandlerOptions
                 {
