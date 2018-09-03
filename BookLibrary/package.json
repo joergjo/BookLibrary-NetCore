@@ -2,7 +2,7 @@
   "name": "booklibrary-netcore",
   "version": "2.1 LTS",
   "engines": {
-    "node": "^8.11.0"
+    "node": "^6.2.2||>=8.0.0"
   },
   "repository": "https://github.com/joergjo/BookLibrary-NetCore",
   "author": "Jörg Jooss",
