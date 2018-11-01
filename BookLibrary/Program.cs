@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore;
+﻿using Lamar.Microsoft.DependencyInjection;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace BookLibrary
@@ -12,6 +13,7 @@ namespace BookLibrary
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseLamar()
                 .UseStartup<Startup>()
                 .UseApplicationInsights();
     }

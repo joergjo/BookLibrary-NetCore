@@ -1,5 +1,6 @@
 ﻿using BookLibrary.Common;
 using BookLibrary.Models;
+using Lamar;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -25,7 +26,7 @@ namespace BookLibrary
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureContainer(ServiceRegistry services)
         {
             // Add framework services.
             services
@@ -55,7 +56,7 @@ namespace BookLibrary
         {
             loggerFactory.AddApplicationInsights(app.ApplicationServices, (s, l) =>
             {
-                if (s.StartsWith("BookLibrary") && l >= LogLevel.Information)
+                if (s.StartsWith(nameof(BookLibrary)) && l >= LogLevel.Information)
                 {
                     return true;
                 }

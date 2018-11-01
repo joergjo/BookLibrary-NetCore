@@ -16,11 +16,27 @@
             }
         },
         {
-            "label": "test",
+            "label": "run tests",
             "command": "dotnet",
             "type": "process",
             "args": [
-                "test"
+                "test",
+                "-l",
+                "trx"
+            ],
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceRoot}/BookLibrary.Test"
+            },
+            "group": "test"
+        },
+        {
+            "label": "show test results",
+            "command": "t-rex",
+            "type": "process",
+            "args": [
+                "--path",
+                "TestResults"
             ],
             "problemMatcher": "$msCompile",
             "options": {
@@ -29,7 +45,8 @@
             "group": {
                 "kind": "test",
                 "isDefault": true
-            }
+            },
+            "dependsOn": ["dotnet-test"]
         },
         {
             "label": "minify",

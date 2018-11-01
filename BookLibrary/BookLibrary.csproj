@@ -9,6 +9,8 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <PackageReference Include="Lamar" Version="1.1.2" />
+    <PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="1.1.2" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="1.0.163" />
