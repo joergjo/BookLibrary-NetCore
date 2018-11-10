@@ -22,14 +22,13 @@ namespace BookLibrary.Common
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            long ticks;
             if (value is DateTime)
             {
                 var epoch = NewEpoch();
                 var timeSpan = ((DateTime) value) - epoch;
                 if (timeSpan.TotalSeconds >= 0)
                 {
-                    ticks = (long) timeSpan.TotalMilliseconds;
+                    long ticks = (long) timeSpan.TotalMilliseconds;
                     writer.WriteValue(ticks);
                     return;
                 }
