@@ -1,16 +1,17 @@
-FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
 WORKDIR /app
 EXPOSE 80
+EXPOSE 443
 
-FROM microsoft/dotnet:2.1-sdk AS build
+FROM microsoft/dotnet:2.2-sdk AS build
 RUN apt-get update && apt-get install -y apt-transport-https ca-certificates
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && apt-get install -y yarn
 WORKDIR /src
-COPY BookLibrary/BookLibrary.csproj BookLibrary/
+COPY ["BookLibrary/BookLibrary.csproj", "BookLibrary/"]"
 RUN dotnet restore BookLibrary/BookLibrary.csproj
 
 COPY . .

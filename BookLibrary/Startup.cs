@@ -1,5 +1,6 @@
 ﻿using BookLibrary.Common;
 using BookLibrary.Models;
+using Lamar;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -25,7 +26,7 @@ namespace BookLibrary
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureContainer(ServiceRegistry services)
         {
             // Add framework services.
             services
@@ -38,7 +39,7 @@ namespace BookLibrary
                     options.RespectBrowserAcceptHeader = true;
                 })
                 .AddXmlDataContractSerializerFormatters()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Add application specific services
             services
@@ -53,19 +54,22 @@ namespace BookLibrary
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddApplicationInsights(app.ApplicationServices, (s, l) =>
+            loggerFactory.AddApplicationInsights(app.ApplicationServices, (name, logLevel) =>
             {
-                if (s.StartsWith("BookLibrary") && l >= LogLevel.Information)
+                if (name.StartsWith(nameof(BookLibrary)))
                 {
-                    return true;
+                    return (logLevel >= LogLevel.Information);
                 }
-                else if (l >= LogLevel.Warning)
-                {
-                    return true;
-                }
-                return false;
+
+                return (logLevel >= LogLevel.Warning);
             });
-            
+
+            if (env.IsProduction())
+            {
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
+
             app.UseExceptionHandler(
                 new ExceptionHandlerOptions
                 {

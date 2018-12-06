@@ -84,6 +84,7 @@ namespace BookLibrary.Controllers
                     ApplicationEvents.BookUpdated,
                     "Updated book with id '{Id}'.",
                     id);
+                    
                 return Ok(input);
             }
 
