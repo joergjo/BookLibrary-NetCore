@@ -39,7 +39,7 @@ namespace BookLibrary
                     options.RespectBrowserAcceptHeader = true;
                 })
                 .AddXmlDataContractSerializerFormatters()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Add application specific services
             services
@@ -63,7 +63,13 @@ namespace BookLibrary
 
                 return (logLevel >= LogLevel.Warning);
             });
-            
+
+            if (env.IsProduction())
+            {
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
+
             app.UseExceptionHandler(
                 new ExceptionHandlerOptions
                 {

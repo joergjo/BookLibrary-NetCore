@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceRoot}/BookLibrary/bin/Debug/netcoreapp2.1/BookLibrary.dll",
+            "program": "${workspaceRoot}/BookLibrary/bin/Debug/netcoreapp2.2/BookLibrary.dll",
             "args": [],
             "cwd": "${workspaceRoot}/BookLibrary",
             "stopAtEntry": false,

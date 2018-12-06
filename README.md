@@ -2,7 +2,7 @@
 This is an ASP.NET Core MVC port of [Addy Osmani's Book Library sample](https://github.com/addyosmani/backbone-fundamentals/tree/gh-pages/practicals/exercise-2)
 for [Backbone.js](http://backbonejs.org/) with the following modifications and enhancements:
 - The Backbone SPA is now bundled and minified using [gulp](http://gulpjs.com/). Otherwise, it's identical to the original version.
-- The API has been implemented with ASP.NET Core MVC 2.1 running on .NET Core 2.1. 
+- The API has been implemented with ASP.NET Core MVC 2.2 running on .NET Core 2.2. 
 - Unit tests for the API using [xUnit.net](https://github.com/xunit/xunit) and [Moq](https://github.com/moq/moq4) have been added.
 - Client-side dependencies (i.e. JavaScript and CSS libraries) are managed with [LibMan](https://github.com/aspnet/LibraryManager/).
 - Built-time JavaScript dependencies are managed with [Yarn]((https://yarnpkg.com/en/)). 
@@ -18,17 +18,17 @@ Please make sure to configure your MongoDB connection string in `appsettings.jso
 ## Building and running the app
 
 ### Visual Studio 2017
->Requires [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/core), [Visual Studio 2017 15.8 or later](https://www.visualstudio.com/download), [Node.js 8 LTS](https://nodejs.org/en/download/), [Yarn 1.94](https://yarnpkg.com/en/).
+>Requires [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/core), [Visual Studio 2017 15.8 or later](https://www.visualstudio.com/download), [Node.js 8 LTS](https://nodejs.org/en/download/), [Yarn 1.94 or later](https://yarnpkg.com/en/).
 
 Open `BookLibrary-NetCore.sln` and either debug or run the solution.
 
 ### Visual Studio Code
->Requires [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/core), [Visual Studio Code 1.26 or later](https://www.visualstudio.com/download), [Node.js 8 LTS](https://nodejs.org/en/download/), [Yarn 1.94](https://yarnpkg.com/en/).
+>Requires [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/core), [Visual Studio Code 1.26 or later](https://www.visualstudio.com/download), [Node.js 8 LTS](https://nodejs.org/en/download/), [Yarn 1.94 or later](https://yarnpkg.com/en/).
  
 Open the folder `BookLibrary-NetCore` and run the `yarn install`,  `build` and `min` tasks, then debug the app or run it from Code's integrated terminal.
 
-### .NET Core SDK 2.1 only
->Requires [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/core), [Node.js 8 LTS](https://nodejs.org/en/download/), [Yarn 1.94](https://yarnpkg.com/en/).
+### .NET Core SDK 2.2 only
+>Requires [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/core), [Node.js 8 LTS](https://nodejs.org/en/download/), [Yarn 1.94 or later](https://yarnpkg.com/en/).
 
 Open a command line or shell window (i.e. PowerShell, Console, Bash etc.) and run the following commands:
 
