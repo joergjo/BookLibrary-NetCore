@@ -18,17 +18,17 @@ Please make sure to configure your MongoDB connection string in `appsettings.jso
 ## Building and running the app
 
 ### Visual Studio 2017
->Requires [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/core), [Visual Studio 2017 15.8 or later](https://www.visualstudio.com/download), [Node.js 8 LTS](https://nodejs.org/en/download/), [Yarn 1.94 or later](https://yarnpkg.com/en/).
+>Requires [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/core), [Visual Studio 2017 15.9 or later](https://www.visualstudio.com/download), [Node.js 10 LTS](https://nodejs.org/en/download/), [Yarn 1.12.3or later](https://yarnpkg.com/en/).
 
 Open `BookLibrary-NetCore.sln` and either debug or run the solution.
 
 ### Visual Studio Code
->Requires [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/core), [Visual Studio Code 1.26 or later](https://www.visualstudio.com/download), [Node.js 8 LTS](https://nodejs.org/en/download/), [Yarn 1.94 or later](https://yarnpkg.com/en/).
+>Requires [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/core), [Visual Studio Code 1.26 or later](https://www.visualstudio.com/download), [Node.js 10 LTS](https://nodejs.org/en/download/), [Yarn 1.12.3or later](https://yarnpkg.com/en/).
  
 Open the folder `BookLibrary-NetCore` and run the `yarn install`,  `build` and `min` tasks, then debug the app or run it from Code's integrated terminal.
 
 ### .NET Core SDK 2.2 only
->Requires [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/core), [Node.js 8 LTS](https://nodejs.org/en/download/), [Yarn 1.94 or later](https://yarnpkg.com/en/).
+>Requires [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/core), [Node.js 10 LTS](https://nodejs.org/en/download/), [Yarn 1.12.3or later](https://yarnpkg.com/en/).
 
 Open a command line or shell window (i.e. PowerShell, Console, Bash etc.) and run the following commands:
 
