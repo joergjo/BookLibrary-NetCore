@@ -18,7 +18,7 @@
   </ItemGroup>
     
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
-    <Exec Command="yarn install" />
+    <Exec Command="npm install" />
     <Exec Command="node_modules/.bin/gulp clean" />
     <Exec Command="node_modules/.bin/gulp min" />
   </Target>

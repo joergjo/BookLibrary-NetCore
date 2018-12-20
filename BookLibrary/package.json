@@ -1,6 +1,6 @@
 {
   "name": "booklibrary-netcore",
-  "version": "2.1 LTS",
+  "version": "2.2.0",
   "engines": {
     "node": "^6.2.2||>=8.0.0"
   },
