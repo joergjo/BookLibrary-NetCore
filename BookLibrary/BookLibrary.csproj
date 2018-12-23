@@ -2,18 +2,15 @@
  
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <UserSecretsId>f2dfb25c-de48-491d-bc85-ebc972fa71db</UserSecretsId>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <PackageReference Include="Lamar" Version="2.0.1" />
     <PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="2.0.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="1.0.163" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="1.0.172" />
     <PackageReference Include="MongoDB.Driver" Version="2.7.2" />
   </ItemGroup>
     

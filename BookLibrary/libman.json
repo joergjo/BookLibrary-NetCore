@@ -3,38 +3,53 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "provider": "cdnjs",
-      "library": "backbone.js@1.3.3",
-      "destination": "wwwroot/lib/backbone.js/"
+      "provider": "unpkg",
+      "library": "jquery-ui-dist@1.12.1 ",
+      "destination": "wwwroot/lib/jquery-ui-dist/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "backbone@1.3.3",
+      "destination": "wwwroot/lib/backbone/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "underscore@1.9.1",
+      "destination": "wwwroot/lib/underscore/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "jquery-dateformat@1.0.3",
+      "destination": "wwwroot/lib/jquery-dateformat/",
+      "files": [
+        "dist/dateFormat.js",
+        "dist/dateFormat.min.js",
+        "dist/jquery-dateFormat.js",
+        "dist/jquery-dateFormat.min.js"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "jquery-ui-built-themes@1.12.1",
+      "destination": "wwwroot/lib/jquery-ui-built-themes/",
+      "files": [
+        "cupertino/jquery-ui.css",
+        "cupertino/jquery-ui.min.css",
+        "cupertino/theme.css",
+        "cupertino/images/ui-bg_diagonals-thick_90_eeeeee_40x40.png",
+        "cupertino/images/ui-bg_glass_100_e4f1fb_1x400.png",
+        "cupertino/images/ui-bg_glass_50_3baae3_1x400.png",
+        "cupertino/images/ui-bg_glass_80_d7ebf9_1x400.png",
+        "cupertino/images/ui-bg_highlight-hard_100_f2f5f7_1x100.png",
+        "cupertino/images/ui-bg_highlight-hard_70_000000_1x100.png",
+        "cupertino/images/ui-bg_highlight-soft_100_deedf7_1x100.png",
+        "cupertino/images/ui-bg_highlight-soft_25_ffef8f_1x100.png",
+        "cupertino/images/ui-icons_2694e8_256x240.png",
+        "cupertino/images/ui-icons_2e83ff_256x240.png",
+        "cupertino/images/ui-icons_3d80b3_256x240.png",
+        "cupertino/images/ui-icons_72a7cf_256x240.png",
+        "cupertino/images/ui-icons_ffffff_256x240.png"
+      ]
     }
-  ,
-{
-  "provider": "cdnjs",
-  "library": "jquery@3.3.1",
-  "destination": "wwwroot/lib/jquery/",
-  "files": [
-    "jquery.min.js",
-    "jquery.js",
-    "jquery.min.map"
   ]
-}
-,
-{
-  "provider": "cdnjs",
-  "library": "underscore.js@1.9.1",
-  "destination": "wwwroot/lib/underscore.js/"
-}
-,
-{
-  "provider": "cdnjs",
-  "library": "jqueryui@1.12.1",
-  "destination": "wwwroot/lib/jqueryui/"
-}
-,
-{
-  "provider": "cdnjs",
-  "library": "jquery-dateFormat@1.0",
-  "destination": "wwwroot/lib/jquery-dateFormat/"
-}
-]
 }
