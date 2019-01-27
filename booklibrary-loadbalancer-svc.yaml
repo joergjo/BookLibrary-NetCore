@@ -17,8 +17,14 @@ spec:
         envFrom:
         - configMapRef:
             name: booklibrary-config
-        - secretRef:
-            name: booklibrary-secrets
+        volumeMounts:
+          - name: secrets-volume
+            mountPath: /app/secrets
+            readOnly: true
+      volumes:
+        - name: secrets-volume
+          secret:
+            secretName: booklibrary-secrets
 ---
 apiVersion: v1
 kind: Service
