@@ -1,5 +1,6 @@
 ﻿using BookLibrary.Common;
 using BookLibrary.Models;
+using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -13,7 +14,7 @@ namespace BookLibrary.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [FormatFilter]
-    public class BooksController : Controller
+    public class BooksController : ControllerBase
     {
         private readonly IBookRepository _repository;
         private readonly ILogger _logger;
@@ -26,7 +27,7 @@ namespace BookLibrary.Controllers
 
         // GET: api/books
         [HttpGet]
-        public async Task<IEnumerable<Book>> Get()
+        public async Task<ActionResult<IEnumerable<Book>>> Get()
         {
             var books = await _repository.GetAllBooksAsync();
             _logger.LogInformation(
@@ -34,7 +35,7 @@ namespace BookLibrary.Controllers
                 "Retrieved {Count} books.", 
                 books.Count());
 
-            return books;
+            return Ok(books);
         }
 
         // GET api/books/5
