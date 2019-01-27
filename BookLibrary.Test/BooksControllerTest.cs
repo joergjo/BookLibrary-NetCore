@@ -34,7 +34,9 @@ namespace BookLibrary.Test
             var controller = new BooksController(stubRepository.Object, stubLogger.Object);
 
             // Act
-            var contacts = await controller.Get();
+            var actionResult = await controller.Get();
+            var result = actionResult.Result as ObjectResult;
+            var contacts = result?.Value as IEnumerable<Book>;
 
             // Assert
             Assert.Equal(5, contacts.Count());
