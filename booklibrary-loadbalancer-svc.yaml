@@ -17,6 +17,8 @@ spec:
         envFrom:
         - configMapRef:
             name: booklibrary-config
+        - secretRef:
+            name: booklibrary-secrets
 ---
 apiVersion: v1
 kind: Service
