@@ -3,5 +3,4 @@ kind: ConfigMap
 metadata:
   name: booklibrary-config
 data:
-  ConnectionStrings__DefaultConnection: "mongodb://library_user:password@mongodb.example.com/library_database"
   Logging__LogLevel__Default: "Information"
