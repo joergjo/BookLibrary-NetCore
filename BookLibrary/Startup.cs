@@ -28,6 +28,12 @@ namespace BookLibrary
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureContainer(ServiceRegistry services)
         {
+            string instrumentationKey = Configuration["ApplicationInsights:InstrumentationKey"];
+            if (!string.IsNullOrEmpty(instrumentationKey))
+            {
+                services.AddApplicationInsightsTelemetry(instrumentationKey);
+            }
+
             // Add framework services.
             services
                 .AddMvc(options =>
@@ -52,18 +58,8 @@ namespace BookLibrary
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            loggerFactory.AddApplicationInsights(app.ApplicationServices, (name, logLevel) =>
-            {
-                if (name.StartsWith(nameof(BookLibrary)))
-                {
-                    return (logLevel >= LogLevel.Information);
-                }
-
-                return (logLevel >= LogLevel.Warning);
-            });
-
             if (env.IsProduction())
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
