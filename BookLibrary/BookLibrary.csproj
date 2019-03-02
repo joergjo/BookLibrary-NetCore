@@ -8,8 +8,9 @@
   <ItemGroup>
     <PackageReference Include="Lamar" Version="2.1.0" />
     <PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="2.1.0" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.5.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.6.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.Extensions.Logging.ApplicationInsights" Version="2.9.1" />
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="1.0.172" />
     <PackageReference Include="MongoDB.Driver" Version="2.7.3" />
   </ItemGroup>
