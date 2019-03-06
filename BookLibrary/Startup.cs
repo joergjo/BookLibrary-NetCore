@@ -28,7 +28,7 @@ namespace BookLibrary
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureContainer(ServiceRegistry services)
         {
-            string instrumentationKey = Configuration["ApplicationInsights:InstrumentationKey"];
+            string instrumentationKey = Configuration.GetAppInsightsIKey();
             if (!string.IsNullOrEmpty(instrumentationKey))
             {
                 services.AddApplicationInsightsTelemetry(instrumentationKey);
