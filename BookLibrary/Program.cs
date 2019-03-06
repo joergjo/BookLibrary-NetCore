@@ -1,4 +1,5 @@
-﻿using Lamar.Microsoft.DependencyInjection;
+﻿using BookLibrary.Common;
+using Lamar.Microsoft.DependencyInjection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,24 +25,14 @@ namespace BookLibrary
                         hostingContext.HostingEnvironment.ContentRootPath,
                         "secrets");
                     config.AddKeyPerFile(secretsPath, optional: true);
+                })
+                .ConfigureLogging((hostingContext, logging) =>
+                {
+                    string instrumentationKey = hostingContext.Configuration.GetAppInsightsIKey();
+                    if (!string.IsNullOrEmpty(instrumentationKey))
+                    {
+                        logging.AddApplicationInsights(instrumentationKey);
+                    }
                 });
-
-        private static void AddApplicationInsightsLogger(ILoggingBuilder loggingBuilder)
-        {
-            var loggingConfig = CreateLoggingConfiguration();
-            string instrumentationKey = loggingConfig["ApplicationInsights:InstrumentationKey"];
-            if (!string.IsNullOrEmpty(instrumentationKey))
-            {
-                loggingBuilder.AddApplicationInsights(instrumentationKey);
-            }
-
-            IConfiguration CreateLoggingConfiguration() =>
-                new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json", optional: true)
-                    .AddEnvironmentVariables()
-                    .AddUserSecrets<Program>()
-                    .Build();
-        }
     }
 }
