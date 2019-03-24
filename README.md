@@ -1,4 +1,6 @@
 # Book Library
+[![Build Status](https://joergjooss.visualstudio.com/BookLibrary-NetCore/_apis/build/status/BookLibrary-NetCore-Container-GitHub-CI?branchName=master)](https://joergjooss.visualstudio.com/BookLibrary-NetCore/_build/latest?definitionId=9&branchName=master)
+
 This is an ASP.NET Core MVC port of [Addy Osmani's Book Library sample](https://github.com/addyosmani/backbone-fundamentals/tree/gh-pages/practicals/exercise-2)
 for [Backbone.js](http://backbonejs.org/) with the following modifications and enhancements:
 - The Backbone SPA is now bundled and minified using [gulp](http://gulpjs.com/). Otherwise, it's identical to the original version.
@@ -65,6 +67,3 @@ Please see [DOCKE-COMPOSE.md](DOCKER-COMPOSE.md) for details how to run the app 
 
 ### Deploying on [Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/)
 Please see [AKS.md](AKS.md) for details how to run the app in an Azure Kubernetes Service (AKS) cluster or other Kubernetes environments.
-
-### Deploying as [Service Fabric Mesh](https://docs.microsoft.com/en-us/azure/service-fabric-mesh/) application
-Please see [SFMESH.md](SFMESH.md) for details how to run the app in Service Fabric Mesh.
