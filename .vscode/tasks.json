@@ -26,7 +26,7 @@
             ],
             "problemMatcher": "$msCompile",
             "options": {
-                "cwd": "${workspaceRoot}/BookLibrary.Test"
+                "cwd": "${workspaceRoot}/test/BookLibrary.Test"
             },
             "group": {
                 "kind": "test",
@@ -43,7 +43,7 @@
             ],
             "problemMatcher": "$msCompile",
             "options": {
-                "cwd": "${workspaceRoot}/BookLibrary.Test"
+                "cwd": "${workspaceRoot}/test/BookLibrary.Test"
             },
             "presentation": {
                 "clear": true
@@ -59,7 +59,7 @@
             ],
             "problemMatcher": [],
             "options": {
-                "cwd": "${workspaceRoot}/BookLibrary"
+                "cwd": "${workspaceRoot}/src/BookLibrary"
             },
             "group": "build"
         }

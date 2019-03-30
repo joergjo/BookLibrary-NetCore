@@ -8,10 +8,10 @@ RUN apt-get update && apt-get install -y apt-transport-https ca-certificates
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 WORKDIR /src
-COPY ["BookLibrary/BookLibrary.csproj", "BookLibrary/"]"
+COPY ["src/BookLibrary/BookLibrary.csproj", "BookLibrary/"]
 RUN dotnet restore BookLibrary/BookLibrary.csproj
 
-COPY . .
+COPY ["src/", "."]
 WORKDIR /src/BookLibrary
 RUN dotnet build BookLibrary.csproj -c Release -o /app
 
