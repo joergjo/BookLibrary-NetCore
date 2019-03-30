@@ -1,4 +1,4 @@
-## Deploying on AKS (Kubernetes)
+## Deploying on Kubernetes
 I've tested the included YAML files for Azure Kubernetes Service (AKS). They should work as is in other Kubernetes environments like minikube or GKE. 
 
 I've included two options to deploy the application in Kubernetes:
@@ -23,9 +23,9 @@ $ cd /path/to/BookLibrary-NetCore
 #### LoadBalancer
 From the solution's root folder, run
 ```
-$ kubectl apply -f booklibrary-configmap.yaml
-$ kubectl apply -f booklibrary-secrets.yaml
-$ kubectl apply -f booklibrary-loadbalancer-svc.yaml
+$ kubectl apply -f k8s/booklibrary-configmap.yaml
+$ kubectl apply -f k8s/booklibrary-secrets.yaml
+$ kubectl apply -f k8s/booklibrary-loadbalancer-svc.yaml
 ```
 
 to deploy the `LoadBalancer version`.<br />
@@ -34,10 +34,10 @@ You can access the app at `http://<LoadBalancer-IP>/`.
 #### Ingress
 Alternatively, run
 ```
-$ kubectl apply -f booklibrary-configmap.yaml
-$ kubectl apply -f booklibrary-secrets.yaml
-$ kubectl apply -f booklibrary-clusterip-svc.yaml 
-$ kubectl apply -f booklibrary-ingress.yaml 
+$ kubectl apply -f k8s/booklibrary-configmap.yaml
+$ kubectl apply -f k8s/booklibrary-secrets.yaml
+$ kubectl apply -f k8s/booklibrary-clusterip-svc.yaml 
+$ kubectl apply -f k8s/booklibrary-ingress.yaml 
 ```
 
 to deploy the `Ingress` version. <br>

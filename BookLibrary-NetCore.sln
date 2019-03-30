@@ -2,78 +2,59 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookLibrary", "BookLibrary\BookLibrary.csproj", "{E0A3D081-ACE4-44DC-9288-F90ABE1D28E1}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookLibrary.Test", "BookLibrary.Test\BookLibrary.Test.csproj", "{CA1852FA-6D4A-464F-A985-027C0C3FD178}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{60019088-8481-4DD9-A8E1-8093A2B6E1A3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{60019088-8481-4DD9-A8E1-8093A2B6E1A3}"
 	ProjectSection(SolutionItems) = preProject
-		docker-compose.ci.build.yml = docker-compose.ci.build.yml
 		docker-compose.mongo.yml = docker-compose.mongo.yml
 		docker-compose.override.windows.yml = docker-compose.override.windows.yml
 		docker-compose.override.yml = docker-compose.override.yml
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{D0449CE6-4212-4304-B33F-30BC523DB468}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{D0449CE6-4212-4304-B33F-30BC523DB468}"
 	ProjectSection(SolutionItems) = preProject
-		AKS.md = AKS.md
-		DOCKER-COMPOSE.md = DOCKER-COMPOSE.md
-		LICENSE.txt = LICENSE.txt
+		docs\DOCKER-COMPOSE.md = docs\DOCKER-COMPOSE.md
+		docs\KUBERNETES.md = docs\KUBERNETES.md
 		README.md = README.md
-		SFMESH.md = SFMESH.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{A2E0E023-10B6-44BD-94B7-D8EDBAC54268}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{A2E0E023-10B6-44BD-94B7-D8EDBAC54268}"
 	ProjectSection(SolutionItems) = preProject
-		booklibrary-clusterip-svc.yaml = booklibrary-clusterip-svc.yaml
-		booklibrary-configmap.yaml = booklibrary-configmap.yaml
-		booklibrary-ingress.yaml = booklibrary-ingress.yaml
-		booklibrary-loadbalancer-svc.yaml = booklibrary-loadbalancer-svc.yaml
+		k8s\booklibrary-clusterip-svc.yaml = k8s\booklibrary-clusterip-svc.yaml
+		k8s\booklibrary-configmap.yaml = k8s\booklibrary-configmap.yaml
+		k8s\booklibrary-ingress.yaml = k8s\booklibrary-ingress.yaml
+		k8s\booklibrary-loadbalancer-svc.yaml = k8s\booklibrary-loadbalancer-svc.yaml
+		k8s\booklibrary-secrets.yaml = k8s\booklibrary-secrets.yaml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mesh", "Mesh", "{084C1637-B3CC-4D84-9D98-99304393FF21}"
-	ProjectSection(SolutionItems) = preProject
-		mesh_rp.linux.json = mesh_rp.linux.json
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0AFBEFC1-F7A3-4044-83F9-B897014F54E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B54300DA-0B2F-4EC8-8B99-EA821EDEC50F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookLibrary", "src\BookLibrary\BookLibrary.csproj", "{D3E275ED-2FF3-4D9D-BDFE-E44BB42312F8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookLibrary.Test", "test\BookLibrary.Test\BookLibrary.Test.csproj", "{10CBA805-0538-4F00-B39E-874A01C5B0F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E0A3D081-ACE4-44DC-9288-F90ABE1D28E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0A3D081-ACE4-44DC-9288-F90ABE1D28E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0A3D081-ACE4-44DC-9288-F90ABE1D28E1}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{E0A3D081-ACE4-44DC-9288-F90ABE1D28E1}.Debug|x64.Build.0 = Debug|Any CPU
-		{E0A3D081-ACE4-44DC-9288-F90ABE1D28E1}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E0A3D081-ACE4-44DC-9288-F90ABE1D28E1}.Debug|x86.Build.0 = Debug|Any CPU
-		{E0A3D081-ACE4-44DC-9288-F90ABE1D28E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0A3D081-ACE4-44DC-9288-F90ABE1D28E1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E0A3D081-ACE4-44DC-9288-F90ABE1D28E1}.Release|x64.ActiveCfg = Release|Any CPU
-		{E0A3D081-ACE4-44DC-9288-F90ABE1D28E1}.Release|x64.Build.0 = Release|Any CPU
-		{E0A3D081-ACE4-44DC-9288-F90ABE1D28E1}.Release|x86.ActiveCfg = Release|Any CPU
-		{E0A3D081-ACE4-44DC-9288-F90ABE1D28E1}.Release|x86.Build.0 = Release|Any CPU
-		{CA1852FA-6D4A-464F-A985-027C0C3FD178}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA1852FA-6D4A-464F-A985-027C0C3FD178}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA1852FA-6D4A-464F-A985-027C0C3FD178}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{CA1852FA-6D4A-464F-A985-027C0C3FD178}.Debug|x64.Build.0 = Debug|Any CPU
-		{CA1852FA-6D4A-464F-A985-027C0C3FD178}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CA1852FA-6D4A-464F-A985-027C0C3FD178}.Debug|x86.Build.0 = Debug|Any CPU
-		{CA1852FA-6D4A-464F-A985-027C0C3FD178}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA1852FA-6D4A-464F-A985-027C0C3FD178}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA1852FA-6D4A-464F-A985-027C0C3FD178}.Release|x64.ActiveCfg = Release|Any CPU
-		{CA1852FA-6D4A-464F-A985-027C0C3FD178}.Release|x64.Build.0 = Release|Any CPU
-		{CA1852FA-6D4A-464F-A985-027C0C3FD178}.Release|x86.ActiveCfg = Release|Any CPU
-		{CA1852FA-6D4A-464F-A985-027C0C3FD178}.Release|x86.Build.0 = Release|Any CPU
+		{D3E275ED-2FF3-4D9D-BDFE-E44BB42312F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3E275ED-2FF3-4D9D-BDFE-E44BB42312F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3E275ED-2FF3-4D9D-BDFE-E44BB42312F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3E275ED-2FF3-4D9D-BDFE-E44BB42312F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10CBA805-0538-4F00-B39E-874A01C5B0F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10CBA805-0538-4F00-B39E-874A01C5B0F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10CBA805-0538-4F00-B39E-874A01C5B0F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10CBA805-0538-4F00-B39E-874A01C5B0F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D3E275ED-2FF3-4D9D-BDFE-E44BB42312F8} = {0AFBEFC1-F7A3-4044-83F9-B897014F54E3}
+		{10CBA805-0538-4F00-B39E-874A01C5B0F8} = {B54300DA-0B2F-4EC8-8B99-EA821EDEC50F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF1951E4-D1B0-4674-A01A-C6021E25895A}
