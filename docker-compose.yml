@@ -10,7 +10,7 @@ services:
   webapi:
     build: 
       context: .
-      dockerfile: BookLibrary/Dockerfile
+      dockerfile: src/BookLibrary/Dockerfile
     image: booklibrary-netcore
     ports:
       - 5000:80

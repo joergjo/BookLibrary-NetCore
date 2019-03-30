@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceRoot}/BookLibrary/bin/Debug/netcoreapp2.2/BookLibrary.dll",
+            "program": "${workspaceRoot}/src/BookLibrary/bin/Debug/netcoreapp2.2/BookLibrary.dll",
             "args": [],
-            "cwd": "${workspaceRoot}/BookLibrary",
+            "cwd": "${workspaceRoot}/src/BookLibrary",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {
@@ -33,7 +33,7 @@
                 "ASPNETCORE_ENVIRONMENT": "Development"
             },
             "sourceFileMap": {
-                "/Views": "${workspaceRoot}/BookLibrary/Views"
+                "/Views": "${workspaceRoot}/src/BookLibrary/Views"
             }
         },
         {

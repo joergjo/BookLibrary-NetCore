@@ -63,7 +63,7 @@ Launch your web browser and load `http://localhost:5000`.
 To build a Docker container directly from the sample's source code, you can use the included `Dockerfile`. This Dockerfile uses a [multi-stage build](https://docs.docker.com/engine/userguide/eng-image/multistage-build/). Using the included Compose file, the app container will be built on the fly. A prebuilt Docker image for Linux is available at [Docker Hub](https://hub.docker.com/r/joergjo/booklibrary-netcore/). 
 
 ### Deploying on a [Docker](https://www.docker.com/community-edition) host
-Please see [DOCKE-COMPOSE.md](DOCKER-COMPOSE.md) for details how to run the app with Docker Compose.
+Please see [DOCKE-COMPOSE.md](docs/DOCKER-COMPOSE.md) for details how to run the app with Docker Compose.
 
 ### Deploying on [Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/)
-Please see [AKS.md](AKS.md) for details how to run the app in an Azure Kubernetes Service (AKS) cluster or other Kubernetes environments.
+Please see [KUBERNETES.md](docs/KUBERNETES.md) for details how to run the app in an Azure Kubernetes Service (AKS) cluster or other Kubernetes environments.
