@@ -25,7 +25,7 @@ From the solution's root folder, run
 ```
 $ kubectl apply -f k8s/booklibrary-configmap.yaml
 $ kubectl apply -f k8s/booklibrary-secrets.yaml
-$ kubectl apply -f k8s/booklibrary-loadbalancer-svc.yaml
+$ kubectl apply -f k8s/booklibrary-loadbalancer-deployment.yaml
 ```
 
 to deploy the `LoadBalancer version`.<br />
@@ -36,7 +36,7 @@ Alternatively, run
 ```
 $ kubectl apply -f k8s/booklibrary-configmap.yaml
 $ kubectl apply -f k8s/booklibrary-secrets.yaml
-$ kubectl apply -f k8s/booklibrary-clusterip-svc.yaml 
+$ kubectl apply -f k8s/booklibrary-clusterip-deployment.yaml 
 $ kubectl apply -f k8s/booklibrary-ingress.yaml 
 ```
 
