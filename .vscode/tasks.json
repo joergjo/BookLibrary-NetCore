@@ -62,6 +62,32 @@
                 "cwd": "${workspaceRoot}/src/BookLibrary"
             },
             "group": "build"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceRoot}/src/BookLibrary/BookLibrary.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "none"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "BookLibrary.csproj"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/src/BookLibrary"
+            },
+            "problemMatcher": "$msCompile",
+            "group": "none"
         }
     ]
 }
