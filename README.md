@@ -11,7 +11,7 @@ for [Backbone.js](http://backbonejs.org/) with the following modifications and e
     >Unfortunately, LibMan is no option for build-time tools, and [BundlerMinifier.Core](https://github.com/madskristensen/BundlerMinifier) doesn't create useful source maps.   
 - Docker Compose and Kubernetes YAML files have been added to run the app in a Docker Container or as a service in Azure Kubernetes Service (AKS). 
 - An ARM template has been added that allows to deploy the app in Service Fabric Mesh.
-Like the original, this version uses [MongoDB](https://www.mongodb.com/) as database. Use whatever flavor of MongoDB works best for you. I recommend using either MongoDB Atlas, or MongoDB 3.4 or newer.
+Like the original, this version uses [MongoDB](https://www.mongodb.com/) as database. Use whatever flavor of MongoDB works best for you. I recommend using either MongoDB Atlas, Cosmos DB's MongoDB API, or MongoDB 3.4 or newer.
 
 ****
 ## Configuring the app
@@ -19,10 +19,10 @@ Please make sure to configure your MongoDB connection string in `appsettings.jso
 
 ## Building and running the app
 
-### Visual Studio 2017
->Requires [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/core), [Visual Studio 2017 15.9 or later](https://www.visualstudio.com/download), [Node.js 10 LTS](https://nodejs.org/en/download/).
+### Visual Studio 2017 and Visual Studio 2019
+>Requires [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/core), [Visual Studio 2017 15.9 or later](https://www.visualstudio.com/download), [Node.js 10 LTS](https://nodejs.org/en/download/). Note that Visual Studio 2017 requires a [different version of the .NET Core 2.2 SDK](https://github.com/dotnet/core/blob/master/release-notes/2.2/2.2.4/2.2.4.md) than Visual Studio 2019!
 
-Open `BookLibrary-NetCore.sln` and either debug or run the solution.
+Open `BookLibrary-NetCore.sln` and either debug or run the solution. 
 
 ### Visual Studio Code
 >Requires [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/core), [Visual Studio Code 1.30 or later](https://www.visualstudio.com/download), [Node.js 10 LTS](https://nodejs.org/en/download/).
