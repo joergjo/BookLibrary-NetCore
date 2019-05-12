@@ -36,7 +36,7 @@ Open a command line or shell window (i.e. PowerShell, Console, Bash etc.) and ru
 
 ### Windows 10
 ```
-$ cd \path\to\BookLibrary-NetCore\BookLibrary
+$ cd \path\to\BookLibrary-NetCore\src\BookLibrary
 $ npm install
 $ dotnet restore
 $ node_modules\.bin\gulp min
@@ -45,7 +45,7 @@ $ dotnet run --no-launch-profile
 
 ### Linux, macOS
 ```
-$ cd /path/to/BookLibrary-NetCore/BookLibrary
+$ cd /path/to/BookLibrary-NetCore/src/BookLibrary
 $ npm install
 $ dotnet restore
 $ node_modules/.bin/gulp min
