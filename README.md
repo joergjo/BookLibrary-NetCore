@@ -10,8 +10,7 @@ for [Backbone.js](http://backbonejs.org/) with the following modifications and e
 - Built-time JavaScript dependencies are managed with [NPM](https://www.npmjs.com/). 
     >Unfortunately, LibMan is no option for build-time tools, and [BundlerMinifier.Core](https://github.com/madskristensen/BundlerMinifier) doesn't create useful source maps.   
 - Docker Compose and Kubernetes YAML files have been added to run the app in a Docker Container or as a service in Azure Kubernetes Service (AKS). 
-- An ARM template has been added that allows to deploy the app in Service Fabric Mesh.
-Like the original, this version uses [MongoDB](https://www.mongodb.com/) as database. Use whatever flavor of MongoDB works best for you. I recommend using either MongoDB Atlas, Cosmos DB's MongoDB API, or MongoDB 3.4 or newer.
+- Like the original, this version uses [MongoDB](https://www.mongodb.com/) as database. Use whatever flavor of MongoDB works best for you. I recommend using either MongoDB Atlas, Cosmos DB's MongoDB API, or MongoDB 3.4 or newer.
 
 ****
 ## Configuring the app
