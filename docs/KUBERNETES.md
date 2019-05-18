@@ -1,14 +1,14 @@
 ## Deploying on Kubernetes
 I've tested the included YAML files for Azure Kubernetes Service (AKS). They should work as is in other Kubernetes environments like minikube or GKE. 
 
-I've included two options to deploy the application in Kubernetes:
-- As a `LoadBalancer` service: This will expose a dedicated IP address for the service on AKS's Azure Load Balancer. 
-- Using an `Ingress`: This requires you to install an ingress controller before you deploy the app, and exposes this app on an IP address that can be shared with many other services (the way typical shared webhosting sites are built). If you are using AKS, you can use [Helm](https://docs.microsoft.com/en-us/azure/aks/kubernetes-helm) to easily install an ingress controller.
+I've included two options to deploy the application in Kubernetes and expose the app to the internet:
+- Using a `LoadBalancer` service: This will expose a dedicated IP address for the service on AKS's Azure Load Balancer. 
+- Using an `Ingress`: This requires you to install an ingress controller before deploying the app, and exposes this app on an IP address that can be shared with many other services (the way typical shared webhosting sites are built). You can use [Helm](https://helm.sh/) to install an ingress controller on [AKS](https://docs.microsoft.com/en-us/azure/aks/kubernetes-helm).
 
 ### Deployment
-Please make sure to specify a valid MongoDB connection string in `booklibrary-secrets.yaml`. Note that the Kubernetes service definitions do _not_ include a MongoDB pod. You will either need to have a running MongoDB instance outside of your Kubernetes cluster, or add a MongoDB pod to the service definition. 
+Please make sure to specify a valid MongoDB connection string in `booklibrary-secrets.yaml`. Note that the Kubernetes service definitions do _not_ include a MongoDB deployment. You will either need to have a running MongoDB instance outside of your Kubernetes cluster, or [deploy MongoDB to your cluster](https://www.mongodb.com/blog/post/introducing-mongodb-enterprise-operator-for-kubernetes-openshift). 
 
-Then, open a shell that is configured to connect to your Kubernetes cluster and run the following commands depending on how you want to expose the BookLibrary service and change directory to the solution's root folder.
+Next, open a shell that is configured to connect to your Kubernetes cluster and run the following commands depending on how you want to expose the BookLibrary application and change directory to the solution's root folder.
 
 ### Windows 10 
 ```
