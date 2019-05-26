@@ -28,7 +28,7 @@ namespace BookLibrary.Models
         public async Task<IEnumerable<Book>> GetAllBooksAsync()
         {
             var cursor = await _books.FindAsync(new BsonDocument());
-            IEnumerable<Book> books = await cursor.ToListAsync();
+            var books = await cursor.ToListAsync();
             return books;
         }
 
