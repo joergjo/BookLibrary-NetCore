@@ -25,14 +25,6 @@ namespace BookLibrary
                         hostingContext.HostingEnvironment.ContentRootPath,
                         "secrets");
                     config.AddKeyPerFile(secretsPath, optional: true);
-                })
-                .ConfigureLogging((hostingContext, logging) =>
-                {
-                    string instrumentationKey = hostingContext.Configuration.GetAppInsightsIKey();
-                    if (!string.IsNullOrEmpty(instrumentationKey))
-                    {
-                        logging.AddApplicationInsights(instrumentationKey);
-                    }
                 });
     }
 }
