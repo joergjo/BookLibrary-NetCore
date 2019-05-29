@@ -2,15 +2,15 @@
  
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <UserSecretsId>f2dfb25c-de48-491d-bc85-ebc972fa71db</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Lamar" Version="3.0.3" />
     <PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="3.1.0" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.6.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.7.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.Extensions.Logging.ApplicationInsights" Version="2.9.1" />
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.0.48" />
     <PackageReference Include="MongoDB.Driver" Version="2.8.1" />
   </ItemGroup>
