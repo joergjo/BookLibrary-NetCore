@@ -11,6 +11,7 @@ for [Backbone.js](http://backbonejs.org/) with the following modifications and e
     >Unfortunately, LibMan is no option for build-time tools, and [BundlerMinifier.Core](https://github.com/madskristensen/BundlerMinifier) doesn't create useful source maps.   
 - Docker Compose and Kubernetes YAML files have been added to run the app in a Docker Container or as a service in Azure Kubernetes Service (AKS). 
 - Like the original, this version uses [MongoDB](https://www.mongodb.com/) as database. Use whatever flavor of MongoDB works best for you. I recommend using either MongoDB Atlas, Cosmos DB's MongoDB API, or MongoDB 3.4 or newer.
+- An [Azure Pipeline](https://azure.microsoft.com/en-us/services/devops/pipelines/) has been added for CI. This is obviously _the_ pipeline I use myself for this project.
 
 ****
 ## Configuring the app
@@ -54,7 +55,7 @@ $ dotnet run --no-launch-profile
 Launch your web browser and load `http://localhost:5000`. 
 
 >I recommend using the `--no-launch-profile` option as shown above so `dotnet` properly honors any environment variable set in your shell. 
->Otherwise, the app will launch with the included Visual Studio 2017 launch profile based on `launchSettings.json`.
+>Otherwise, the app will launch with the included Visual Studio 2017/2019 launch profile based on `launchSettings.json`.
 
 ### Building a [Docker](https://www.docker.com/community-edition) container
 >Requires [Docker Community Edition](https://store.docker.com/search?type=edition&offering=community)
@@ -66,3 +67,6 @@ Please see [DOCKE-COMPOSE.md](docs/DOCKER-COMPOSE.md) for details how to run the
 
 ### Deploying on [Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/)
 Please see [KUBERNETES.md](docs/KUBERNETES.md) for details how to run the app in an Azure Kubernetes Service (AKS) cluster or other Kubernetes environments.
+
+### CI with Azure Pipelines
+Use the included pipeline [`.azure/pipelines/ci.yml`](./.azure/pipelines/ci.yml) to set up your own CI build for this project using Azure Pipelines. The included pipeline both runs for pull request validation and full builds of `master`. Pull request validation uses a standard .NET Core SDK build and test, whereas a full build of master runs a multi-stage Docker build. Review the YML file for further instructions. 
