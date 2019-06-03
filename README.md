@@ -68,5 +68,5 @@ Please see [DOCKE-COMPOSE.md](docs/DOCKER-COMPOSE.md) for details how to run the
 ### Deploying on [Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/)
 Please see [KUBERNETES.md](docs/KUBERNETES.md) for details how to run the app in an Azure Kubernetes Service (AKS) cluster or other Kubernetes environments.
 
-### CI with Azure Pipelines
+### CI with [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/)
 Use the included pipeline [`.azure/pipelines/ci.yml`](./.azure/pipelines/ci.yml) to set up your own CI build for this project using Azure Pipelines. The included pipeline both runs for pull request validation and full builds of `master`. Pull request validation uses a standard .NET Core SDK build and test, whereas a full build of master runs a multi-stage Docker build. Review the YML file for further instructions. 
