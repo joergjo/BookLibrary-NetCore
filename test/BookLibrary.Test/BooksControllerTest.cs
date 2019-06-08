@@ -73,7 +73,7 @@ namespace BookLibrary.Test
 
             stubRepository
                 .Setup(x => x.FindBookAsync(It.IsAny<string>()))
-                .ReturnsAsync((Book) null);
+                .ReturnsAsync(default(Book));
 
             var controller = new BooksController(stubRepository.Object, stubLogger.Object);
 
@@ -171,7 +171,7 @@ namespace BookLibrary.Test
 
             stubRepository
                 .Setup(x => x.UpdateBookAsync("1", book))
-                .ReturnsAsync(true);
+                .ReturnsAsync(new Book { Id = "1" });
 
             var controller = new BooksController(stubRepository.Object, stubLogger.Object);
 
@@ -193,7 +193,7 @@ namespace BookLibrary.Test
 
             mockRepository
                 .Setup(x => x.UpdateBookAsync("1", It.IsAny<Book>()))
-                .ReturnsAsync(true)
+                .ReturnsAsync(new Book { Id = "1" })
                 .Verifiable();
 
             var controller = new BooksController(mockRepository.Object, stubLogger.Object);
@@ -214,7 +214,7 @@ namespace BookLibrary.Test
 
             stubRepository
                 .Setup(x => x.UpdateBookAsync(It.IsAny<string>(), It.IsAny<Book>()))
-                .ReturnsAsync(false);
+                .ReturnsAsync(default(Book));
 
             var controller = new BooksController(stubRepository.Object, stubLogger.Object);
 
@@ -235,7 +235,7 @@ namespace BookLibrary.Test
 
             stubRepository
                  .Setup(x => x.RemoveBookAsync(It.Is<string>(s => s == "1")))
-                 .ReturnsAsync(true);
+                 .ReturnsAsync(new Book { Id = "1" });
 
             var controller = new BooksController(stubRepository.Object, stubLogger.Object);
 
@@ -246,24 +246,24 @@ namespace BookLibrary.Test
             Assert.Equal(StatusCodes.Status204NoContent, result?.StatusCode);
         }
 
-      [Fact(DisplayName = "BooksControllerTest.Delete_With_Invalid_Id_Returns_HttpNotFound")]
-      public async Task Delete_With_Invalid_Id_Returns_NotFound()
-      {
-          // Arrange
-          var stubRepository = new Mock<IBookRepository>();
-          var stubLogger = new Mock<ILogger<BooksController>>();
+        [Fact(DisplayName = "BooksControllerTest.Delete_With_Invalid_Id_Returns_HttpNotFound")]
+        public async Task Delete_With_Invalid_Id_Returns_NotFound()
+        {
+            // Arrange
+            var stubRepository = new Mock<IBookRepository>();
+            var stubLogger = new Mock<ILogger<BooksController>>();
 
-          stubRepository
-               .Setup(x => x.RemoveBookAsync(It.IsAny<string>()))
-               .ReturnsAsync(false);
+            stubRepository
+                 .Setup(x => x.RemoveBookAsync(It.IsAny<string>()))
+                 .ReturnsAsync(default(Book));
 
-          var controller = new BooksController(stubRepository.Object, stubLogger.Object);
+            var controller = new BooksController(stubRepository.Object, stubLogger.Object);
 
-          // Act 
-          var result = await controller.Delete("42") as NotFoundResult; ;
+            // Act 
+            var result = await controller.Delete("42") as NotFoundResult; ;
 
-          // Assert
-          Assert.Equal(StatusCodes.Status404NotFound, result?.StatusCode);
-      }
+            // Assert
+            Assert.Equal(StatusCodes.Status404NotFound, result?.StatusCode);
+        }
     }
 }

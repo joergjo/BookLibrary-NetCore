@@ -11,8 +11,8 @@ namespace BookLibrary.Models
 
         Task<Book> FindBookAsync(string id);
 
-        Task<bool> RemoveBookAsync(string id);
+        Task<Book> RemoveBookAsync(string id);
 
-        Task<bool> UpdateBookAsync(string id, Book book);
+        Task<Book> UpdateBookAsync(string id, Book book);
     }
 }

@@ -45,21 +45,27 @@ namespace BookLibrary.Models
             return book;
         }
 
-        public async Task<bool> RemoveBookAsync(string id)
+        public async Task<Book> RemoveBookAsync(string id)
         {
-            var result = await _books.DeleteOneAsync(x => x.Id == id);
-            return (result.IsAcknowledged && result.DeletedCount == 1);
+            var book = await _books.FindOneAndDeleteAsync(x => x.Id == id);
+            return book;
         }
 
-        public async Task<bool> UpdateBookAsync(string id, Book book)
+        public async Task<Book> UpdateBookAsync(string id, Book book)
         {
-            var result = await _books.UpdateOneAsync(x => x.Id == id,
+            var options = new FindOneAndUpdateOptions<Book, Book>
+            {
+                ReturnDocument = ReturnDocument.After
+            };
+            var updatedBook = await _books.FindOneAndUpdateAsync<Book>(
+                x => x.Id == id,
                 Builders<Book>.Update
                     .Set(x => x.Title, book.Title)
                     .Set(x => x.Author, book.Author)
                     .Set(x => x.ReleaseDate, book.ReleaseDate)
-                    .Set(x => x.Keywords, book.Keywords));
-            return (result.IsAcknowledged && result.ModifiedCount == 1);
+                    .Set(x => x.Keywords, book.Keywords),
+                options);
+            return updatedBook;
         }
     }
 }
