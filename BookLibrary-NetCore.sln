@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{60019088-8481-4DD9-A8E1-8093A2B6E1A3}"
 	ProjectSection(SolutionItems) = preProject
@@ -17,13 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{D0449CE6-4
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{A2E0E023-10B6-44BD-94B7-D8EDBAC54268}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "manifests", "manifests", "{A2E0E023-10B6-44BD-94B7-D8EDBAC54268}"
 	ProjectSection(SolutionItems) = preProject
-		k8s\booklibrary-clusterip-svc.yaml = k8s\booklibrary-clusterip-svc.yaml
-		k8s\booklibrary-configmap.yaml = k8s\booklibrary-configmap.yaml
-		k8s\booklibrary-ingress.yaml = k8s\booklibrary-ingress.yaml
-		k8s\booklibrary-loadbalancer-svc.yaml = k8s\booklibrary-loadbalancer-svc.yaml
-		k8s\booklibrary-secrets.yaml = k8s\booklibrary-secrets.yaml
+		manifests\clusterip-deployment.yaml = manifests\clusterip-deployment.yaml
+		manifests\configmap.yaml = manifests\configmap.yaml
+		manifests\ingress.yaml = manifests\ingress.yaml
+		manifests\loadbalancer-deployment.yaml = manifests\loadbalancer-deployment.yaml
+		manifests\secrets.yaml = manifests\secrets.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0AFBEFC1-F7A3-4044-83F9-B897014F54E3}"
