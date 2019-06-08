@@ -31,8 +31,8 @@ namespace BookLibrary.Controllers
         {
             var books = await _repository.GetAllBooksAsync();
             _logger.LogInformation(
-                ApplicationEvents.LibraryQueried, 
-                "Retrieved {Count} books.", 
+                ApplicationEvents.LibraryQueried,
+                "Retrieved {Count} books.",
                 books.Count());
 
             return Ok(books);
@@ -46,16 +46,16 @@ namespace BookLibrary.Controllers
             if (book != null)
             {
                 _logger.LogInformation(
-                    ApplicationEvents.BookQueried, 
-                    "Retrieved book '{Id}'.", 
+                    ApplicationEvents.BookQueried,
+                    "Retrieved book '{Id}'.",
                     book.Id);
 
                 return Ok(book);
             }
 
             _logger.LogInformation(
-                ApplicationEvents.BookNotFound, 
-                "Failed to retrieve book '{Id}'.", 
+                ApplicationEvents.BookNotFound,
+                "Failed to retrieve book '{Id}'.",
                 id);
 
             return NotFound();
@@ -76,48 +76,46 @@ namespace BookLibrary.Controllers
 
         // PUT api/books/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<Book>> Put(string id, [FromBody]Book input)
+        public async Task<ActionResult<Book>> Put(string id, [FromBody]Book book)
         {
-            bool isUpdated = await _repository.UpdateBookAsync(id, input);
-            if (isUpdated)
+            var updatedBook = await _repository.UpdateBookAsync(id, book);
+            if (updatedBook == null)
             {
                 _logger.LogInformation(
-                    ApplicationEvents.BookUpdated,
-                    "Updated book with id '{Id}'.",
+                    ApplicationEvents.BookNotFound,
+                    "Failed to update book '{Id}'.",
                     id);
-                    
-                return Ok(input);
-            }
 
+                return NotFound();
+            }
             _logger.LogInformation(
-                ApplicationEvents.BookNotFound,
-                "Failed to update book '{Id}'.",
+                ApplicationEvents.BookUpdated,
+                "Updated book with id '{Id}'.",
                 id);
 
-            return NotFound();
+            return Ok(updatedBook);
         }
 
         // DELETE api/books/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(string id)
         {
-            bool isDeleted = await _repository.RemoveBookAsync(id);
-            if (isDeleted)
+            var removedBook = await _repository.RemoveBookAsync(id);
+            if (removedBook == null)
             {
                 _logger.LogInformation(
-                    ApplicationEvents.BookDeleted, 
-                    "Removed book with id '{Id}'.", 
+                    ApplicationEvents.BookNotFound,
+                    "Failed to delete book '{Id}'.",
                     id);
 
-                return StatusCode(StatusCodes.Status204NoContent);
+                return NotFound();
             }
-
             _logger.LogInformation(
-                ApplicationEvents.BookNotFound, 
-                "Failed to delete book '{Id}'.", 
+                ApplicationEvents.BookDeleted,
+                "Removed book with id '{Id}'.",
                 id);
 
-            return NotFound();
+            return StatusCode(StatusCodes.Status204NoContent);
         }
     }
 }
