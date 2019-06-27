@@ -13,6 +13,7 @@ RUN dotnet restore BookLibrary/BookLibrary.csproj
 
 COPY ["src/", "."]
 WORKDIR /src/BookLibrary
+RUN dotnet add BookLibrary.csproj package "Microsoft.ApplicationInsights.Kubernetes.HostingStartup" -v "1.1.0"
 RUN dotnet build BookLibrary.csproj -c Release -o /app
 
 FROM build AS publish
