@@ -1,9 +1,7 @@
-﻿using BookLibrary.Common;
-using Lamar.Microsoft.DependencyInjection;
+﻿using Lamar.Microsoft.DependencyInjection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using System.IO;
 
 namespace BookLibrary
@@ -19,6 +17,7 @@ namespace BookLibrary
             WebHost.CreateDefaultBuilder(args)
                 .UseLamar()
                 .UseStartup<Startup>()
+                .UseApplicationInsights()
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
                     var secretsPath = Path.Combine(
