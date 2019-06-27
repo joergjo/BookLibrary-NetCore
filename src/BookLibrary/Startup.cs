@@ -3,16 +3,19 @@ using BookLibrary.Models;
 using Lamar;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Diagnostics;
+using System.Net.Mime;
 
 namespace BookLibrary
 {
@@ -28,12 +31,6 @@ namespace BookLibrary
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureContainer(ServiceRegistry services)
         {
-            string instrumentationKey = Configuration.GetAppInsightsIKey();
-            if (!string.IsNullOrEmpty(instrumentationKey))
-            {
-                services.AddApplicationInsightsTelemetry(instrumentationKey);
-            }
-
             // Add framework services.
             services
                 .AddMvc(options =>
@@ -46,6 +43,12 @@ namespace BookLibrary
                 })
                 .AddXmlDataContractSerializerFormatters()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            // Add health monitoring
+            services
+                .AddHealthChecks()
+                .AddMongoDb(Configuration.GetConnectionString("DefaultConnection"))
+                .AddApplicationInsightsPublisher();
 
             // Add application specific services
             services
@@ -65,6 +68,16 @@ namespace BookLibrary
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseHealthChecks("/healthz/ready", new HealthCheckOptions
+            {
+                Predicate = reg => false
+            });
+
+            app.UseHealthChecks("/healthz/live", new HealthCheckOptions
+            {
+                Predicate = reg => false
+            });
 
             app.UseExceptionHandler(
                 new ExceptionHandlerOptions
@@ -96,7 +109,7 @@ namespace BookLibrary
                         };
                         string json = JsonConvert.SerializeObject(errorInfo, settings);
 
-                        context.Response.ContentType = "application/json";
+                        context.Response.ContentType = MediaTypeNames.Application.Json;
                         await context.Response.WriteAsync(json);
                     }
                 });
