@@ -1,5 +1,5 @@
 ## Deploying on Kubernetes
-I've tested the included YAML files for Azure Kubernetes Service (AKS). They should work as is in other Kubernetes environments like minikube or GKE. 
+I've tested the included YAML files with Azure Kubernetes Service (AKS). They should work as is in other Kubernetes environments like minikube or GKE. 
 
 I've included two options to deploy the application in Kubernetes and expose the app to the internet:
 - Using a `LoadBalancer` service: This will expose a dedicated IP address for the service on AKS's Azure Load Balancer. 
@@ -25,7 +25,7 @@ From the solution's root folder, run
 ```
 $ kubectl apply -f manifests/configmap.yaml
 $ kubectl apply -f manifests/secrets.yaml
-$ kubectl apply -f manifests/loadbalancer-deployment.yaml
+$ kubectl apply -f manifests/deployment-loadbalancer.yaml
 ```
 
 to deploy the `LoadBalancer version`.<br />
@@ -36,7 +36,7 @@ Alternatively, run
 ```
 $ kubectl apply -f manifests/configmap.yaml
 $ kubectl apply -f manifests/secrets.yaml
-$ kubectl apply -f manifests/clusterip-deployment.yaml 
+$ kubectl apply -f manifests/deployment-clusterip.yaml 
 $ kubectl apply -f manifests/ingress.yaml 
 ```
 
