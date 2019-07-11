@@ -33,6 +33,8 @@ namespace BookLibrary
         {
             // Add framework services.
             services
+                .AddRouting(options =>
+                    options.ConstraintMap.Add("objectid", typeof(ObjectIdConstraint)))
                 .AddMvc(options =>
                 {
                     // Disable automatic fallback to JSON
@@ -54,9 +56,9 @@ namespace BookLibrary
             services
                 // Register MongoDatabase instance
                 .AddMongoDatabase(
-                    () => Configuration.GetConnectionString("DefaultConnection"),
-                    "library_database",
-                    () => BsonMapping.Configure())
+                    connectionStringFactory: () => Configuration.GetConnectionString("DefaultConnection"),
+                    databaseName: "library_database",
+                    bsonMappingInitializer: () => BsonMapping.Configure())
                 .AddScoped<IBookRepository, BookRepository>();
         }
 
@@ -108,7 +110,6 @@ namespace BookLibrary
                             ContractResolver = new CamelCasePropertyNamesContractResolver()
                         };
                         string json = JsonConvert.SerializeObject(errorInfo, settings);
-
                         context.Response.ContentType = MediaTypeNames.Application.Json;
                         await context.Response.WriteAsync(json);
                     }

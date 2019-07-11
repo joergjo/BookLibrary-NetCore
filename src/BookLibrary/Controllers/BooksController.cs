@@ -39,7 +39,7 @@ namespace BookLibrary.Controllers
         }
 
         // GET api/books/5
-        [HttpGet("{id}", Name = "GetById")]
+        [HttpGet("{id:objectid}", Name = "GetById")]
         public async Task<ActionResult<Book>> Get(string id)
         {
             var book = await _repository.FindBookAsync(id);
@@ -75,7 +75,7 @@ namespace BookLibrary.Controllers
         }
 
         // PUT api/books/5
-        [HttpPut("{id}")]
+        [HttpPut("{id:objectid}")]
         public async Task<ActionResult<Book>> Put(string id, [FromBody]Book book)
         {
             var updatedBook = await _repository.UpdateBookAsync(id, book);
@@ -97,7 +97,7 @@ namespace BookLibrary.Controllers
         }
 
         // DELETE api/books/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:objectid}")]
         public async Task<ActionResult> Delete(string id)
         {
             var removedBook = await _repository.RemoveBookAsync(id);
