@@ -1,5 +1,5 @@
 # Book Library
-[![Build Status](https://joergjooss.visualstudio.com/BookLibrary-NetCore/_apis/build/status/BookLibrary-NetCore-Container-GitHub-CI?branchName=master)](https://joergjooss.visualstudio.com/BookLibrary-NetCore/_build/latest?definitionId=9&branchName=master)
+[![Build Status](https://dev.azure.com/joergjooss/BookLibrary-NetCore/_apis/build/status/GitHub-CI?branchName=master)](https://dev.azure.com/joergjooss/BookLibrary-NetCore/_build/latest?definitionId=18&branchName=master)
 
 This is an ASP.NET Core MVC port of [Addy Osmani's Book Library sample](https://github.com/addyosmani/backbone-fundamentals/tree/gh-pages/practicals/exercise-2)
 for [Backbone.js](http://backbonejs.org/) with the following modifications and enhancements:
