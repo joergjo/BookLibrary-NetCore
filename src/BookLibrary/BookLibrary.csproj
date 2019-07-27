@@ -13,7 +13,7 @@
     <PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="3.1.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.7.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.0.48" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.0.76" />
     <PackageReference Include="MongoDB.Driver" Version="2.8.1" />
   </ItemGroup>
     
