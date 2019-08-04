@@ -64,6 +64,8 @@ namespace BookLibrary
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseExceptionHandler("/error");
+
             if (env.IsProduction())
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
@@ -79,40 +81,6 @@ namespace BookLibrary
             {
                 Predicate = reg => false
             });
-
-            app.UseExceptionHandler(
-                new ExceptionHandlerOptions
-                {
-                    ExceptionHandler = async context =>
-                    {
-                        string requestId = Activity.Current?.Id ?? context.TraceIdentifier;
-                        var errorInfo = new ErrorInformation
-                        {
-                            RequestId = requestId,
-                            Message = $"Caught unhandled exception. Use request ID '{requestId}' to track the problem.",
-                            DateTime = DateTimeOffset.UtcNow
-                        };
-
-                        var errorFeature = context.Features.Get<IExceptionHandlerFeature>();
-                        if (errorFeature?.Error != null)
-                        {
-                            var logger = context.RequestServices.GetRequiredService<ILogger<Startup>>();
-                            logger.LogError(
-                                ApplicationEvents.UnhandledException,
-                                errorFeature.Error,
-                                "Caught unhandled exception for request ID '{RequestId}'.",
-                                requestId);
-                        }
-
-                        var settings = new JsonSerializerSettings
-                        {
-                            ContractResolver = new CamelCasePropertyNamesContractResolver()
-                        };
-                        string json = JsonConvert.SerializeObject(errorInfo, settings);
-                        context.Response.ContentType = MediaTypeNames.Application.Json;
-                        await context.Response.WriteAsync(json);
-                    }
-                });
 
             app.UseDefaultFiles();
             app.UseStaticFiles();

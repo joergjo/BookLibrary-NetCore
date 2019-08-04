@@ -7,7 +7,7 @@ namespace BookLibrary.Models
     {
         Task<Book> AddBookAsync(Book book);
 
-        Task<IEnumerable<Book>> GetAllBooksAsync();
+        Task<List<Book>> GetAllBooksAsync();
 
         Task<Book> FindBookAsync(string id);
 

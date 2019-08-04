@@ -25,7 +25,7 @@ namespace BookLibrary.Models
             _books = books ?? throw new ArgumentNullException(nameof(books));
         }
 
-        public async Task<IEnumerable<Book>> GetAllBooksAsync()
+        public async Task<List<Book>> GetAllBooksAsync()
         {
             using (var cursor = await _books.FindAsync(new BsonDocument()))
             {

@@ -22,24 +22,24 @@ namespace BookLibrary.Test
 
             stubRepository
                 .Setup(x => x.GetAllBooksAsync())
-                .ReturnsAsync(new[]
-                {
-                    new Book { Id = "1" },
-                    new Book { Id = "2" },
-                    new Book { Id = "3" },
-                    new Book { Id = "4" },
-                    new Book { Id = "5" }
-                }.AsEnumerable());
+                .ReturnsAsync(
+                    new List<Book>
+                    {
+                        new Book { Id = "1" },
+                        new Book { Id = "2" },
+                        new Book { Id = "3" },
+                        new Book { Id = "4" },
+                        new Book { Id = "5" }
+                    });
 
             var controller = new BooksController(stubRepository.Object, stubLogger.Object);
 
             // Act
             var actionResult = await controller.Get();
-            var result = actionResult.Result as ObjectResult;
-            var contacts = result?.Value as IEnumerable<Book>;
+            var books = actionResult?.Value as IEnumerable<Book>;
 
             // Assert
-            Assert.Equal(5, contacts.Count());
+            Assert.Equal(5, books?.Count());
         }
 
         [Fact(DisplayName = "BooksControllerTest.Get_With_Valid_Id_Returns_Single_Book")]
@@ -57,8 +57,7 @@ namespace BookLibrary.Test
 
             // Act
             var actionResult = await controller.Get("1");
-            var result = actionResult.Result as ObjectResult;
-            var book = result?.Value as Book;
+            var book = actionResult.Value as Book;
 
             // Assert
             Assert.Equal("1", book?.Id);
@@ -177,8 +176,7 @@ namespace BookLibrary.Test
 
             // Act
             var actionResult = await controller.Put("1", book);
-            var result = actionResult.Result as ObjectResult;
-            var actualBook = result?.Value as Book;
+            var actualBook = actionResult?.Value as Book;
 
             // Assert
             Assert.Equal("1", actualBook?.Id);
