@@ -1,6 +1,5 @@
 ﻿using BookLibrary.Common;
 using BookLibrary.Models;
-using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -27,19 +26,22 @@ namespace BookLibrary.Controllers
 
         // GET: api/books
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Book>>> Get()
         {
             var books = await _repository.GetAllBooksAsync();
             _logger.LogInformation(
                 ApplicationEvents.LibraryQueried,
                 "Retrieved {Count} books.",
-                books.Count());
+                books.Count);
 
-            return Ok(books);
+            return books;
         }
 
         // GET api/books/5
         [HttpGet("{id:objectid}", Name = "GetById")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Book>> Get(string id)
         {
             var book = await _repository.FindBookAsync(id);
@@ -50,7 +52,7 @@ namespace BookLibrary.Controllers
                     "Retrieved book '{Id}'.",
                     book.Id);
 
-                return Ok(book);
+                return book;
             }
 
             _logger.LogInformation(
@@ -63,6 +65,7 @@ namespace BookLibrary.Controllers
 
         // POST api/books
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Book>> Post(Book book)
         {
             var newBook = await _repository.AddBookAsync(book);
@@ -76,6 +79,8 @@ namespace BookLibrary.Controllers
 
         // PUT api/books/5
         [HttpPut("{id:objectid}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Book>> Put(string id, [FromBody]Book book)
         {
             var updatedBook = await _repository.UpdateBookAsync(id, book);
@@ -93,11 +98,13 @@ namespace BookLibrary.Controllers
                 "Updated book with id '{Id}'.",
                 id);
 
-            return Ok(updatedBook);
+            return updatedBook;
         }
 
         // DELETE api/books/5
         [HttpDelete("{id:objectid}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Delete(string id)
         {
             var removedBook = await _repository.RemoveBookAsync(id);
