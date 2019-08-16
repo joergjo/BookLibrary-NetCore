@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BookLibrary.Controllers
@@ -45,22 +44,22 @@ namespace BookLibrary.Controllers
         public async Task<ActionResult<Book>> Get(string id)
         {
             var book = await _repository.FindBookAsync(id);
-            if (book != null)
+            if (book == null)
             {
                 _logger.LogInformation(
-                    ApplicationEvents.BookQueried,
-                    "Retrieved book '{Id}'.",
-                    book.Id);
+                    ApplicationEvents.BookNotFound,
+                    "Failed to retrieve book '{Id}'.",
+                    id);
 
-                return book;
+                return NotFound();
             }
 
             _logger.LogInformation(
-                ApplicationEvents.BookNotFound,
-                "Failed to retrieve book '{Id}'.",
-                id);
+                ApplicationEvents.BookQueried,
+                "Retrieved book '{Id}'.",
+                book.Id);
 
-            return NotFound();
+            return book;
         }
 
         // POST api/books
@@ -93,6 +92,7 @@ namespace BookLibrary.Controllers
 
                 return NotFound();
             }
+
             _logger.LogInformation(
                 ApplicationEvents.BookUpdated,
                 "Updated book with id '{Id}'.",
@@ -117,6 +117,7 @@ namespace BookLibrary.Controllers
 
                 return NotFound();
             }
+
             _logger.LogInformation(
                 ApplicationEvents.BookDeleted,
                 "Removed book with id '{Id}'.",
