@@ -2,6 +2,5 @@ version: "3"
 
 services:
   mongodb:
-    image: winamd64/mongo:4.0-windowsservercore-1803
     volumes:
       - mongodata:c:/data/db
