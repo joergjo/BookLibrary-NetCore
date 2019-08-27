@@ -5,14 +5,14 @@ namespace BookLibrary.Models
 {
     public interface IBookRepository
     {
-        Task<Book> AddBookAsync(Book book);
+        Task<Book> AddAsync(Book book);
 
-        Task<List<Book>> GetAllBooksAsync();
+        Task<List<Book>> FindAllAsync(int limit = 100);
 
-        Task<Book> FindBookAsync(string id);
+        Task<Book> FindAsync(string id);
 
-        Task<Book> RemoveBookAsync(string id);
+        Task<Book> RemoveAsync(string id);
 
-        Task<Book> UpdateBookAsync(string id, Book book);
+        Task<Book> UpdateAsync(string id, Book book);
     }
 }

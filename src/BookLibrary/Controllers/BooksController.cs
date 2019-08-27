@@ -26,9 +26,14 @@ namespace BookLibrary.Controllers
         // GET: api/books
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<Book>>> Get()
+        public async Task<ActionResult<IEnumerable<Book>>> Get([FromQuery]int limit = 20)
         {
-            var books = await _repository.GetAllBooksAsync();
+            if (limit < 1)
+            {
+                return BadRequest();
+            }
+
+            var books = await _repository.FindAllAsync(limit);
             _logger.LogInformation(
                 ApplicationEvents.LibraryQueried,
                 "Retrieved {Count} books.",
@@ -43,7 +48,7 @@ namespace BookLibrary.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Book>> Get(string id)
         {
-            var book = await _repository.FindBookAsync(id);
+            var book = await _repository.FindAsync(id);
             if (book == null)
             {
                 _logger.LogInformation(
@@ -67,7 +72,7 @@ namespace BookLibrary.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Book>> Post(Book book)
         {
-            var newBook = await _repository.AddBookAsync(book);
+            var newBook = await _repository.AddAsync(book);
             _logger.LogInformation(
                 ApplicationEvents.BookCreated,
                 "Added book with id '{Id}'.",
@@ -82,7 +87,7 @@ namespace BookLibrary.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Book>> Put(string id, [FromBody]Book book)
         {
-            var updatedBook = await _repository.UpdateBookAsync(id, book);
+            var updatedBook = await _repository.UpdateAsync(id, book);
             if (updatedBook == null)
             {
                 _logger.LogInformation(
@@ -107,7 +112,7 @@ namespace BookLibrary.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Delete(string id)
         {
-            var removedBook = await _repository.RemoveBookAsync(id);
+            var removedBook = await _repository.RemoveAsync(id);
             if (removedBook == null)
             {
                 _logger.LogInformation(
