@@ -25,16 +25,20 @@ namespace BookLibrary.Models
             _books = books ?? throw new ArgumentNullException(nameof(books));
         }
 
-        public async Task<List<Book>> GetAllBooksAsync()
+        public async Task<List<Book>> FindAllAsync(int limit)
         {
-            using (var cursor = await _books.FindAsync(new BsonDocument()))
+            var options = new FindOptions<Book, Book>
+            {
+                Limit = limit
+            };
+            using (var cursor = await _books.FindAsync(new BsonDocument(), options))
             {
                 var books = await cursor.ToListAsync();
                 return books;
             }
         }
 
-        public async Task<Book> FindBookAsync(string id)
+        public async Task<Book> FindAsync(string id)
         {
             using (var cursor = await _books.FindAsync(x => x.Id == id))
             {
@@ -43,19 +47,19 @@ namespace BookLibrary.Models
             }
         }
 
-        public async Task<Book> AddBookAsync(Book book)
+        public async Task<Book> AddAsync(Book book)
         {
             await _books.InsertOneAsync(book);
             return book;
         }
 
-        public async Task<Book> RemoveBookAsync(string id)
+        public async Task<Book> RemoveAsync(string id)
         {
             var book = await _books.FindOneAndDeleteAsync(x => x.Id == id);
             return book;
         }
 
-        public async Task<Book> UpdateBookAsync(string id, Book book)
+        public async Task<Book> UpdateAsync(string id, Book book)
         {
             var options = new FindOneAndUpdateOptions<Book, Book>
             {
