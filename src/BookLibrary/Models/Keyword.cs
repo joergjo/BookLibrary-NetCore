@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace BookLibrary.Models
 {
     public class Keyword
     {
-        [JsonProperty("keyword")]
+        [JsonPropertyName("keyword")]
         public string Name { get; set; }
     }
 }

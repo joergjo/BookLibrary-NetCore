@@ -34,7 +34,6 @@ namespace BookLibrary
                     // Honor browser's Accept header (e.g. Chrome) 
                     options.RespectBrowserAcceptHeader = true;
                 })
-                .AddNewtonsoftJson()
                 .AddXmlDataContractSerializerFormatters();
 
             // Add health monitoring
