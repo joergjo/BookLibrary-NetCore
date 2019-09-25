@@ -49,7 +49,7 @@ namespace BookLibrary.Controllers
         public async Task<ActionResult<Book>> Get(string id)
         {
             var book = await _repository.FindAsync(id);
-            if (book == null)
+            if (book is null)
             {
                 _logger.LogInformation(
                     ApplicationEvents.BookNotFound,
@@ -88,7 +88,7 @@ namespace BookLibrary.Controllers
         public async Task<ActionResult<Book>> Put(string id, [FromBody]Book book)
         {
             var updatedBook = await _repository.UpdateAsync(id, book);
-            if (updatedBook == null)
+            if (updatedBook is null)
             {
                 _logger.LogInformation(
                     ApplicationEvents.BookNotFound,
@@ -113,7 +113,7 @@ namespace BookLibrary.Controllers
         public async Task<ActionResult> Delete(string id)
         {
             var removedBook = await _repository.RemoveAsync(id);
-            if (removedBook == null)
+            if (removedBook is null)
             {
                 _logger.LogInformation(
                     ApplicationEvents.BookNotFound,

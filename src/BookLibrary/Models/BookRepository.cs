@@ -13,7 +13,7 @@ namespace BookLibrary.Models
 
         public BookRepository(IMongoDatabase database)
         {
-            if (database == null)
+            if (database is null)
             {
                 throw new ArgumentNullException(nameof(database));
             }
@@ -31,20 +31,16 @@ namespace BookLibrary.Models
             {
                 Limit = limit
             };
-            using (var cursor = await _books.FindAsync(new BsonDocument(), options))
-            {
-                var books = await cursor.ToListAsync();
-                return books;
-            }
+            using var cursor = await _books.FindAsync(new BsonDocument(), options);
+            var books = await cursor.ToListAsync();
+            return books;
         }
 
         public async Task<Book> FindAsync(string id)
         {
-            using (var cursor = await _books.FindAsync(x => x.Id == id))
-            {
-                var books = await cursor.ToListAsync();
-                return books.SingleOrDefault();
-            }
+            using var cursor = await _books.FindAsync(x => x.Id == id);
+            var books = await cursor.ToListAsync();
+            return books.SingleOrDefault();
         }
 
         public async Task<Book> AddAsync(Book book)
