@@ -2,19 +2,10 @@
 using BookLibrary.Models;
 using Lamar;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using System;
-using System.Diagnostics;
-using System.Net.Mime;
 
 namespace BookLibrary
 {
@@ -34,7 +25,7 @@ namespace BookLibrary
             services
                 .AddRouting(options =>
                     options.ConstraintMap.Add("objectid", typeof(ObjectIdConstraint)))
-                .AddMvc(options =>
+                .AddControllers(options =>
                 {
                     // Disable automatic fallback to JSON
                     options.ReturnHttpNotAcceptable = true;
@@ -42,8 +33,7 @@ namespace BookLibrary
                     // Honor browser's Accept header (e.g. Chrome) 
                     options.RespectBrowserAcceptHeader = true;
                 })
-                .AddXmlDataContractSerializerFormatters()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                .AddXmlDataContractSerializerFormatters();
 
             // Add health monitoring
             services
@@ -62,15 +52,9 @@ namespace BookLibrary
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment _)
         {
             app.UseExceptionHandler("/error");
-
-            if (env.IsProduction())
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
 
             app.UseHealthChecks("/healthz/ready", new HealthCheckOptions
             {
@@ -82,9 +66,19 @@ namespace BookLibrary
                 Predicate = reg => false
             });
 
+            app.UseHttpsRedirection();
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseMvc();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }
