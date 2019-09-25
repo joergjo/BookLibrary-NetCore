@@ -1,6 +1,5 @@
 ﻿using BookLibrary.Common;
 using BookLibrary.Models;
-using Lamar;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -19,8 +18,10 @@ namespace BookLibrary
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureContainer(ServiceRegistry services)
+        public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplicationInsightsTelemetry();
+
             // Add framework services.
             services
                 .AddRouting(options =>
@@ -33,6 +34,7 @@ namespace BookLibrary
                     // Honor browser's Accept header (e.g. Chrome) 
                     options.RespectBrowserAcceptHeader = true;
                 })
+                .AddNewtonsoftJson()
                 .AddXmlDataContractSerializerFormatters();
 
             // Add health monitoring
