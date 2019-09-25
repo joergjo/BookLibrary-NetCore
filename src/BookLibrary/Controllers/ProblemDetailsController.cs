@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Diagnostics;
@@ -14,11 +15,11 @@ namespace BookLibrary.Controllers
     public class ProblemDetailsController : ControllerBase
     {
         private readonly ILogger _logger;
-        private readonly IHostingEnvironment _environment;
+        private readonly IWebHostEnvironment _environment;
 
         public ProblemDetailsController(
             ILogger<ProblemDetailsController> logger,
-            IHostingEnvironment environment)
+            IWebHostEnvironment environment)
         {
             _logger = logger;
             _environment = environment;
@@ -41,7 +42,7 @@ namespace BookLibrary.Controllers
             problemDetails.Extensions.Add("timestamp-utc", DateTimeOffset.UtcNow);
 
             var errorFeature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
-            if (errorFeature?.Error != null)
+            if (errorFeature?.Error is object)
             {
                 _logger?.LogError(
                     ApplicationEvents.UnhandledException,
