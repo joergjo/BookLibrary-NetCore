@@ -12,15 +12,15 @@ namespace BookLibrary.Common
             string databaseName,
             Action bsonMappingInitializer = null)
         {
-            if (services == null)
+            if (services is null)
             {
                 throw new ArgumentNullException(nameof(services));
             }
-            if (connectionStringFactory == null)
+            if (connectionStringFactory is null)
             {
                 throw new ArgumentNullException(nameof(connectionStringFactory));
             }
-            if (databaseName == null)
+            if (databaseName is null)
             {
                 throw new ArgumentNullException(nameof(databaseName));
             }
