@@ -4,7 +4,7 @@
 This is an ASP.NET Core MVC port of [Addy Osmani's Book Library sample](https://github.com/addyosmani/backbone-fundamentals/tree/gh-pages/practicals/exercise-2)
 for [Backbone.js](http://backbonejs.org/) with the following modifications and enhancements:
 - The Backbone SPA is now bundled and minified using [gulp](http://gulpjs.com/). Otherwise, it's identical to the original version.
-- The API has been implemented with ASP.NET Core MVC 3.0 running on .NET Core 3.0. 
+- The API has been implemented with ASP.NET Core MVC 2.2 running on .NET Core 2.2. 
 - Unit tests for the API using [xUnit.net](https://github.com/xunit/xunit) and [Moq](https://github.com/moq/moq4) have been added.
 - Client-side dependencies (i.e. JavaScript and CSS libraries) are managed with [LibMan](https://github.com/aspnet/LibraryManager/).
 - Built-time JavaScript dependencies are managed with [NPM](https://www.npmjs.com/). 
@@ -19,18 +19,18 @@ Please make sure to configure your MongoDB connection string in `appsettings.jso
 
 ## Building and running the app
 
-### Visual Studio 2019
->Requires [.NET Core SDK 3.0 or later](https://www.microsoft.com/net/download/core), [Visual Studio 2019 16.3.0 or later](https://www.visualstudio.com/download), [Node.js 10 LTS](https://nodejs.org/en/download/).
+### Visual Studio 2017 and Visual Studio 2019
+>Requires [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/core), [Visual Studio 2017 15.9 or later](https://www.visualstudio.com/download), [Node.js 10 LTS](https://nodejs.org/en/download/). Note that Visual Studio 2017 requires a [different version of the .NET Core 2.2 SDK](https://github.com/dotnet/core/blob/master/release-notes/2.2/2.2.4/2.2.4.md) than Visual Studio 2019!
 
 Open `BookLibrary-NetCore.sln` and either debug or run the solution. 
 
 ### Visual Studio Code
->Requires [.NET Core SDK 3.0 or later](https://www.microsoft.com/net/download/core), [Visual Studio Code 1.30 or later](https://www.visualstudio.com/download), [Node.js 10 LTS](https://nodejs.org/en/download/).
+>Requires [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/core), [Visual Studio Code 1.30 or later](https://www.visualstudio.com/download), [Node.js 10 LTS](https://nodejs.org/en/download/).
  
 Open the folder `BookLibrary-NetCore` and run the `npm: Install Dependencies`, `build` and `min` tasks, then debug the app or run it from Code's integrated terminal.
 
-### .NET Core SDK 3.0 only
->Requires [.NET Core SDK 3.0 or later](https://www.microsoft.com/net/download/core), [Node.js 10 LTS](https://nodejs.org/en/download/).
+### .NET Core SDK 2.2 only
+>Requires [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/core), [Node.js 10 LTS](https://nodejs.org/en/download/).
 
 Open a command line or shell window (i.e. PowerShell, Console, Bash etc.) and run the following commands:
 
@@ -55,7 +55,7 @@ $ dotnet run --no-launch-profile
 Launch your web browser and load `http://localhost:5000`. 
 
 >I recommend using the `--no-launch-profile` option as shown above so `dotnet` properly honors any environment variable set in your shell. 
->Otherwise, the app will launch with the included Visual Studio 2019 launch profile based on `launchSettings.json`.
+>Otherwise, the app will launch with the included Visual Studio 2017/2019 launch profile based on `launchSettings.json`.
 
 ### Building a [Docker](https://www.docker.com/community-edition) container
 >Requires [Docker Community Edition](https://store.docker.com/search?type=edition&offering=community)

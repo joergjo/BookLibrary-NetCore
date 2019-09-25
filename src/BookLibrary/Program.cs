@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using Lamar.Microsoft.DependencyInjection;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
 using System.IO;
 
 namespace BookLibrary
@@ -9,22 +10,20 @@ namespace BookLibrary
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseLamar()
+                .UseStartup<Startup>()
+                .UseApplicationInsights()
+                .ConfigureAppConfiguration((hostingContext, config) =>
                 {
-                    webBuilder
-                        .UseStartup<Startup>()
-                        .ConfigureAppConfiguration((hostingContext, config) =>
-                        {
-                            var secretsPath = Path.Combine(
-                                hostingContext.HostingEnvironment.ContentRootPath,
-                                "secrets");
-                            config.AddKeyPerFile(secretsPath, optional: true);
-                        });
+                    var secretsPath = Path.Combine(
+                        hostingContext.HostingEnvironment.ContentRootPath,
+                        "secrets");
+                    config.AddKeyPerFile(secretsPath, optional: true);
                 });
     }
 }
