@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 using BookLibrary.Common;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -5,8 +7,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Diagnostics;
 
 namespace BookLibrary.Controllers
 {

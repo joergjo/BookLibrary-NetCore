@@ -1,11 +1,11 @@
-﻿using BookLibrary.Common;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using BookLibrary.Common;
 using BookLibrary.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace BookLibrary.Controllers
 {
@@ -128,7 +128,7 @@ namespace BookLibrary.Controllers
                 "Removed book with id '{Id}'.",
                 id);
 
-            return StatusCode(StatusCodes.Status204NoContent);
+            return NoContent();
         }
     }
 }

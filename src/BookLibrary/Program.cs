@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using Lamar.Microsoft.DependencyInjection;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using System.IO;
 
 namespace BookLibrary
 {
@@ -14,6 +15,7 @@ namespace BookLibrary
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseLamar()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder

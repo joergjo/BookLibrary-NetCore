@@ -1,14 +1,14 @@
-﻿using BookLibrary.Common;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using BookLibrary.Common;
 
 namespace BookLibrary.Models
 {
     public class Book
     {
-        [JsonProperty("_id")]
+        [JsonPropertyName("_id")]
         public string Id { get; set; }
 
         [Required]

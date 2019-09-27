@@ -1,38 +1,36 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace BookLibrary.Common
 {
-    public class EpochDateTimeConverter : DateTimeConverterBase
+    public class EpochDateTimeConverter : JsonConverter<DateTime?>
     {
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType == JsonToken.Integer)
+            if (reader.TryGetInt64(out long ticks))
             {
-                long ticks = (long)reader.Value;
                 var epoch = NewEpoch();
                 var date = epoch.AddMilliseconds(ticks);
                 return date;
             }
 
-            throw new JsonSerializationException(
-                $"Unexpected token type: Got {reader.TokenType}, expected {JsonToken.Integer}");
+            return default;
         }
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        public override void Write(Utf8JsonWriter writer, DateTime? value, JsonSerializerOptions options)
         {
-            if (value is DateTime date)
+            if (value.HasValue)
             {
                 var epoch = NewEpoch();
-                var timeSpan = date - epoch;
+                var timeSpan = value.Value - epoch;
                 long ticks = (long)timeSpan.TotalMilliseconds;
-                writer.WriteValue(ticks);
-                return;
+                writer.WriteNumberValue(ticks);
             }
-
-            throw new JsonSerializationException(
-                $"Unexpected type {value?.GetType()}.");
+            else
+            {
+                writer.WriteNullValue();
+            }
         }
 
         protected static DateTime NewEpoch() => new DateTime(1970, 1, 1);
