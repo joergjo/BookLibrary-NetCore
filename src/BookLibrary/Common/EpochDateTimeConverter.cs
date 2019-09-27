@@ -14,10 +14,8 @@ namespace BookLibrary.Common
                 var date = epoch.AddMilliseconds(ticks);
                 return date;
             }
-            else
-            {
-                return default;
-            }
+
+            return default;
         }
 
         public override void Write(Utf8JsonWriter writer, DateTime? value, JsonSerializerOptions options)

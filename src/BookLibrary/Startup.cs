@@ -1,5 +1,6 @@
 ﻿using BookLibrary.Common;
 using BookLibrary.Models;
+using Lamar;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -18,7 +19,7 @@ namespace BookLibrary
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureContainer(ServiceRegistry services)
         {
             services.AddApplicationInsightsTelemetry();
 
@@ -31,7 +32,7 @@ namespace BookLibrary
                     // Disable automatic fallback to JSON
                     options.ReturnHttpNotAcceptable = true;
 
-                    // Honor browser's Accept header (e.g. Chrome) 
+                    // Honor browser's Accept header (e.g. Chrome)
                     options.RespectBrowserAcceptHeader = true;
                 })
                 .AddXmlDataContractSerializerFormatters();
