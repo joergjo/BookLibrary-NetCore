@@ -1,4 +1,4 @@
-﻿using BookLibrary.Controllers;
+using BookLibrary.Controllers;
 using BookLibrary.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

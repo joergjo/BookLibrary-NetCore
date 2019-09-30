@@ -9,14 +9,14 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "del": "^3.0.0",
+    "del": "^5.1.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-cssmin": "^0.2.0",
-    "gulp-htmlmin": "^4.0.0",
-    "gulp-plumber": "^1.2.0",
-    "gulp-sourcemaps": "^2.6.4",
-    "gulp-uglify": "^3.0.1",
-    "merge-stream": "^1.0.1"
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "merge-stream": "^2.0.0"
   }
 }
