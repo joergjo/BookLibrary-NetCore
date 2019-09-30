@@ -1,4 +1,4 @@
-﻿using BookLibrary.Common;
+using BookLibrary.Common;
 using BookLibrary.Models;
 using Lamar;
 using Microsoft.AspNetCore.Builder;

@@ -17,7 +17,7 @@ namespace BookLibrary.Controllers
         private readonly ILibraryService _library;
         private readonly ILogger _logger;
 
-        public BooksController(ILibraryService library, ILogger<BooksController> logger)
+        public BooksController(ILibraryService? library, ILogger<BooksController>? logger)
         {
             _library = library ?? throw new ArgumentNullException(nameof(library));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

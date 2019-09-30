@@ -10,7 +10,7 @@ namespace BookLibrary.Common
             this IServiceCollection services,
             Func<string> connectionStringFactory,
             string databaseName,
-            Action bsonMappingInitializer = null)
+            Action? bsonMappingInitializer = default)
         {
             if (services is null)
             {
