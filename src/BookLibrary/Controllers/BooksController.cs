@@ -14,12 +14,12 @@ namespace BookLibrary.Controllers
     [FormatFilter]
     public class BooksController : ControllerBase
     {
-        private readonly IBookRepository _repository;
+        private readonly ILibraryService _library;
         private readonly ILogger _logger;
 
-        public BooksController(IBookRepository repository, ILogger<BooksController> logger)
+        public BooksController(ILibraryService library, ILogger<BooksController> logger)
         {
-            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _library = library ?? throw new ArgumentNullException(nameof(library));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
@@ -33,7 +33,7 @@ namespace BookLibrary.Controllers
                 return BadRequest();
             }
 
-            var books = await _repository.FindAllAsync(limit);
+            var books = await _library.FindAllAsync(limit);
             _logger.LogInformation(
                 ApplicationEvents.LibraryQueried,
                 "Retrieved {Count} books.",
@@ -48,7 +48,7 @@ namespace BookLibrary.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Book>> Get(string id)
         {
-            var book = await _repository.FindAsync(id);
+            var book = await _library.FindAsync(id);
             if (book is null)
             {
                 _logger.LogInformation(
@@ -72,7 +72,7 @@ namespace BookLibrary.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Book>> Post(Book book)
         {
-            var newBook = await _repository.AddAsync(book);
+            var newBook = await _library.AddAsync(book);
             _logger.LogInformation(
                 ApplicationEvents.BookCreated,
                 "Added book with id '{Id}'.",
@@ -87,7 +87,7 @@ namespace BookLibrary.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Book>> Put(string id, [FromBody]Book book)
         {
-            var updatedBook = await _repository.UpdateAsync(id, book);
+            var updatedBook = await _library.UpdateAsync(id, book);
             if (updatedBook is null)
             {
                 _logger.LogInformation(
@@ -112,7 +112,7 @@ namespace BookLibrary.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Delete(string id)
         {
-            var removedBook = await _repository.RemoveAsync(id);
+            var removedBook = await _library.RemoveAsync(id);
             if (removedBook is null)
             {
                 _logger.LogInformation(
