@@ -18,11 +18,11 @@ namespace BookLibrary.Controllers
         private readonly IWebHostEnvironment _environment;
 
         public ProblemDetailsController(
-            ILogger<ProblemDetailsController> logger,
-            IWebHostEnvironment environment)
+            ILogger<ProblemDetailsController>? logger,
+            IWebHostEnvironment? environment)
         {
-            _logger = logger;
-            _environment = environment;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _environment = environment ?? throw new ArgumentNullException(nameof(environment));
         }
 
         [Produces("application/problem+json", "application/problem+xml")]
@@ -30,27 +30,20 @@ namespace BookLibrary.Controllers
         {
             string requestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
 
-            var problemDetails = new ProblemDetails
-            {
-                Title = "Internal Server Error",
-                Status = 500,
-                Type = "about:blank",
-                Instance = "about:blank",
-                Detail = "An unhandled exception occurred. Use the value of the 'request-id' extension to track the error.",
-            };
+            var problemDetails = NewProblemDetails();
             problemDetails.Extensions.Add("request-id", requestId);
             problemDetails.Extensions.Add("timestamp-utc", DateTimeOffset.UtcNow);
 
             var errorFeature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
             if (errorFeature?.Error is object)
             {
-                _logger?.LogError(
+                _logger.LogError(
                     ApplicationEvents.UnhandledException,
                     errorFeature.Error,
                     "Caught unhandled exception for request ID '{RequestId}'.",
                     requestId);
 
-                if (_environment?.IsDevelopment() == true)
+                if (_environment.IsDevelopment())
                 {
                     problemDetails.Extensions.Add(
                         "debug-exception-type",
@@ -72,11 +65,20 @@ namespace BookLibrary.Controllers
         [Route("test")]
         public ActionResult Test()
         {
-            if (_environment?.IsDevelopment() == true)
+            if (_environment.IsDevelopment())
             {
                 throw new ApplicationException("Ouch! We just caused an unhandled exception");
             }
             return NotFound();
         }
+
+        private static ProblemDetails NewProblemDetails() => new ProblemDetails
+        {
+            Title = "Internal Server Error",
+            Status = 500,
+            Type = "about:blank",
+            Instance = "about:blank",
+            Detail = "An unhandled exception occurred. Use the value of the 'request-id' extension to track the error.",
+        };
     }
 }

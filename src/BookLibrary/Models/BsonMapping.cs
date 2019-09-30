@@ -1,4 +1,4 @@
-﻿using MongoDB.Bson;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Bson.Serialization.IdGenerators;
@@ -18,7 +18,7 @@ namespace BookLibrary.Models
             ConventionRegistry.Register(
                 $"{nameof(BookLibrary)}Convention",
                 conventions,
-                t => t.FullName.StartsWith(typeof(Book).Namespace));
+                t => t == typeof(Book) || t == typeof(Keyword));
 
             BsonClassMap.RegisterClassMap<Book>(cm =>
             {
