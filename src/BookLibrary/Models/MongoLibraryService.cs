@@ -7,11 +7,11 @@ using MongoDB.Driver;
 
 namespace BookLibrary.Models
 {
-    public class BookRepository : IBookRepository
+    public class MongoLibraryService : ILibraryService
     {
         private readonly IMongoCollection<Book> _books;
 
-        public BookRepository(IMongoDatabase database)
+        public MongoLibraryService(IMongoDatabase database)
         {
             if (database is null)
             {
@@ -20,7 +20,7 @@ namespace BookLibrary.Models
             _books = database.GetCollection<Book>("books");
         }
 
-        public BookRepository(IMongoCollection<Book> books)
+        public MongoLibraryService(IMongoCollection<Book> books)
         {
             _books = books ?? throw new ArgumentNullException(nameof(books));
         }

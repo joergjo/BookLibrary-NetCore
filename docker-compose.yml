@@ -8,7 +8,7 @@ services:
     image: mongo:4.2
 
   webapi:
-    build: 
+    build:
       context: .
       dockerfile: src/BookLibrary/Dockerfile
     image: booklibrary-netcore
@@ -16,7 +16,7 @@ services:
       - 5000:80
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT:-Production}
-      - ConnectionStrings__DefaultConnection=${BOOKLIBRARY_MONGODB_CONNECTION:-mongodb://mongodb/library_database}
+      - ConnectionStrings__DefaultConnection=${BOOKLIBRARY_MONGODB_CONNECTION:-mongodb://localhost}
       - Logging__LogLevel__Default=${BOOKLIBRARY_LOGLEVEL:-Information}
     depends_on:
       - mongodb

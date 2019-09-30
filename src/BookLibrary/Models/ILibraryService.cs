@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace BookLibrary.Models
 {
-    public interface IBookRepository
+    public interface ILibraryService
     {
         Task<Book> AddAsync(Book book);
 
