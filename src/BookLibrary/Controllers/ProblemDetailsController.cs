@@ -18,11 +18,11 @@ namespace BookLibrary.Controllers
         private readonly IWebHostEnvironment _environment;
 
         public ProblemDetailsController(
-            ILogger<ProblemDetailsController>? logger,
-            IWebHostEnvironment? environment)
+            ILogger<ProblemDetailsController> logger,
+            IWebHostEnvironment environment)
         {
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _environment = environment ?? throw new ArgumentNullException(nameof(environment));
+            _logger = logger;
+            _environment = environment;
         }
 
         [Produces("application/problem+json", "application/problem+xml")]
@@ -63,7 +63,7 @@ namespace BookLibrary.Controllers
         }
 
         [Route("test")]
-        public ActionResult Test()
+        public IActionResult Test()
         {
             if (_environment.IsDevelopment())
             {

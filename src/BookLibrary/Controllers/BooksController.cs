@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BookLibrary.Common;
@@ -17,10 +16,10 @@ namespace BookLibrary.Controllers
         private readonly ILibraryService _library;
         private readonly ILogger _logger;
 
-        public BooksController(ILibraryService? library, ILogger<BooksController>? logger)
+        public BooksController(ILibraryService library, ILogger<BooksController> logger)
         {
-            _library = library ?? throw new ArgumentNullException(nameof(library));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _library = library;
+            _logger = logger;
         }
 
         // GET: api/books
@@ -38,7 +37,6 @@ namespace BookLibrary.Controllers
                 ApplicationEvents.LibraryQueried,
                 "Retrieved {Count} books.",
                 books.Count);
-
             return books;
         }
 
@@ -55,7 +53,6 @@ namespace BookLibrary.Controllers
                     ApplicationEvents.BookNotFound,
                     "Failed to retrieve book '{Id}'.",
                     id);
-
                 return NotFound();
             }
 
@@ -63,7 +60,6 @@ namespace BookLibrary.Controllers
                 ApplicationEvents.BookQueried,
                 "Retrieved book '{Id}'.",
                 book.Id);
-
             return book;
         }
 
@@ -77,7 +73,6 @@ namespace BookLibrary.Controllers
                 ApplicationEvents.BookCreated,
                 "Added book with id '{Id}'.",
                 newBook.Id);
-
             return CreatedAtRoute("GetById", new { id = newBook.Id }, newBook);
         }
 
@@ -94,7 +89,6 @@ namespace BookLibrary.Controllers
                     ApplicationEvents.BookNotFound,
                     "Failed to update book '{Id}'.",
                     id);
-
                 return NotFound();
             }
 
@@ -102,7 +96,6 @@ namespace BookLibrary.Controllers
                 ApplicationEvents.BookUpdated,
                 "Updated book with id '{Id}'.",
                 id);
-
             return updatedBook;
         }
 
@@ -119,7 +112,6 @@ namespace BookLibrary.Controllers
                     ApplicationEvents.BookNotFound,
                     "Failed to delete book '{Id}'.",
                     id);
-
                 return NotFound();
             }
 
@@ -127,7 +119,6 @@ namespace BookLibrary.Controllers
                 ApplicationEvents.BookDeleted,
                 "Removed book with id '{Id}'.",
                 id);
-
             return NoContent();
         }
     }
