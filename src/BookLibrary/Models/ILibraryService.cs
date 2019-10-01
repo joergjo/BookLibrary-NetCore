@@ -9,10 +9,10 @@ namespace BookLibrary.Models
 
         Task<List<Book>> FindAllAsync(int limit = 100);
 
-        Task<Book> FindAsync(string id);
+        Task<Book?> FindAsync(string id);
 
-        Task<Book> RemoveAsync(string id);
+        Task<Book?> RemoveAsync(string id);
 
-        Task<Book> UpdateAsync(string id, Book book);
+        Task<Book?> UpdateAsync(string id, Book book);
     }
 }

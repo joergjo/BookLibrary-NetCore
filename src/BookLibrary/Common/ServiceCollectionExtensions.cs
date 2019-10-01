@@ -4,7 +4,7 @@ using MongoDB.Driver;
 
 namespace BookLibrary.Common
 {
-    public static class Extensions
+    public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddMongoDatabase(
             this IServiceCollection services,
