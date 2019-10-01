@@ -42,7 +42,7 @@ namespace BookLibrary.Models
                 };
                 using var cursor = await _books.FindAsync(new BsonDocument(), options);
                 return await cursor.ToListAsync();
-            }, nameof(FindAllAsync));
+            }, nameof(_books.FindAsync));
             return books;
         }
 
@@ -52,7 +52,7 @@ namespace BookLibrary.Models
             {
                 using var cursor = await _books.FindAsync(x => x.Id == id);
                 return await cursor.ToListAsync();
-            }, nameof(FindAsync));
+            }, nameof(_books.FindAsync));
             return books.SingleOrDefault();
         }
 
@@ -62,7 +62,7 @@ namespace BookLibrary.Models
             {
                 await _books.InsertOneAsync(book);
                 return Task.CompletedTask;
-            }, nameof(AddAsync));
+            }, nameof(_books.InsertOneAsync));
             return book;
         }
 
@@ -71,7 +71,7 @@ namespace BookLibrary.Models
             var book = await ExecuteAndTrack(async () =>
             {
                 return await _books.FindOneAndDeleteAsync(x => x.Id == id);
-            }, nameof(RemoveAsync));
+            }, nameof(_books.FindOneAndDeleteAsync));
             return book;
         }
 
@@ -92,30 +92,30 @@ namespace BookLibrary.Models
                         .Set(x => x.Keywords, book.Keywords),
                     options);
 
-            }, nameof(UpdateAsync));
+            }, nameof(_books.FindOneAndUpdateAsync));
             return updatedBook;
         }
 
         private async Task<TResult> ExecuteAndTrack<TResult>(Func<Task<TResult>> asyncFunc, string operationName) where TResult : class
         {
-            using var operation = _telemetryClient.StartOperation<DependencyTelemetry>(operationName);
+            using var operation = _telemetryClient.StartOperation<DependencyTelemetry>(_serverNames);
             try
             {
                 var result = await asyncFunc();
-                UpdateDependencyTelemetry(operation.Telemetry);
+                UpdateDependencyTelemetry(operation.Telemetry, operationName);
                 return result;
             }
             catch (Exception)
             {
-                UpdateDependencyTelemetry(operation.Telemetry, isSuccess: false);
+                UpdateDependencyTelemetry(operation.Telemetry, operationName, isSuccess: false);
                 throw;
             }
         }
 
-        private void UpdateDependencyTelemetry(DependencyTelemetry telemetry, bool isSuccess = true)
+        private void UpdateDependencyTelemetry(DependencyTelemetry telemetry, string operationName, bool isSuccess = true)
         {
             telemetry.Success = isSuccess;
-            telemetry.Target = _serverNames;
+            telemetry.Target = operationName;
             telemetry.Type = "MongoDB";
         }
 
