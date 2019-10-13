@@ -16,7 +16,6 @@ services:
       - 5000:80
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT:-Production}
-      - ConnectionStrings__DefaultConnection=${BOOKLIBRARY_MONGODB_CONNECTION:-mongodb://localhost}
-      - Logging__LogLevel__Default=${BOOKLIBRARY_LOGLEVEL:-Information}
+      - ConnectionStrings__DefaultConnection=${BOOKLIBRARY_MONGODB_CONNECTION:-mongodb://mongodb}
     depends_on:
       - mongodb
