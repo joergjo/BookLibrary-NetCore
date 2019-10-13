@@ -7,7 +7,9 @@
       "type": "process",
       "args": [
         "build",
-        "${workspaceRoot}/BookLibrary-NetCore.sln"
+        "${workspaceFolder}/BookLibrary-NetCore.sln",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
       ],
       "problemMatcher": "$msCompile",
       "group": {
@@ -16,17 +18,43 @@
       }
     },
     {
-      "label": "run tests",
+      "label": "publish",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "publish",
+        "${workspaceFolder}/src/BookLibrary.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "watch",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "watch",
+        "run",
+        "${workspaceFolder}/src/BookLibrary.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "test",
       "command": "dotnet",
       "type": "process",
       "args": [
         "test",
-        "-l",
+        "--no-restore",
+        "--logger",
         "trx"
       ],
       "problemMatcher": "$msCompile",
       "options": {
-        "cwd": "${workspaceRoot}/test/BookLibrary.Test"
+        "cwd": "${workspaceFolder}/test/BookLibrary.Test"
       },
       "group": {
         "kind": "test",
@@ -34,7 +62,7 @@
       }
     },
     {
-      "label": "show test results",
+      "label": "t-rex",
       "command": "t-rex",
       "type": "process",
       "args": [
@@ -43,7 +71,7 @@
       ],
       "problemMatcher": "$msCompile",
       "options": {
-        "cwd": "${workspaceRoot}/test/BookLibrary.Test"
+        "cwd": "${workspaceFolder}/test/BookLibrary.Test"
       },
       "presentation": {
         "clear": true
@@ -59,45 +87,19 @@
       ],
       "problemMatcher": [],
       "options": {
-        "cwd": "${workspaceRoot}/src/BookLibrary"
+        "cwd": "${workspaceFolder}/src/BookLibrary"
       },
       "group": "build"
     },
     {
-      "label": "publish",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "publish",
-        "${workspaceRoot}/src/BookLibrary/BookLibrary.csproj"
-      ],
-      "problemMatcher": "$msCompile",
-      "group": "none"
-    },
-    {
-      "label": "watch",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "watch",
-        "run",
-        "BookLibrary.csproj"
-      ],
-      "options": {
-        "cwd": "${workspaceRoot}/src/BookLibrary"
-      },
-      "problemMatcher": "$msCompile",
-      "group": "none"
-    },
-    {
-      "label": "libman restore",
+      "label": "libman-restore",
       "command": "libman",
       "type": "process",
       "args": [
         "restore"
       ],
       "options": {
-        "cwd": "${workspaceRoot}/src/BookLibrary"
+        "cwd": "${workspaceFolder}/src/BookLibrary"
       },
       "group": "build"
     }

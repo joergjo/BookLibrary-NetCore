@@ -1,15 +1,16 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-    "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/CVS": true,
-        "**/.DS_Store": true,
-        "**/*.csproj.user": true
-    },
-    "files.associations": {
-        "**/pipelines/*.yml": "azure-pipelines"
-    },
-    "eslint.enable": false
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/*.csproj.user": true
+  },
+  "files.associations": {
+    "**/pipelines/*.yml": "azure-pipelines",
+    "manifests/*.yaml": "ms-kubernetes-tools.vscode-kubernetes-tools"
+  },
+  "eslint.enable": false
 }
