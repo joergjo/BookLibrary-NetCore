@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using BookLibrary.Common;
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.DataContracts;
 using MongoDB.Bson;
@@ -16,20 +16,20 @@ namespace BookLibrary.Models
         private readonly TelemetryClient _telemetryClient;
         private readonly string _serverNames;
 
-        public static string DefaultCollectionName => "books"; 
+        public static string DefaultCollectionName => "books";
 
         public MongoLibraryService(IMongoDatabase database, TelemetryClient telemetryClient)
         {
             _books = database.GetCollection<Book>(DefaultCollectionName);
             _telemetryClient = telemetryClient;
-            _serverNames = GetServerNames(database);
+            _serverNames = database.GetServerNames();
         }
 
         public MongoLibraryService(IMongoCollection<Book> books, TelemetryClient telemetryClient)
         {
             _books = books;
             _telemetryClient = telemetryClient;
-            _serverNames = GetServerNames(_books.Database);
+            _serverNames = _books.Database.GetServerNames();
         }
 
         public async Task<List<Book>> FindAllAsync(int limit)
@@ -96,7 +96,8 @@ namespace BookLibrary.Models
             return updatedBook;
         }
 
-        private async Task<TResult> ExecuteAndTrack<TResult>(Func<Task<TResult>> asyncFunc, string operationName) where TResult : class
+        private async Task<TResult> ExecuteAndTrack<TResult>(Func<Task<TResult>> asyncFunc, string operationName)
+            where TResult : class
         {
             using var operation = _telemetryClient.StartOperation<DependencyTelemetry>(_serverNames);
             try
@@ -110,23 +111,14 @@ namespace BookLibrary.Models
                 UpdateDependencyTelemetry(operation.Telemetry, operationName, isSuccess: false);
                 throw;
             }
-        }
 
-        private void UpdateDependencyTelemetry(DependencyTelemetry telemetry, string operationName, bool isSuccess = true)
-        {
-            telemetry.Success = isSuccess;
-            telemetry.Target = operationName;
-            telemetry.Type = "MongoDB";
-        }
-
-        private static string GetServerNames(IMongoDatabase database)
-        {
-            var sb = new StringBuilder();
-            foreach (var server in database.Client.Settings.Servers)
+            void UpdateDependencyTelemetry(DependencyTelemetry telemetry, string operationName, bool isSuccess = true)
             {
-                sb.AppendFormat("{0}:{1};", server.Host, server.Port);
+                telemetry.Success = isSuccess;
+                telemetry.Type = "MongoDB";
+                telemetry.Target = $"{telemetry.Type}:{_serverNames}";
+                telemetry.Data = operationName;
             }
-            return sb.ToString();
         }
     }
 }
