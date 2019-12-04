@@ -3,13 +3,13 @@
 
 This is an ASP.NET Core MVC port of [Addy Osmani's Book Library sample](https://github.com/addyosmani/backbone-fundamentals/tree/gh-pages/practicals/exercise-2)
 for [Backbone.js](http://backbonejs.org/) with the following modifications and enhancements:
-- The API has been implemented in C# 8 with ASP.NET Core MVC 3.0.
+- The API has been implemented in C# 8 with ASP.NET Core MVC 3.1.
 - Unit tests for the API using [xUnit.net](https://github.com/xunit/xunit) and [Moq](https://github.com/moq/moq4) have been added.
 - Client-side dependencies (i.e. JavaScript and CSS libraries) dependencies are managed with [LibMan](https://github.com/aspnet/LibraryManager/). The Backbone SPA is bundled and minified using [gulp](http://gulpjs.com/). The gulpfile has been generated using [BundlerMinifier.Core](https://github.com/madskristensen/BundlerMinifier).
     >I'm not using BundlerMinifier.Core directly since it  doesn't create useful source maps. The generated gulpfile has been extended to support source map creation.
 - [Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) is being used for Application Performance Management, including [dependency tracking](https://docs.microsoft.com/en-us/azure/azure-monitor/app/custom-operations-tracking#outgoing-dependencies-tracking) for MongoDB operations.
 - Docker Compose and Kubernetes YAML files have been added to run the app on a [Docker](https://www.docker.com/) host or in [Kubernetes](https://kubernetes.io/).
-- This project uses [MongoDB](https://www.mongodb.com/) as database like the original Node.js version. Use whatever flavor of MongoDB works best for you. I recommend using either MongoDB Atlas, Cosmos DB's MongoDB API, or MongoDB 3.4 or newer.
+- This project uses [MongoDB](https://www.mongodb.com/) as database like the original Node.js version. Use whatever flavor of MongoDB works best for you. I recommend using either MongoDB Atlas, Cosmos DB's MongoDB API, or MongoDB 3.6 or newer.
 - An [Azure Pipeline](https://azure.microsoft.com/en-us/services/devops/pipelines/) has been added for CI/CD. This is obviously _the_ pipeline I use myself for this project.
 
 The latest version of this application is deployed at [https://booklibrary.joergjooss.de/](https://booklibrary.joergjooss.de/).
@@ -21,19 +21,19 @@ Please make sure to configure your MongoDB connection string in `appsettings.jso
 ## Building and running the app
 
 ### Visual Studio 2019
->Requires [.NET Core SDK 3.0 or later](https://www.microsoft.com/net/download/core), [Visual Studio 2019 16.3.0 or later](https://www.visualstudio.com/download), [Node.js 10 LTS](https://nodejs.org/en/download/).
+>Requires [.NET Core SDK 3.1 or later](https://www.microsoft.com/net/download/core), [Visual Studio 2019 16.4.0 or later](https://www.visualstudio.com/download), [Node.js 12 LTS](https://nodejs.org/en/download/).
 
 Open `BookLibrary-NetCore.sln` and either debug or run the solution.
 
 >Visual Studio 2019 is the only version of Visual Studio that support .NET Core 3.
 
 ### Visual Studio Code
->Requires [.NET Core SDK 3.0 or later](https://www.microsoft.com/net/download/core), [Visual Studio Code 1.30 or later](https://www.visualstudio.com/download), [Node.js 10 LTS](https://nodejs.org/en/download/).
+>Requires [.NET Core SDK 3.1 or later](https://www.microsoft.com/net/download/core), [Visual Studio Code 1.40 or later](https://www.visualstudio.com/download), [Node.js 12 LTS](https://nodejs.org/en/download/).
 
 Open the folder `BookLibrary-NetCore` and run the `npm: Install Dependencies`, `build` and `min` tasks, then debug the app or run it from Code's integrated terminal.
 
-### .NET Core SDK 3.0 only
->Requires [.NET Core SDK 3.0 or later](https://www.microsoft.com/net/download/core), [Node.js 10 LTS](https://nodejs.org/en/download/).
+### .NET Core SDK 3.1 only
+>Requires [.NET Core SDK 3.1 or later](https://www.microsoft.com/net/download/core), [Node.js 12 LTS](https://nodejs.org/en/download/).
 
 Open a terminal window withyour preferred shell  (i.e. PowerShell, CMD.exe, Bash etc.) and run the following commands:
 
