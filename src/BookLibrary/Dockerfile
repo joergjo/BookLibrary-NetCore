@@ -1,13 +1,13 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-buster-slim AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 ARG appInsightsKubeVersion="1.1.1"
 ARG libmanBuildVersion="2.0.96"
 RUN apt-get update && apt-get install -y apt-transport-https ca-certificates
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 WORKDIR /src
 COPY ["src/BookLibrary/BookLibrary.csproj", "BookLibrary/"]
