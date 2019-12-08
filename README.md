@@ -21,19 +21,19 @@ Please make sure to configure your MongoDB connection string in `appsettings.jso
 ## Building and running the app
 
 ### Visual Studio 2019
->Requires [.NET Core SDK 3.1 or later](https://www.microsoft.com/net/download/core), [Visual Studio 2019 16.4.0 or later](https://www.visualstudio.com/download), [Node.js 12 LTS](https://nodejs.org/en/download/).
+>Requires [.NET Core SDK 3.1 or later](https://www.microsoft.com/net/download/core), [Visual Studio 2019 16.4.0 or later](https://www.visualstudio.com/download), [Node.js 10 LTS](https://nodejs.org/en/download/).
 
 Open `BookLibrary-NetCore.sln` and either debug or run the solution.
 
 >Visual Studio 2019 is the only version of Visual Studio that support .NET Core 3.
 
 ### Visual Studio Code
->Requires [.NET Core SDK 3.1 or later](https://www.microsoft.com/net/download/core), [Visual Studio Code 1.40 or later](https://www.visualstudio.com/download), [Node.js 12 LTS](https://nodejs.org/en/download/).
+>Requires [.NET Core SDK 3.1 or later](https://www.microsoft.com/net/download/core), [Visual Studio Code 1.40 or later](https://www.visualstudio.com/download), [Node.js 10 LTS](https://nodejs.org/en/download/).
 
 Open the folder `BookLibrary-NetCore` and run the `npm: Install Dependencies`, `build` and `min` tasks, then debug the app or run it from Code's integrated terminal.
 
 ### .NET Core SDK 3.1 only
->Requires [.NET Core SDK 3.1 or later](https://www.microsoft.com/net/download/core), [Node.js 12 LTS](https://nodejs.org/en/download/).
+>Requires [.NET Core SDK 3.1 or later](https://www.microsoft.com/net/download/core), [Node.js 10 LTS](https://nodejs.org/en/download/).
 
 Open a terminal window withyour preferred shell  (i.e. PowerShell, CMD.exe, Bash etc.) and run the following commands:
 
