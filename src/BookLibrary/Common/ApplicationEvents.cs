@@ -9,8 +9,7 @@ namespace BookLibrary.Common
         public const int BookDeleted = 1004;
 
         public const int BookNotFound = 2000;
-        public const int BookValidationFailed = 2001;
 
-        public const int UnhandledException = 9999;
+        public const int UnhandledExceptionOccurred = 9999;
     }
 }
