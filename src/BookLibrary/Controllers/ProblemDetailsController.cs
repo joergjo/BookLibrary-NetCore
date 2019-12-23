@@ -38,7 +38,7 @@ namespace BookLibrary.Controllers
             if (errorFeature?.Error is object)
             {
                 _logger.LogError(
-                    ApplicationEvents.UnhandledException,
+                    ApplicationEvents.UnhandledExceptionOccurred,
                     errorFeature.Error,
                     "Caught unhandled exception for request ID '{RequestId}'.",
                     requestId);
