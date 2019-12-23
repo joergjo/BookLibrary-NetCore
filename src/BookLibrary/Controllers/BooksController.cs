@@ -33,10 +33,7 @@ namespace BookLibrary.Controllers
             }
 
             var books = await _library.FindAllAsync(limit);
-            _logger.LogInformation(
-                ApplicationEvents.LibraryQueried,
-                "Retrieved {Count} books.",
-                books.Count);
+            _logger.LogLibraryQueried(books.Count);
             return books;
         }
 
@@ -49,17 +46,11 @@ namespace BookLibrary.Controllers
             var book = await _library.FindAsync(id);
             if (book is null)
             {
-                _logger.LogInformation(
-                    ApplicationEvents.BookNotFound,
-                    "Failed to retrieve book '{Id}'.",
-                    id);
+                _logger.LogBookNotFound(id);
                 return NotFound();
             }
 
-            _logger.LogInformation(
-                ApplicationEvents.BookQueried,
-                "Retrieved book '{Id}'.",
-                book.Id);
+            _logger.LogBookQueried(id);
             return book;
         }
 
@@ -69,10 +60,7 @@ namespace BookLibrary.Controllers
         public async Task<ActionResult<Book>> Post(Book book)
         {
             var newBook = await _library.AddAsync(book);
-            _logger.LogInformation(
-                ApplicationEvents.BookCreated,
-                "Added book with id '{Id}'.",
-                newBook.Id);
+            _logger.LogBookCreated(newBook.Id!);
             return CreatedAtRoute("GetById", new { id = newBook.Id }, newBook);
         }
 
@@ -85,17 +73,11 @@ namespace BookLibrary.Controllers
             var updatedBook = await _library.UpdateAsync(id, book);
             if (updatedBook is null)
             {
-                _logger.LogInformation(
-                    ApplicationEvents.BookNotFound,
-                    "Failed to update book '{Id}'.",
-                    id);
+                _logger.LogBookNotFound(id);
                 return NotFound();
             }
 
-            _logger.LogInformation(
-                ApplicationEvents.BookUpdated,
-                "Updated book with id '{Id}'.",
-                id);
+            _logger.LogBookUpdated(id);
             return updatedBook;
         }
 
@@ -108,17 +90,11 @@ namespace BookLibrary.Controllers
             var removedBook = await _library.RemoveAsync(id);
             if (removedBook is null)
             {
-                _logger.LogInformation(
-                    ApplicationEvents.BookNotFound,
-                    "Failed to delete book '{Id}'.",
-                    id);
+                _logger.LogBookNotFound(id);
                 return NotFound();
             }
 
-            _logger.LogInformation(
-                ApplicationEvents.BookDeleted,
-                "Removed book with id '{Id}'.",
-                id);
+            _logger.LogBookDeleted(id);
             return NoContent();
         }
     }
