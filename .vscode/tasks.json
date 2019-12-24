@@ -83,7 +83,6 @@
       "command": "node_modules/.bin/gulp",
       "type": "shell",
       "args": [
-        "min"
       ],
       "problemMatcher": [],
       "options": {

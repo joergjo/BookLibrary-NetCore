@@ -5,12 +5,12 @@ This is an ASP.NET Core MVC port of [Addy Osmani's Book Library sample](https://
 for [Backbone.js](http://backbonejs.org/) with the following modifications and enhancements:
 - The API has been implemented in C# 8 with ASP.NET Core MVC 3.1.
 - Unit tests for the API using [xUnit.net](https://github.com/xunit/xunit) and [Moq](https://github.com/moq/moq4) have been added.
-- Client-side dependencies (i.e. JavaScript and CSS libraries) dependencies are managed with [LibMan](https://github.com/aspnet/LibraryManager/). The Backbone SPA is bundled and minified using [gulp](http://gulpjs.com/). The gulpfile has been generated using [BundlerMinifier.Core](https://github.com/madskristensen/BundlerMinifier).
-    >I'm not using BundlerMinifier.Core directly since it  doesn't create useful source maps. The generated gulpfile has been extended to support source map creation.
+- Client-side dependencies (i.e. JavaScript and CSS libraries) dependencies are managed with [LibMan](https://github.com/aspnet/LibraryManager/). The Backbone SPA is bundled and minified using [gulp 4](http://gulpjs.com/). As an alterantive to gulp, you can also use [BundlerMinifier.Core](https://github.com/madskristensen/BundlerMinifier).
+    >Note that BundlerMinifier.Core doesn't create useful source maps. I recommend using gulp.
 - [Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) is being used for Application Performance Management, including [dependency tracking](https://docs.microsoft.com/en-us/azure/azure-monitor/app/custom-operations-tracking#outgoing-dependencies-tracking) for MongoDB operations.
 - Docker Compose and Kubernetes YAML files have been added to run the app on a [Docker](https://www.docker.com/) host or in [Kubernetes](https://kubernetes.io/).
 - This project uses [MongoDB](https://www.mongodb.com/) as database like the original Node.js version. Use whatever flavor of MongoDB works best for you. I recommend using either MongoDB Atlas, Cosmos DB's MongoDB API, or MongoDB 3.6 or newer.
-- An [Azure Pipeline](https://azure.microsoft.com/en-us/services/devops/pipelines/) has been added for CI/CD. This is obviously _the_ pipeline I use myself for this project.
+- An [Azure Pipeline](https://azure.microsoft.com/en-us/services/devops/pipelines/) has been added for CI/CD. This the pipeline I use to continuously build and deploy this project.
 
 The latest version of this application is deployed at [https://booklibrary.joergjooss.de/](https://booklibrary.joergjooss.de/).
 
@@ -43,7 +43,7 @@ $ cd \path\to\BookLibrary-NetCore\src\BookLibrary
 $ npm install
 $ dotnet restore
 $ node_modules\.bin\gulp min
-$ dotnet run --no-launch-profile
+$ dotnet run
 ```
 
 ### Linux, macOS
@@ -52,12 +52,12 @@ $ cd /path/to/BookLibrary-NetCore/src/BookLibrary
 $ npm install
 $ dotnet restore
 $ node_modules/.bin/gulp min
-$ dotnet run --no-launch-profile
+$ dotnet run
 ```
 
 Launch your web browser and load `http://localhost:5000`.
 
->I recommend using the `--no-launch-profile` option as shown above so `dotnet` properly honors any environment variable set in your shell.
+>Specify the `--no-launch-profile` option so `dotnet` properly honors any environment variable set in your shell.
 >Otherwise, the app will launch with the included Visual Studio 2019 launch profile based on `launchSettings.json`.
 
 ### Building a [Docker](https://www.docker.com/community-edition) container
