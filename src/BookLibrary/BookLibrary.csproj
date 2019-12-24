@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -17,8 +17,7 @@
 
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
     <Exec Command="npm install" />
-    <Exec Command="node_modules/.bin/gulp clean" />
-    <Exec Command="node_modules/.bin/gulp min" />
+    <Exec Command="node_modules/.bin/gulp" />
   </Target>
 
 </Project>
