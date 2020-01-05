@@ -261,4 +261,5 @@ __pycache__/
 *.pyc
 
 # Project specific
-**/wwwroot/lib
+**/wwwroot/lib/
+[Cc]ode[Cc]overage/
