@@ -10,7 +10,7 @@ for [Backbone.js](http://backbonejs.org/) with the following modifications and e
 - [Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) is being used for Application Performance Management, including [dependency tracking](https://docs.microsoft.com/en-us/azure/azure-monitor/app/custom-operations-tracking#outgoing-dependencies-tracking) for MongoDB operations.
 - Docker Compose and Kubernetes YAML files have been added to run the app on a [Docker](https://www.docker.com/) host or in [Kubernetes](https://kubernetes.io/).
 - This project uses [MongoDB](https://www.mongodb.com/) as database like the original Node.js version. Use whatever flavor of MongoDB works best for you. I recommend using either MongoDB Atlas, Cosmos DB's MongoDB API, or MongoDB 3.6 or newer.
-- An [Azure Pipeline](https://azure.microsoft.com/en-us/services/devops/pipelines/) has been added for CI/CD. This the pipeline I use to continuously build and deploy this project.
+- An [Azure Pipeline](https://azure.microsoft.com/en-us/services/devops/pipelines/) has been added for CI/CD. This is the pipeline I use to continuously build and deploy this project.
 
 The latest version of this application is deployed at [https://booklibrary.joergjooss.de/](https://booklibrary.joergjooss.de/).
 
@@ -70,4 +70,4 @@ Please see [DOCKE-COMPOSE.md](docs/DOCKER-COMPOSE.md) for details how to run the
 Please see [KUBERNETES.md](docs/KUBERNETES.md) for details how to run the app in a Kubernetes cluster.
 
 ### CI/CD with [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/)
-Use the included pipeline [`.azure/pipelines/ci.yml`](./.azure/pipelines/ci.yml) to set up your own CI/CD pipeline for this project using Azure Pipelines. This pipeline both runs for pull request validation and full builds of `master`, as well as a deployment job for [Azure App Services](https://docs.microsoft.com/en-us/azure/app-service/containers/quickstart-docker). Pull request validation uses a standard .NET Core SDK build and test, whereas a full build of master runs a multi-stage Docker build. Review the [`ci.yml`](.azure/pipelines/ci.yml) file for further instructions.
+Use the included pipeline [`.azure/pipelines/ci.yml`](./.azure/pipelines/ci.yml) to set up your own CI/CD pipeline for this project using Azure Pipelines. This pipeline runs for both pull request validation and full builds of `master`, and includes a deployment job for [Azure App Services](https://docs.microsoft.com/en-us/azure/app-service/containers/quickstart-docker). Pull request validation uses a standard .NET Core SDK build and test, whereas a full build of master runs a multi-stage Docker build. Review the [`ci.yml`](.azure/pipelines/ci.yml) file for further instructions.
