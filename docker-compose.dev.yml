@@ -1,0 +1,14 @@
+version: "3"
+
+volumes:
+  mongodata:
+
+services:
+  mongodb:
+    image: mongo:${MONGO_TAG:-4.2}
+    ports:
+      - 27017:27017
+  zipkin:
+    image: openzipkin/zipkin:${ZIPKIN_TAG:-latest}
+    ports:
+      - 9411:9411

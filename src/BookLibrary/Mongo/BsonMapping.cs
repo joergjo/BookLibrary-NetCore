@@ -1,10 +1,11 @@
+using BookLibrary.Models;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Bson.Serialization.Serializers;
 
-namespace BookLibrary.Models
+namespace BookLibrary.Mongo
 {
     public static class BsonMapping
     {
