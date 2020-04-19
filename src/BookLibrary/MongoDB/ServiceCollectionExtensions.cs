@@ -2,7 +2,7 @@ using System;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 
-namespace BookLibrary.Mongo
+namespace BookLibrary.MongoDB
 {
     public static class ServiceCollectionExtensions
     {
@@ -33,8 +33,8 @@ namespace BookLibrary.Mongo
             {
                 string connectionString = connectionStringFactory();
                 var clientSettings = MongoClientSettings.FromConnectionString(connectionString);
-                var eventTracer = serviceProvider.GetRequiredService<MongoEventTracer>();
-                clientSettings.AddOpenTracing(eventTracer);
+                var eventTracer = serviceProvider.GetRequiredService<MongoDependencyTracer>();
+                clientSettings.AddApplicationInsightsDependencyTracing(eventTracer);
                 var client = new MongoClient(clientSettings);
                 var database = client.GetDatabase(databaseName);
                 return database;

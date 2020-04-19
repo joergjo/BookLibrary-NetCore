@@ -3,5 +3,6 @@ kind: ConfigMap
 metadata:
   name: booklibrary-config
 data:
+  ASPNETCORE_HOSTINGSTARTUPASSEMBLIES: "Microsoft.ApplicationInsights.Kubernetes.HostingStartup"
+  Logging__ApplicationInsights__LogLevel__Default: "Information"
   Logging__LogLevel__BookLibrary: "Debug"
-  OpenTelemetry__ZipkinUri: "http://zipkin-svc:9411/api/v2/spans"

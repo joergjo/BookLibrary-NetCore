@@ -1,6 +1,6 @@
-using System;
+using BookLibrary.Common;
 using BookLibrary.Models;
-using BookLibrary.Mongo;
+using BookLibrary.MongoDB;
 using Lamar;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -8,8 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using OpenTelemetry.Resources;
-using OpenTelemetry.Trace.Configuration;
 
 namespace BookLibrary
 {
@@ -27,6 +25,8 @@ namespace BookLibrary
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureContainer(ServiceRegistry services)
         {
+            services.AddApplicationInsightsTelemetry();
+
             // Add framework services.
             services
                 .AddRouting(options =>
@@ -41,17 +41,6 @@ namespace BookLibrary
                 })
                 .AddXmlDataContractSerializerFormatters();
 
-            services.AddSingleton<MongoEventTracer>();
-            services.AddOpenTelemetry(config =>
-            {
-                string zipkinUri = Configuration.GetValue<string>("OpenTelemetry:ZipkinUri");
-                config
-                    .UseZipkin(zipkinConfig => zipkinConfig.Endpoint = new Uri(zipkinUri))
-                    .AddRequestCollector()
-                    .AddDependencyCollector()
-                    .SetResource(Resources.CreateServiceResource("booklibrary-netcore"));
-            });
-
             // Add health monitoring
             services
                 .AddHealthChecks()
@@ -60,7 +49,8 @@ namespace BookLibrary
                     name: "mongodb_health_check",
                     mongoDatabaseName: DatabaseName,
                     failureStatus: HealthStatus.Unhealthy,
-                    tags: new[] { "ready" });
+                    tags: new[] { "ready" })
+                .AddApplicationInsightsPublisher();
 
             // Add application specific services
             services

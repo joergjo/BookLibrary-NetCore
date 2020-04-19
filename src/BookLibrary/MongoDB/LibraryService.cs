@@ -5,7 +5,7 @@ using BookLibrary.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace BookLibrary.Mongo
+namespace BookLibrary.MongoDB
 {
     public class LibraryService : ILibraryService
     {

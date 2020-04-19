@@ -2,13 +2,13 @@ using System;
 using MongoDB.Driver;
 using MongoDB.Driver.Core.Events;
 
-namespace BookLibrary.Mongo
+namespace BookLibrary.MongoDB
 {
     public static class MongoDriverExtensions
     {
-        public static MongoClientSettings AddOpenTracing(
+        public static MongoClientSettings AddApplicationInsightsDependencyTracing(
             this MongoClientSettings clientSettings,
-            MongoEventTracer eventTracer)
+            MongoDependencyTracer eventTracer)
         {
             if (clientSettings is null)
             {

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using MongoDB.Bson;
 
-namespace BookLibrary.Mongo
+namespace BookLibrary.MongoDB
 {
     public class ObjectIdConstraint : IRouteConstraint
     {
