@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: booklibrary
-        image: joergjo/booklibrary-netcore:latest
+        image: joergjo/booklibrary-netcore
         ports:
         - containerPort: 80
           name: http
@@ -46,6 +46,11 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "500m"
+      tolerations:
+      - key: "kubernetes.azure.com/scalesetpriority"
+        operator: "Equal"
+        value: "spot"
+        effect: "NoSchedule"
       volumes:
         - name: secrets-volume
           secret:

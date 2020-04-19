@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.IO;
 using Lamar.Microsoft.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,7 @@ namespace BookLibrary
     {
         public static void Main(string[] args)
         {
+            Activity.DefaultIdFormat = ActivityIdFormat.W3C;
             CreateHostBuilder(args).Build().Run();
         }
 

@@ -1,5 +1,6 @@
 using BookLibrary.Common;
 using BookLibrary.Models;
+using BookLibrary.MongoDB;
 using Lamar;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -58,7 +59,7 @@ namespace BookLibrary
                     connectionStringFactory: () => Configuration.GetConnectionString("DefaultConnection"),
                     databaseName: DatabaseName,
                     bsonMappingInitializer: () => BsonMapping.Configure())
-                .AddScoped<ILibraryService, MongoLibraryService>();
+                .AddScoped<ILibraryService, LibraryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

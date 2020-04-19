@@ -4,7 +4,7 @@ VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{60019088-8481-4DD9-A8E1-8093A2B6E1A3}"
 	ProjectSection(SolutionItems) = preProject
-		docker-compose.mongo.yml = docker-compose.mongo.yml
+		docker-compose.dev.yml = docker-compose.dev.yml
 		docker-compose.override.windows.yml = docker-compose.override.windows.yml
 		docker-compose.override.yml = docker-compose.override.yml
 		docker-compose.yml = docker-compose.yml
@@ -19,10 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{D0449CE6-4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "manifests", "manifests", "{A2E0E023-10B6-44BD-94B7-D8EDBAC54268}"
 	ProjectSection(SolutionItems) = preProject
-		manifests\clusterip-deployment.yaml = manifests\clusterip-deployment.yaml
+		manifests\app-deployment-clusterip.yaml = manifests\app-deployment-clusterip.yaml
+		manifests\app-deployment-loadbalancer.yaml = manifests\app-deployment-loadbalancer.yaml
 		manifests\configmap.yaml = manifests\configmap.yaml
 		manifests\ingress.yaml = manifests\ingress.yaml
-		manifests\loadbalancer-deployment.yaml = manifests\loadbalancer-deployment.yaml
 		manifests\secrets.yaml = manifests\secrets.yaml
 	EndProjectSection
 EndProject
