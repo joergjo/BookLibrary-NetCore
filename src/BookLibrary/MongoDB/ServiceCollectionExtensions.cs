@@ -2,7 +2,7 @@ using System;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 
-namespace BookLibrary.Common
+namespace BookLibrary.MongoDB
 {
     public static class ServiceCollectionExtensions
     {
@@ -32,8 +32,10 @@ namespace BookLibrary.Common
             services.AddSingleton(serviceProvider =>
             {
                 string connectionString = connectionStringFactory();
-                var mongoUrl = new MongoUrl(connectionString);
-                var client = new MongoClient(mongoUrl);
+                var clientSettings = MongoClientSettings.FromConnectionString(connectionString);
+                var eventTracer = serviceProvider.GetRequiredService<MongoDependencyTracer>();
+                clientSettings.AddApplicationInsightsDependencyTracing(eventTracer);
+                var client = new MongoClient(clientSettings);
                 var database = client.GetDatabase(databaseName);
                 return database;
             });
