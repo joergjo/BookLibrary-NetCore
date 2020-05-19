@@ -15,31 +15,31 @@ namespace BookLibrary.Common
             LoggerMessage.Define<string>(
                 LogLevel.Information,
                 ApplicationEvents.BookQueried,
-                "Retrieved book '{Id}'.");
+                "Retrieved book '{BookId}'.");
 
         private static readonly Action<ILogger, string, Exception?> _bookNotFound =
             LoggerMessage.Define<string>(
                 LogLevel.Information,
                 ApplicationEvents.BookNotFound,
-                "Failed to retrieve book '{Id}'.");
+                "Failed to retrieve book '{BookId}'.");
 
         private static readonly Action<ILogger, string, Exception?> _bookCreated =
             LoggerMessage.Define<string>(
                 LogLevel.Information,
                 ApplicationEvents.BookCreated,
-                "Added book with id '{Id}'.");
+                "Added book with id '{BookId}'.");
 
         private static readonly Action<ILogger, string, Exception?> _bookUpdated =
             LoggerMessage.Define<string>(
                 LogLevel.Information,
                 ApplicationEvents.BookUpdated,
-                "Updated book with id '{Id}'.");
+                "Updated book with id '{BookId}'.");
 
         private static readonly Action<ILogger, string, Exception?> _bookDeleted =
             LoggerMessage.Define<string>(
                 LogLevel.Information,
                 ApplicationEvents.BookDeleted,
-                "Removed book with id '{Id}'.");
+                "Removed book with id '{BookId}'.");
 
         private static readonly Action<ILogger, string, Exception?> _unhandledExceptionOccurred =
             LoggerMessage.Define<string>(
