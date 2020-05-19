@@ -63,4 +63,4 @@
 #*.RTF   diff=astextplain
 
 *.sh	text eol=lf
-*.min.js    texr eol=lf
+*.min.js    text eol=lf
