@@ -15,7 +15,9 @@ namespace BookLibrary.MongoDB
 
         private const string DatabaseType = "monogdb";
 
-        public MongoDependencyTracer(TelemetryClient telemetryClient, ILogger<MongoDependencyTracer> logger)
+        public MongoDependencyTracer(
+            TelemetryClient telemetryClient,
+            ILogger<MongoDependencyTracer> logger)
         {
             _operations = new ConcurrentDictionary<int, DependencyTelemetry>();
             _telemetryClient = telemetryClient;
