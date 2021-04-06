@@ -64,5 +64,6 @@ spec:
   ports:
   - port: 80
     targetPort: http
+    name: http
   selector:
     app: booklibrary

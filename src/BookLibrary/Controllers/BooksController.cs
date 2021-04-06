@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BookLibrary.Common;
@@ -16,16 +17,22 @@ namespace BookLibrary.Controllers
         private readonly ILibraryService _library;
         private readonly ILogger _logger;
 
-        public BooksController(ILibraryService library, ILogger<BooksController> logger)
+        public BooksController(
+            ILibraryService library,
+            ILogger<BooksController> logger)
         {
-            _library = library;
-            _logger = logger;
+            _library =
+                library ??
+                throw new ArgumentNullException(nameof(library));
+            _logger =
+                logger ??
+                throw new ArgumentNullException(nameof(logger));
         }
 
         // GET: api/books
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<Book>>> Get([FromQuery]int limit = 20)
+        public async Task<ActionResult<IEnumerable<Book>>> Get(int limit = 20)
         {
             if (limit < 1)
             {
@@ -68,7 +75,7 @@ namespace BookLibrary.Controllers
         [HttpPut("{id:objectid}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Book>> Put(string id, [FromBody]Book book)
+        public async Task<ActionResult<Book>> Put(string id, Book book)
         {
             var updatedBook = await _library.UpdateAsync(id, book);
             if (updatedBook is null)
