@@ -1,17 +1,16 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: booklibrary
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/add-base-url: "true"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-    - host: booklibrary.<DNS_ZONE>
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: booklibrary-svc
-              servicePort: 80
+  - host: booklibrary.<DNS_ZONE>
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: booklibrary-svc
+            port:
+              name: http

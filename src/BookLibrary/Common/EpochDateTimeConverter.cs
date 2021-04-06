@@ -6,7 +6,10 @@ namespace BookLibrary.Common
 {
     public class EpochDateTimeConverter : JsonConverter<DateTime?>
     {
-        public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override DateTime? Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options)
         {
             if (reader.TryGetInt64(out long ticks))
             {
@@ -18,7 +21,10 @@ namespace BookLibrary.Common
             return default;
         }
 
-        public override void Write(Utf8JsonWriter writer, DateTime? value, JsonSerializerOptions options)
+        public override void Write(
+            Utf8JsonWriter writer,
+            DateTime? value,
+            JsonSerializerOptions options)
         {
             if (value.HasValue)
             {

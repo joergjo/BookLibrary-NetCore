@@ -36,9 +36,9 @@ spec:
         - configMapRef:
             name: booklibrary-config
         volumeMounts:
-          - name: secrets-volume
-            mountPath: /app/secrets
-            readOnly: true
+        - name: secrets-volume
+          mountPath: /app/secrets
+          readOnly: true
         resources:
           requests:
             memory: "256Mi"
@@ -52,9 +52,9 @@ spec:
         value: "spot"
         effect: "NoSchedule"
       volumes:
-        - name: secrets-volume
-          secret:
-            secretName: booklibrary-secrets
+      - name: secrets-volume
+        secret:
+          secretName: booklibrary-secrets
 ---
 apiVersion: v1
 kind: Service
@@ -63,7 +63,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - port: 80
-      targetPort: http
+  - port: 80
+    targetPort: http
   selector:
     app: booklibrary
